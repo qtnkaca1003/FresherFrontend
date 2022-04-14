@@ -1,13 +1,17 @@
 import React, { FC } from "react";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
-const Layout:FC = () => {
-    return (
-      <>
-     {/*  <h1>1231</h1> */}
-        <Header />
-        <Footer />
-      </>
-    );
-  };
-  export default Layout;
+
+interface Ichildren {
+  children?: React.ReactNode;
+}
+const Layout: FC<Ichildren> = ({ children }) => {
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
+};
+export default Layout;
