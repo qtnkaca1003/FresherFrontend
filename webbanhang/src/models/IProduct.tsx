@@ -1,8 +1,10 @@
-export default interface IProduct {
-    id?: number
-    title?: string
-    price?: number
-    image?: string
-    description?: string
-    category?: string
-}
+interface IProduct {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    quantity: number; 
+  }
+  export default IProduct;

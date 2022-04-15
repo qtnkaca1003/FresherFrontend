@@ -1,4 +1,3 @@
-
 import {
   Box,
   Button,
@@ -14,22 +13,24 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
-
+import React, { useContext } from "react";
+import { CartContext } from "../../store/CartProvider";
 import IProduct from "../../models/IProduct";
 
 interface IProps {
   item?: IProduct;
 }
+
 const ModalProduct = (props: IProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const { dispatch } = useContext(CartContext);
+  //const item:IIem = props.item;
   return (
     <>
-      <Box mb={'10'}>
-        <Button mr={'5'} onClick={onOpen}>
+      <Box mb={"5"}>
+        <Button mr={"5"} onClick={onOpen}>
           Details
         </Button>
-        <Button>Add to cart</Button>
       </Box>
 
       <Modal size={"2xl"} isOpen={isOpen} onClose={onClose}>
@@ -55,7 +56,12 @@ const ModalProduct = (props: IProps) => {
                 <Text fontSize="1xl">{props.item?.description}</Text>
                 <Text fontWeight={"bold"} mt="3" fontSize="2xl">
                   Price: {props.item?.price}${" "}
-                  <Button ml={"10"}>
+                  <Button
+                    onClick={function () {
+                      dispatch({ type: "ADD_CART", payload: props.item });
+                    }}
+                    ml={"10"}
+                  >
                     Add to cart
                   </Button>
                 </Text>

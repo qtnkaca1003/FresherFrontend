@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import "./App.css";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
+import Router from "./router";
 
 const App:FC = () => {
   return (
    
     <Layout>
-      <HomePage />
+     <Router/>
     </Layout>
   );
 };
