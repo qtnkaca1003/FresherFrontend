@@ -13,23 +13,23 @@ import {
   Select,
   useDisclosure,
 } from "@chakra-ui/react";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hook";
-import IProduct from "../../models/IProduct";
-import { addProduct } from "../../redux/reducer/PostReducer";
+//import axios from "axios";
+//import React, { useEffect, useState } from "react";
+//import { useAppDispatch, useAppSelector } from "../../hook";
+//import IProduct from "../../models/IProduct";
+//import { addProduct } from "../../redux/reducer/PostReducer";
 
 const AddReview = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   //const listProduct= useAppSelector((state)=> state.products?.productList)
-  const dispatch = useAppDispatch();
-  const [form, setForm] = useState({
+  //const dispatch = useAppDispatch();
+ /*  const [form, setForm] = useState({
     title: "",
     productName: "",
     product: "",
     category: "",
     content: "",
-  });
+  }); */
   /* useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((res) => {
       dispatch(addProduct(res.data))
@@ -37,7 +37,6 @@ const AddReview = () => {
     });
   },[dispatch]); */
   //console.log(listProduct);
-  
   return (
     <>
       <Box w={"3xl"}>
