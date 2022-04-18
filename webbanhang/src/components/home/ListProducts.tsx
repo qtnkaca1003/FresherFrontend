@@ -28,7 +28,6 @@ const ListProducts = ({ products }: IListProduct) => {
               return (
                 <GridItem key={item.id} w="100%" h="100%">
                   <Box
-                    
                     maxW="sm"
                     borderWidth="1px"
                     borderRadius="lg"

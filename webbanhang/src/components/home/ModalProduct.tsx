@@ -25,6 +25,7 @@ const ModalProduct = (props: IProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const { dispatch } = useContext(CartContext);
   //const item:IIem = props.item;
+  //console.log(props);
   return (
     <>
       <Box mb={"5"}>
@@ -32,7 +33,6 @@ const ModalProduct = (props: IProps) => {
           Details
         </Button>
       </Box>
-
       <Modal size={"2xl"} isOpen={isOpen} onClose={onClose}>
         <ModalContent>
           <ModalHeader textAlign={"center"}>Details</ModalHeader>

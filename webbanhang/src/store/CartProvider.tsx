@@ -28,19 +28,25 @@ const initState: InitState = {
 
 // REDUCER
 function reducer(state: InitState, action: ActionType) {
-  
-
   switch (action.type) {
     case "ADD_CART":
-      const addCarts = state.products ?? [];
-      let index = addCarts.findIndex((cart) => cart.id === action.payload.id);
-      index === -1
-        ? addCarts.push({ ...action.payload, quantity: 1 })
-        : addCarts[index].quantity++;
-      return {
-        ...state,
-        products: addCarts,
-      };
+      const updatedCart = state.products ?? [];
+      const updatedItemIndex = updatedCart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      console.log(updatedItemIndex);
+      if (updatedItemIndex < 0) {
+        updatedCart.push({ ...action.payload, quantity: 1 });
+      } else {
+        const updatedItem = {
+          ...updatedCart[updatedItemIndex],
+        };
+        console.log("sl sp:",updatedItem.quantity);
+        updatedItem.quantity++;
+        updatedCart[updatedItemIndex] = updatedItem;
+      }
+      return { ...state, cart: updatedCart };
+    
     case "REMOVE_CART":
       return {
         ...state,
