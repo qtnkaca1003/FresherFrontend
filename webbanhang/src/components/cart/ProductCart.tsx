@@ -1,7 +1,8 @@
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { Box, Button, Image, Td, Tr } from "@chakra-ui/react";
-import React, { FC, memo } from "react";
+import React, { FC, memo, useContext } from "react";
 import Product from "../../models/IProduct";
-
+import { CartContext } from "../../store/CartProvider";
 interface Props {
   product: any;
   handleDelete: (product: Product) => () => void;
@@ -10,8 +11,10 @@ interface Props {
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const ProductCart: FC<Props> = ({ product, handleDelete, handleChange }) => {
-  console.log(product.title);
-
+  const { dispatch } = useContext(CartContext);
+  const handleButtonPlus = (event: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch({ type: "ADD_CART", payload: product });
+  };
   return (
     <Tr key={product.id}>
       <Td>
@@ -31,7 +34,15 @@ const ProductCart: FC<Props> = ({ product, handleDelete, handleChange }) => {
           />
         </Box>
       </Td>
-      <Td>{product.quantity}</Td>
+      <Td>
+        <Button mr={"5"}>
+          <MinusIcon />
+        </Button>{" "}
+        {product.quantity}{" "}
+        <Button onClick={handleButtonPlus} ml={"5"}>
+          <AddIcon />
+        </Button>{" "}
+      </Td>
       <Td isNumeric>{product.price}</Td>
       <Td>
         <Button onClick={handleDelete(product)}>Xoá</Button>

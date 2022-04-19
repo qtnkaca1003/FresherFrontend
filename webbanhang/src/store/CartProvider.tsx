@@ -34,14 +34,14 @@ function reducer(state: InitState, action: ActionType) {
       const updatedItemIndex = updatedCart.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log(updatedItemIndex);
+     
       if (updatedItemIndex < 0) {
         updatedCart.push({ ...action.payload, quantity: 1 });
       } else {
         const updatedItem = {
           ...updatedCart[updatedItemIndex],
         };
-        console.log("sl sp:",updatedItem.quantity);
+      
         updatedItem.quantity++;
         updatedCart[updatedItemIndex] = updatedItem;
       }

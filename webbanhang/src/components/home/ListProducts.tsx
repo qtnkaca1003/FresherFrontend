@@ -15,10 +15,7 @@ interface IListProduct {
   products?: IProduct[];
 }
 const ListProducts = ({ products }: IListProduct) => {
-  const { state, dispatch } = useContext(CartContext);
-  const products1 = state;
-  console.log(products1);
-
+  const { dispatch } = useContext(CartContext);
   return (
     <>
       <Container maxW={"container.xl"}>

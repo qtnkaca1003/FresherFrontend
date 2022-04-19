@@ -1,4 +1,4 @@
-import { Badge, Box, Flex, Grid, GridItem, Skeleton } from "@chakra-ui/react";
+import { Badge, Box, Grid, GridItem, Skeleton } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hook";

@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPost } from "../../models/IPost";
-import IProduct from "../../models/IProduct";
 type initialStateType = {
-  postList: IPost[],
-  productList: IProduct[]
+  postList: IPost[];
 };
 const postList: IPost[] = [
   {
@@ -31,22 +29,12 @@ const postList: IPost[] = [
     category: "men's clothing",
   },
 ];
-const productList: IProduct[] = [
-  {
-    id: 0,
-    title: "",
-    price: 0,
-    description: "",
-    category: "",
-    image: "",
-    quantity: 0,
-  }
-];
+
 const initialState: initialStateType = {
   postList,
-  productList,
-   
+  
 };
+
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -54,10 +42,8 @@ export const postSlice = createSlice({
     addNewPost: (state, action: PayloadAction<IPost>) => {
       state.postList.push(action.payload);
     },
-    addProduct: (state, action :PayloadAction<IProduct>)=>{
-      state.productList.push(action.payload)
-    } 
   },
 });
-export const { addProduct,addNewPost} = postSlice.actions;
+
+export const { addNewPost } = postSlice.actions;
 export default postSlice.reducer;

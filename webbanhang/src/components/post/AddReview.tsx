@@ -11,32 +11,61 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
+  Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-//import axios from "axios";
-//import React, { useEffect, useState } from "react";
-//import { useAppDispatch, useAppSelector } from "../../hook";
-//import IProduct from "../../models/IProduct";
-//import { addProduct } from "../../redux/reducer/PostReducer";
+
+import React, {  useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hook";
+import IProduct from "../../models/IProduct";
+import { addNewPost } from "../../redux/reducer/PostReducer";
+
 
 const AddReview = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //const listProduct= useAppSelector((state)=> state.products?.productList)
-  //const dispatch = useAppDispatch();
- /*  const [form, setForm] = useState({
+  const listProduct = useAppSelector((state) => state.listProduct.productList);
+  const allProduct = Object.assign([], ...listProduct);
+  const dispatch = useAppDispatch();
+  const [form, setForm] = useState({
+    id: 0,
     title: "",
+    content: "",
     productName: "",
     product: "",
     category: "",
-    content: "",
-  }); */
-  /* useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((res) => {
-      dispatch(addProduct(res.data))
-      //setProducts(res.data);
+
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.currentTarget;
+    setForm({
+      ...form,
+      [name]: value,
+
     });
-  },[dispatch]); */
-  //console.log(listProduct);
+  };
+  const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log("Fruit Selected!!", e.currentTarget.value);
+    const { name, value } = e.currentTarget;
+    const product = allProduct.find((p: any) => p.id === parseInt(value));
+    setForm({
+      ...form,
+      [name]: value,
+      category: product ? product?.category : "",
+      productName: product ? product?.title : "",
+      product: product ? product?.id : ""
+    });
+  };
+  const handlrChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.currentTarget;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+ 
+  const handleSubmit =()=>{
+    dispatch(addNewPost(form))
+  }
   return (
     <>
       <Box w={"3xl"}>
@@ -48,23 +77,58 @@ const AddReview = () => {
             <ModalCloseButton />
             <ModalBody>
               <FormControl isRequired>
-                <FormLabel htmlFor="first-name">Title</FormLabel>
-                <Input id="first-name" placeholder="First name" />
-                <FormLabel htmlFor="country">Product</FormLabel>
-                <Select id="country" placeholder="Select product">
-                   {/*  {listProduct?.map((item:any)=>{
-                        return(
-                            <option>{item.title}</option>
-                        )
-                    })} */}
+                <FormLabel htmlFor="title">Title</FormLabel>
+                <Input
+                  onChange={handleChange}
+                  name="title"
+                  id="title"
+                  placeholder="Title"
+                  value={form.title}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="product">Product</FormLabel>
+                <Select
+                  onChange={handleChangeSelect}
+                  id="product"
+                  placeholder="Select product"
+                >
+                  {allProduct?.map((item: IProduct) => {
+                    return (
+                      <option value={item.id} key={item.id}>
+                        {item.title}
+                      </option>
+                    );
+                  })}
                 </Select>
               </FormControl>
+              <FormControl isReadOnly>
+                <FormLabel htmlFor="category">Category</FormLabel>
+                <Input
+                  name="category"
+                  onChange={handleChange}
+                  value={form?.category ?? ""}
+                  id="category"
+                  placeholder="Category"
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="content">Content</FormLabel>
+                <Textarea
+                  onChange={handlrChangeText}
+                  name="content"
+                  defaultValue={form.content}
+                  placeholder="Đánh giá"
+                ></Textarea>
+              </FormControl>
+              <Button mt={4}  onClick={handleSubmit} colorScheme="teal" type="submit">
+                Submit
+              </Button>
             </ModalBody>
           </ModalContent>
         </Modal>
       </Box>
     </>
   );
-  //const post = useAppSelector((state) => state.post.postList.find((book) => book.id === id));
 };
 export default AddReview;

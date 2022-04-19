@@ -16,7 +16,7 @@ import TotalCart from "../../components/cart/TotalCart";
 const Cart: FC = () => {
   const { state, dispatch } = useContext(CartContext);
   const { products } = state;
-  console.log(products);
+ 
 
   const handleDelete = useCallback(
     (product: Product) => () => {
