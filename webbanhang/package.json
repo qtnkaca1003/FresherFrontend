@@ -1,11 +1,15 @@
 {
   "name": "webbanhang",
   "version": "0.1.0",
-  "private": true,
+  "description": "Shop App build Electron",
+  "author": "willjw3",
+  "build": {
+    "appId": "react.electron",
+    "productName": "Shop-app"
+  },
   "main": "public/electron.js",
-  "description": "Build app Electron",
-  "author": "NhanQT",
   "homepage": "./",
+  "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.8",
@@ -22,7 +26,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.26.1",
     "cross-env": "^7.0.3",
-    "electron-forge": "^5.2.4",
+    
     "electron-is-dev": "^2.0.0",
     "formik": "^2.2.9",
     "framer-motion": "^6.2.10",
@@ -36,16 +40,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
-    "electron": "wait-on tcp:3000 && electron .",
-    "package": "react-scripts build && electron-forge package",
-    "make-mac": "react-scripts build && electron-forge make --platform darwin",
-    "make-linux": "react-scripts build && electron-forge make --platform linux",
-    "make": "react-scripts build && electron-forge make"
+    "electron-build": "electron-builder",
+    "build": "npm run react-build && npm run electron-build",
+    "start": "concurrently -k \"cross-env BROWSER=none npm run react-start\" \"npm:electron\"",
+    "electron": "wait-on tcp:3000 && electron ."
   },
   "eslintConfig": {
     "extends": [
@@ -69,36 +71,8 @@
     "@types/node": "^16.11.26",
     "@types/redux-logger": "^3.0.9",
     "concurrently": "^7.1.0",
-    "electron": "18.0.4",
-    "wait-on": "^6.0.1"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "stock_trading_app"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin",
-            "linux",
-            "win32"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+    "electron": "^18.0.4",
+    "wait-on": "^6.0.1",
+    "electron-builder": "^23.0.3"
   }
 }

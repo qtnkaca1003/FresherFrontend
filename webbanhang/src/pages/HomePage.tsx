@@ -17,13 +17,7 @@ const HomePage = () => {
       });
     };
     getProduct();
-    /* axios.get("https://fakestoreapi.com/products").then((res) => {
-      //dispatch(addProduct(res.data))
-      setProducts(res.data);
-    }); */
   }, [dispatch]);
-
-  
   return (
     <>
       <Text fontSize="4xl" fontWeight={"bold"} align={"center"}>

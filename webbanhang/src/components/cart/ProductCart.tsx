@@ -15,6 +15,9 @@ const ProductCart: FC<Props> = ({ product, handleDelete, handleChange }) => {
   const handleButtonPlus = (event: React.MouseEvent<HTMLButtonElement>) => {
     dispatch({ type: "ADD_CART", payload: product });
   };
+  const handelButtonMinus = (event: React.MouseEvent<HTMLButtonElement>) => {
+    dispatch({ type: "DEL_CART", payload: product });
+  };
   return (
     <Tr key={product.id}>
       <Td>
@@ -35,7 +38,7 @@ const ProductCart: FC<Props> = ({ product, handleDelete, handleChange }) => {
         </Box>
       </Td>
       <Td>
-        <Button mr={"5"}>
+        <Button onClick={handelButtonMinus} mr={"5"}>
           <MinusIcon />
         </Button>{" "}
         {product.quantity}{" "}

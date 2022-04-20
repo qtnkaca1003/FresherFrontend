@@ -64,7 +64,10 @@ const AddReview = () => {
   };
  
   const handleSubmit =()=>{
-    dispatch(addNewPost(form))
+    console.log("title",form.title);
+    
+    dispatch(addNewPost(form));
+    onClose();
   }
   return (
     <>
@@ -79,6 +82,7 @@ const AddReview = () => {
               <FormControl isRequired>
                 <FormLabel htmlFor="title">Title</FormLabel>
                 <Input
+                isRequired
                   onChange={handleChange}
                   name="title"
                   id="title"

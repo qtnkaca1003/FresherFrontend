@@ -5,7 +5,6 @@ import { CartContext } from "../../store/CartProvider";
 const TotalCart = () => {
   const { state } = useContext(CartContext);
   const { products } = state;
-  console.log("có thay đổi hem", products);
  
   const totalPrice = useMemo(() => {
     return (

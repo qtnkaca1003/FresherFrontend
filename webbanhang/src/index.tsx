@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { CartProvider } from "./store/CartProvider";
-import { BrowserRouter } from "react-router-dom";
+import {  HashRouter } from "react-router-dom";
 
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
@@ -18,9 +18,9 @@ root.render(
     <Provider store={store}>
       <ChakraProvider>
         <CartProvider>
-          <BrowserRouter>
+          <HashRouter >
             <App />
-          </BrowserRouter>
+          </HashRouter>
         </CartProvider>
       </ChakraProvider>
     </Provider>
