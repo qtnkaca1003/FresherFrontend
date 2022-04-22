@@ -171,6 +171,7 @@ app.whenReady().then(() => {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+    
     },
   });
 
