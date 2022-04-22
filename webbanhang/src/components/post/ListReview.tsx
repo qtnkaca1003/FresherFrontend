@@ -6,8 +6,6 @@ import AddReview from "./AddReview";
 
 const ListReview = () => {
   const listReview = useAppSelector((state) => state.post.postList);
-  //console.log(state);
-  //const removeSpecialChar = (str: string) => str.replace(/[^a-zA-Z]/g, "-");
   const replaceSpecial =(str:string)=> str.replace(/[^a-zA-Z]/g, "-")
   return (
     <>

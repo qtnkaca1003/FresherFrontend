@@ -9,7 +9,7 @@ interface Ichildren {
   children?: React.ReactNode;
 }
 type ActionType = {
-  type: "ADD_CART" | "REMOVE_CART" | "CHANGE_QUANTITY_CART";
+  type: "ADD_CART" | "REMOVE_CART" | "DEL_CART";
   payload: any;
 };
 
@@ -54,15 +54,32 @@ function reducer(state: InitState, action: ActionType) {
           (product) => product.id !== action.payload.id
         ),
       };
-    case "CHANGE_QUANTITY_CART":
-      return {
-        ...state,
-        products: state.products?.map((product) =>
-          product.id === action.payload.id
-            ? { ...product, quantity: action.payload.quantity }
-            : product
-        ),
-      };
+    case "DEL_CART":
+      const updatedCartDel = state.products ?? [];
+      const updatedItemIndexDel = updatedCartDel.findIndex(
+        (item) => item.id === action.payload.id
+      );
+     
+      if (updatedItemIndexDel < 0) {
+        updatedCartDel.push({ ...action.payload, quantity: 1 });
+      } 
+      else {
+        const updatedItem = {
+          ...updatedCartDel[updatedItemIndexDel],
+        };
+      
+        updatedItem.quantity--;
+        if(updatedItem.quantity ===0){
+          return {
+            ...state,
+            products: state.products?.filter(
+              (product) => product.id !== action.payload.id
+            ),
+          };
+        }
+        updatedCartDel[updatedItemIndexDel] = updatedItem;
+      }
+      return { ...state, cart: updatedCartDel };
     // case "INCREASE_PRODUCT_CART":
     //   return;
     default:
