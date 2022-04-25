@@ -158,12 +158,9 @@ const createWin = () => {
       ? "http://localhost:3006/#/cart"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
-  /*  ipcMain.on("openChildWindow", (event, arg) => {
-    winCart.show();
-  }); */
 };
 if (process.platform === "win32") {
-  app.setAppUserModelId('Shop App');
+  app.setAppUserModelId("Shop App");
 }
 app.whenReady().then(() => {
   const win = new BrowserWindow({
@@ -171,10 +168,9 @@ app.whenReady().then(() => {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-    
+      //devTools: true,
     },
   });
-
   win.loadURL(
     isDev
       ? "http://localhost:3006"
@@ -184,7 +180,7 @@ app.whenReady().then(() => {
     e.preventDefault();
     win.hide();
   });
-
+  win.webContents.openDevTools();
   //Tray icon
   const icon = path.join(__dirname, "/logo192.png");
   const trayIcon = nativeImage.createFromPath(icon);
@@ -212,6 +208,7 @@ app.whenReady().then(() => {
   });
   appIcon.setContextMenu(contextMenu);
 });
+ipcMain.on("show-cart", (event, arg) => {});
 app.on("window-all-closed", () => {});
 app.requestSingleInstanceLock();
 const menu = Menu.buildFromTemplate(template);

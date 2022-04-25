@@ -3,164 +3,118 @@ const {
   app,
   BrowserWindow,
   ipcMain,
-  dialog,
   Menu,
   Tray,
+  ipcRenderer,
   nativeImage,
 } = require("electron");
 const isDev = require("electron-is-dev");
-const isMac = process.platform === "darwin";
+//const { ipcRenderer } = require("electron/renderer");
+//const isMac = process.platform === "darwin";
 
-//menu
 const template = [
-  // { role: 'appMenu' }
-  ...(isMac
-    ? [
-        {
-          label: app.name,
-          submenu: [
-            { role: "about" },
-            { type: "separator" },
-            { role: "services" },
-            { type: "separator" },
-            { role: "hide" },
-            { role: "hideOthers" },
-            { role: "unhide" },
-            { type: "separator" },
-            { role: "quit" },
-          ],
-        },
-      ]
-    : []),
-  // { role: 'fileMenu' }
   {
     label: "File",
-    submenu: [isMac ? { role: "close" } : { role: "quit" }],
+    submenu: [
+      { label: "New Window" },
+      {
+        label: "Settings",
+        accelerator: "CmdOrCtrl+,",
+        click: () => {
+          winSetting.show();
+        },
+      },
+      { type: "separator" },
+      {
+        label: "Quit",
+        accelerator: "CmdOrCtrl+Q",
+      },
+    ],
   },
-  // { role: 'editMenu' }
   {
     label: "Edit",
     submenu: [
-      { role: "undo" },
-      { role: "redo" },
-      { type: "separator" },
-      { role: "cut" },
-      { role: "copy" },
-      { role: "paste" },
-      ...(isMac
-        ? [
-            { role: "pasteAndMatchStyle" },
-            { role: "delete" },
-            { role: "selectAll" },
-            { type: "separator" },
-            {
-              label: "Speech",
-              submenu: [{ role: "startSpeaking" }, { role: "stopSpeaking" }],
-            },
-          ]
-        : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
-    ],
-  },
-  // { role: 'viewMenu' }
-  {
-    label: "View",
-    submenu: [
-      { role: "reload" },
-      { role: "forceReload" },
-      { role: "toggleDevTools" },
-      { type: "separator" },
-      { role: "resetZoom" },
-      { role: "zoomIn" },
-      { role: "zoomOut" },
-      { type: "separator" },
-      { role: "togglefullscreen" },
-    ],
-  },
-  // { role: 'windowMenu' }
-  {
-    label: "Window",
-    submenu: [
-      { role: "minimize" },
-      { role: "zoom" },
-      ...(isMac
-        ? [
-            { type: "separator" },
-            { role: "front" },
-            { type: "separator" },
-            { role: "window" },
-          ]
-        : [{ role: "close" }]),
-    ],
-  },
-  {
-    role: "help",
-    submenu: [
-      {
-        label: "Learn More",
-        click: async () => {
-          const { shell } = require("electron");
-          await shell.openExternal("https://electronjs.org");
-        },
-      },
-      {
-        label: "More",
-        click: async () => {
-          console.log("Hello");
-          const { canceled, filePaths } = await dialog.showOpenDialog();
-          if (canceled) {
-            return;
-          } else {
-            /*  const { shell } = require("electron");
-            await shell.openExternal("https://facebook.com/qtn.kaca"); */
-            return filePaths[0];
-          }
-          /* const { shell } = require("electron");
-          await shell.openExternal("https://facebook.com/qtn.kaca"); */
-        },
-      },
+      { label: "Menu Item 1" },
+      { label: "Menu Item 2" },
+      { label: "Menu Item 3" },
     ],
   },
 ];
 let appIcon = null;
+let winImage;
 
-async function handleFileOpen() {
-  const { canceled, filePaths } = await dialog.showOpenDialog();
-  if (canceled) {
-    return;
-  } else {
-    return filePaths[0];
-  }
-}
+let winSetting;
+const createWin = () => {
+ const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+    show: true,
+  });
+  winImage = new BrowserWindow({
+    width: 500,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+    show: false,
+  });
+  winSetting = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+    show: false,
+  });
 
-const win = new BrowserWindow({
-  width: 800,
-  height: 600,
-  webPreferences: {
-    nodeIntegration: true,
-    //preload: path.join(__dirname, "/preload.js"),
-  },
-  show: true
-});
-
-win.whenReady().then(() => {
   win.loadFile("/public/index.html");
   win.loadURL(
     isDev
       ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "/public/index.html")}`
+      : `file://${path.join(__dirname, "/src/index.html")}`
+  );
+
+  winImage.loadFile("/public/index.html");
+  winImage.loadURL(
+    isDev
+      ? "http://localhost:3000/image"
+      : `file://${path.join(__dirname, "/src/index.html")}`
+  );
+
+  winSetting.loadFile("/public/index.html");
+  winSetting.loadURL(
+    isDev
+      ? "http://localhost:3000/setting"
+      : `file://${path.join(__dirname, "/src/index.html")}`
   );
   if (isDev) {
-    win.webContents.openDevTools({
+    winImage.webContents.openDevTools({
       mode: "detach",
     });
+    /* win.webContents.openDevTools({
+      mode: "detach",
+    }); */
   }
-  //ipcMain.handle("dialog:openFile", handleFileOpen);
-  //createWindow();
-  /* app.on("activate", function () {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });  */
+  win.on("close", (e) =>{
+    e.preventDefault();
+    win.hide();
+  })
+  winImage.on("close", (e) => {
+    e.preventDefault();
+    winImage.hide();
+  });
+  winSetting.on("close",(e)=>{
+    e.preventDefault();
+  })
+  winSetting.on("close",()=>{
+    //winSetting.destroy();
+    winSetting.hide();
+  })
   const icon = path.join(__dirname, "/logo192.png");
   const trayIcon = nativeImage.createFromPath(icon);
   appIcon = new Tray(trayIcon.resize({ width: 16 }));
@@ -175,19 +129,26 @@ win.whenReady().then(() => {
     {
       label: "Quit App",
       click: () => {
+        win.destroy();
         app.quit();
       },
     },
   ]);
-  appIcon.setToolTip("Shop App");
-  appIcon.setTitle("Shop App");
+  appIcon.setToolTip("App test");
+  appIcon.setTitle("App test");
   appIcon.setContextMenu(contextMenu);
+};
+app.on("ready", () => {
+  createWin();
 });
-/* app.on("will-finish-launching", () => {
-  app.quit();
-}); */
-app.on("window-all-closed", () => {
-  win.hide();
+ipcMain.on("show-image", (e, arg) => {
+  winImage.show();
+  winImage.webContents.send("image", arg);
 });
+ipcMain.on('open-settings',(e)=>{
+  winSetting.show();
+})
+app.on("window-all-closed", () => {});
+
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
