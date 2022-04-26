@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,11 @@
   to {
     transform: rotate(360deg);
   }
+} */
+@media (prefers-color-scheme: dark) {
+  .chakra-ui-light { background: #333; color: white; }
+}
+
+@media (prefers-color-scheme: light) {
+  .chakra-ui-light { background: #ddd; color: black; }
 }
