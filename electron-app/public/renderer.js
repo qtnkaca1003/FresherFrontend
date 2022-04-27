@@ -25,7 +25,7 @@ document.getElementById('reset-to-system').addEventListener('click', async () =>
 
 document.getElementById('clickme').addEventListener('click',testIt) */
 //kéo thả file
-document.getElementById('drag1').ondragstart = (event) => {
+/* document.getElementById('drag1').ondragstart = (event) => {
   event.preventDefault()
   window.electron.startDrag('drag-and-drop-1.md')
 }
@@ -33,4 +33,25 @@ document.getElementById('drag1').ondragstart = (event) => {
 document.getElementById('drag2').ondragstart = (event) => {
   event.preventDefault()
   window.electron.startDrag('drag-and-drop-2.md')
+} */
+
+//Deep Link
+/* document.getElementById("open-in-browser").addEventListener("click", () => {
+  shell.open();
+}); */
+
+//Drog and Drag
+
+document.getElementById('drag').ondragstart = (event) => {
+  event.preventDefault()
+  window.electron.startDrag('drag-and-drop.md')
 }
+///Online/offline event
+/* const updateOnlineStatus = () => {
+  document.getElementById('status').innerHTML = navigator.onLine ? 'online' : 'offline'
+}
+
+window.addEventListener('online', updateOnlineStatus)
+window.addEventListener('offline', updateOnlineStatus)
+
+updateOnlineStatus() */

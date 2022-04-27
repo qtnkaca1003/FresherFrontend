@@ -12,7 +12,6 @@ const {
 } = require("electron");
 const isDev = require("electron-is-dev");
 const ipc = require("electron").ipcRenderer;
-let flag = false;
 let appIcon;
 const isMac = process.platform === "darwin";
 const template = [

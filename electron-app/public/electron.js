@@ -8,11 +8,14 @@ const {
   nativeImage,
   nativeTheme,
   ipcRenderer,
+  net,
+  dialog,
 } = require("electron");
 const isDev = require("electron-is-dev");
-const fs = require("fs");
+const { allowedNodeEnvironmentFlags } = require("process");
+/* const fs = require("fs");
 const https = require("https");
-app.disableHardwareAcceleration()
+app.disableHardwareAcceleration() */
 /* const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -94,7 +97,7 @@ const template = [
       { label: "New Window" },
       {
         label: "Settings",
-        accelerator: "CmdOrCtrl+,",
+        accelerator: "CmdOrCtrl+ T,",
         click: () => {
           createSetting();
         },
@@ -122,7 +125,8 @@ let appIcon = null;
 let winImage;
 let win;
 let winSetting;
-/* const createImage = () => {
+let child;
+const createImage = () => {
   winImage = new BrowserWindow({
     width: 500,
     webPreferences: {
@@ -131,17 +135,21 @@ let winSetting;
     },
     show: false,
   });
+  winImage.on("close", (e) => {
+    e.preventDefault();
+    winImage.hide();
+  });
   winImage.loadFile("/public/index.html");
   winImage.loadURL(
     isDev
       ? "http://localhost:3000/image"
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
-  if (isDev) {
+  /* if (isDev) {
     winImage.webContents.openDevTools();
-  }
-}; */
-const createWindow = () => {
+  } */
+};
+/* const createWindow = () => {
   const onlineStatusWindow = new BrowserWindow({
     width: 400,
     height: 100
@@ -158,12 +166,14 @@ app.whenReady().then(() => {
       createWindow()
     }
   })
-})
-/* const createWin = () => {
-  createImage();
+}) */
+const createWin = () => {
+  //createImage();
+  //child = new BrowserWindow({width: 600, height:400})
   win = new BrowserWindow({
     width: 800,
     height: 600,
+
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -171,7 +181,9 @@ app.whenReady().then(() => {
 
     show: true,
   });
-  win.webContents.on(
+
+  //win.setBackgroundColor('blueviolet')
+  /* win.webContents.on(
     "select-bluetooth-device",
     (event, deviceList, callback) => {
       event.preventDefault();
@@ -179,7 +191,7 @@ app.whenReady().then(() => {
         callback(deviceList[0].deviceId);
       }
     }
-  );
+  ); */
 
   win.loadFile("/public/index.html");
   win.loadURL(
@@ -188,11 +200,11 @@ app.whenReady().then(() => {
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
 
-  if (isDev) {
+  /* if (isDev) {
     win.webContents.openDevTools({
       mode: "detach",
     });
-  }
+  } */
   ipcMain.on("dark-mode:toggle", () => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = "light";
@@ -201,15 +213,15 @@ app.whenReady().then(() => {
     }
     return nativeTheme.shouldUseDarkColors;
   });
-  win.on("close", (e) => {
+  /* win.on("close", (e) => {
     e.preventDefault();
     win.hide();
     winImage.destroy();
-  });
+  }); */
   const icon = path.join(__dirname, "/logo192.png");
   const trayIcon = nativeImage.createFromPath(icon);
   appIcon = new Tray(trayIcon.resize({ width: 16 }));
-  console.log(isDev);
+  //console.log(isDev);
   const contextMenu = Menu.buildFromTemplate([
     {
       label: "Show app",
@@ -230,8 +242,8 @@ app.whenReady().then(() => {
   appIcon.setToolTip("App test");
   appIcon.setTitle("App test");
   appIcon.setContextMenu(contextMenu);
-}; */
-/* const createSetting = () => {
+};
+const createSetting = () => {
   winSetting = new BrowserWindow({
     width: 800,
     height: 600,
@@ -254,7 +266,7 @@ app.whenReady().then(() => {
       ? "http://localhost:3000/setting"
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
-}; */
+};
 //const iconName = path.join(__dirname, "iconForDragAndDrop.png");
 //const icon = fs.createWriteStream(iconName);
 
@@ -286,10 +298,25 @@ https.get("https://img.icons8.com/ios/452/drag-and-drop.png", (response) => {
     file: path.join(__dirname, filePath),
     icon: iconName,
   });
-}); 
- app.on("ready", () => {
-  createWin();
-}); 
+});  */
+let options  = {
+  buttons: ["Cancel"],
+  message: "No internet, quit app !!!",
+  
+ }
+app.on("ready", () => {
+  const isOnline = net.isOnline()
+  if(isOnline){
+    createWin();
+  }
+  else{
+   dialog.showMessageBox(null,options,(res, check)=>{
+      console.log("Hi 1",res);
+    });
+    
+  }
+  
+});
 ipcMain.on("show-image", (e, arg) => {
   winImage.show();
   winImage.webContents.send("image", arg);
@@ -299,18 +326,21 @@ ipcMain.on("open-settings", (e) => {
 });
 ipcMain.on("set-title", (e, arg) => {
   win.webContents.send("title", arg);
-}); 
- */
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
-
-app.on('activate', () => {
+});
+app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    //createWindow()
+    createWin();
   }
-})
+});
+app.whenReady().then(() => {});
+app.on("quit", () => {
+  console.log("Quit nè");
+});
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
