@@ -20,7 +20,7 @@ function createWindow() {
     },
   });
   win.loadFile("")
- /*  win.loadURL(
+  win.loadURL(
     isDev
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "/public/index.html")}`
@@ -29,7 +29,7 @@ function createWindow() {
     win.webContents.openDevTools({
       mode: "detach",
     });
-  } */
+  }
 }
 app.whenReady().then(() => {
   ipcMain.handle("dialog:openFile", handleFileOpen);

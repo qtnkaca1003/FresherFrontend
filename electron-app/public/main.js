@@ -171,7 +171,7 @@ app.on('activate', () => {
     createWindow()
   }
 }) */
-const {
+/* const {
   app,
   BrowserWindow,
   ipcMain,
@@ -188,9 +188,8 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
-     
     },
-  })
+  });
   win.loadFile("./public/index.html");
 }
 
@@ -211,6 +210,12 @@ https.get("https://img.icons8.com/ios/452/drag-and-drop.png", (response) => {
   response.pipe(icon);
 });
 
+app.on("will-finish-launching", () => {
+  console.log("will-finish-launching");
+});
+app.on("ready", () => {
+  console.log("check ready", app.isReady());
+});
 app.whenReady().then(createWindow);
 
 ipcMain.on("ondragstart", (event, filePath) => {
@@ -230,7 +235,7 @@ app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
-});
+}); */
 //Online/offline event
 /* const { app, BrowserWindow, BrowserView } = require("electron");
 let onlineStatusWindow;

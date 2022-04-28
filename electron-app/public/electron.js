@@ -10,12 +10,11 @@ const {
   ipcRenderer,
   net,
   dialog,
+  session,
 } = require("electron");
 const isDev = require("electron-is-dev");
 const { allowedNodeEnvironmentFlags } = require("process");
-/* const fs = require("fs");
-const https = require("https");
-app.disableHardwareAcceleration() */
+
 /* const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
@@ -88,7 +87,7 @@ app.on("window-all-closed", () => {
 }); */
 
 //const { ipcRenderer } = require("electron/renderer");
-//const isMac = process.platform === "darwin";
+const isMac = process.platform === "darwin";
 
 const template = [
   {
@@ -102,12 +101,20 @@ const template = [
           createSetting();
         },
       },
+
       { type: "separator" },
       {
         label: "Hide",
         accelerator: "CmdOrCtrl+H",
         click: () => {
           win.hide();
+        },
+      },
+      {
+        label: "Get Window",
+        click: () => {
+          const allWIndow = BrowserWindow.getAllWindows();
+          console.log(allWIndow);
         },
       },
     ],
@@ -125,7 +132,6 @@ let appIcon = null;
 let winImage;
 let win;
 let winSetting;
-let child;
 const createImage = () => {
   winImage = new BrowserWindow({
     width: 500,
@@ -145,9 +151,9 @@ const createImage = () => {
       ? "http://localhost:3000/image"
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
-  /* if (isDev) {
+  if (isDev) {
     winImage.webContents.openDevTools();
-  } */
+  }
 };
 /* const createWindow = () => {
   const onlineStatusWindow = new BrowserWindow({
@@ -168,7 +174,7 @@ app.whenReady().then(() => {
   })
 }) */
 const createWin = () => {
-  //createImage();
+  createImage();
   //child = new BrowserWindow({width: 600, height:400})
   win = new BrowserWindow({
     width: 800,
@@ -181,6 +187,8 @@ const createWin = () => {
 
     show: true,
   });
+  const contents = win.webContents;
+  console.log("contents nè: ", contents);
 
   //win.setBackgroundColor('blueviolet')
   /* win.webContents.on(
@@ -213,11 +221,20 @@ const createWin = () => {
     }
     return nativeTheme.shouldUseDarkColors;
   });
-  /* win.on("close", (e) => {
+  win.on("close", (e) => {
     e.preventDefault();
     win.hide();
     winImage.destroy();
-  }); */
+  });
+  win.on("move", () => {
+    console.log("T move rồi nè");
+  });
+  win.on("moved", () => {
+    console.log("T đã move rồi nè");
+  });
+  win.on("enter-full-screen", () => {
+    console.log("mở full screen");
+  });
   const icon = path.join(__dirname, "/logo192.png");
   const trayIcon = nativeImage.createFromPath(icon);
   appIcon = new Tray(trayIcon.resize({ width: 16 }));
@@ -235,10 +252,15 @@ const createWin = () => {
       label: "Quit App",
       click: () => {
         win.destroy();
+        winImage.destroy();
         app.quit();
       },
     },
   ]);
+  appIcon.addListener("click", () => {
+    win.show();
+    createImage();
+  });
   appIcon.setToolTip("App test");
   appIcon.setTitle("App test");
   appIcon.setContextMenu(contextMenu);
@@ -267,55 +289,30 @@ const createSetting = () => {
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
 };
-//const iconName = path.join(__dirname, "iconForDragAndDrop.png");
-//const icon = fs.createWriteStream(iconName);
-
-// Create a new file to copy - you can also copy existing files.
-/* fs.writeFileSync(
-  path.join(__dirname, "drag-and-drop-1.md"),
-  "# First file to test drag and drop"
-);
-fs.writeFileSync(
-  path.join(__dirname, "drag-and-drop-2.md"),
-  "# Second file to test drag and drop"
-);
-
-https.get("https://img.icons8.com/ios/452/drag-and-drop.png", (response) => {
-  response.pipe(icon);
-});*/
-/* app.whenReady().then(()=>{
-  win = new BrowserWindow({ webPreferences: { offscreen: true } })
-  win.loadURL('https://github.com')
-  win.webContents.on('paint', (event, dirty, image) => {
-    fs.writeFileSync('ex.png', image.toPNG())
-  })
-  win.webContents.setFrameRate(30)
-  console.log(`The screenshot has been successfully saved to ${path.join(process.cwd(), 'ex.png')}`)
-});  */
-
-/* ipcMain.on("ondragstart", (event, filePath) => {
-  event.sender.startDrag({
-    file: path.join(__dirname, filePath),
-    icon: iconName,
-  });
-});  */
-let options  = {
+let options = {
   buttons: ["Cancel"],
   message: "No internet, quit app !!!",
-  
- }
+};
 app.on("ready", () => {
-  const isOnline = net.isOnline()
-  if(isOnline){
+  const isOnline = net.isOnline();
+
+  if (isOnline) {
     createWin();
+  } else {
+    dialog.showMessageBox(options);
   }
-  else{
-   dialog.showMessageBox(null,options,(res, check)=>{
-      console.log("Hi 1",res);
-    });
-    
-  }
-  
+});
+app.on("browser-window-blur", () => {
+  console.log("T bị mờ nè");
+});
+app.on("browser-window-focus", () => {
+  console.log("T bị focus nè");
+});
+app.on("browser-window-created", () => {
+  console.log("T mới tạo cửa sổ mới nè");
+});
+app.on("session-created", (session) => {
+  console.log("session nè", session.netLog);
 });
 ipcMain.on("show-image", (e, arg) => {
   winImage.show();
@@ -327,12 +324,15 @@ ipcMain.on("open-settings", (e) => {
 ipcMain.on("set-title", (e, arg) => {
   win.webContents.send("title", arg);
 });
-app.on("activate", () => {
+
+///MACOS
+/* app.on("activate", () => {
+  console.log("active");
   if (BrowserWindow.getAllWindows().length === 0) {
     createWin();
   }
-});
-app.whenReady().then(() => {});
+}); */
+//app.whenReady().then(() => {});
 app.on("quit", () => {
   console.log("Quit nè");
 });
