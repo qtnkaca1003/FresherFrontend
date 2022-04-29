@@ -11,6 +11,7 @@ const {
   net,
   dialog,
   session,
+  clipboard,
 } = require("electron");
 const isDev = require("electron-is-dev");
 const { allowedNodeEnvironmentFlags } = require("process");
@@ -85,10 +86,8 @@ app.on("window-all-closed", () => {
     mainWindow.webContents.openDevTools();
   }
 }); */
-
 //const { ipcRenderer } = require("electron/renderer");
 const isMac = process.platform === "darwin";
-
 const template = [
   {
     label: "File",
@@ -101,7 +100,6 @@ const template = [
           createSetting();
         },
       },
-
       { type: "separator" },
       {
         label: "Hide",
@@ -114,7 +112,7 @@ const template = [
         label: "Get Window",
         click: () => {
           const allWIndow = BrowserWindow.getAllWindows();
-          console.log(allWIndow);
+          //console.log(allWIndow);
         },
       },
     ],
@@ -151,9 +149,9 @@ const createImage = () => {
       ? "http://localhost:3000/image"
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
-  if (isDev) {
+  /* if (isDev) {
     winImage.webContents.openDevTools();
-  }
+  } */
 };
 /* const createWindow = () => {
   const onlineStatusWindow = new BrowserWindow({
@@ -179,7 +177,7 @@ const createWin = () => {
   win = new BrowserWindow({
     width: 800,
     height: 600,
-
+    //frame: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -188,7 +186,7 @@ const createWin = () => {
     show: true,
   });
   const contents = win.webContents;
-  console.log("contents nè: ", contents);
+  //console.log("contents nè: ", contents);
 
   //win.setBackgroundColor('blueviolet')
   /* win.webContents.on(
@@ -200,40 +198,38 @@ const createWin = () => {
       }
     }
   ); */
-
   win.loadFile("/public/index.html");
   win.loadURL(
     isDev
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "/src/index.html")}`
   );
-
-  /* if (isDev) {
+  if (isDev) {
     win.webContents.openDevTools({
       mode: "detach",
     });
-  } */
-  ipcMain.on("dark-mode:toggle", () => {
+  }
+  /* ipcMain.on("dark-mode:toggle", () => {
     if (nativeTheme.shouldUseDarkColors) {
       nativeTheme.themeSource = "light";
     } else {
       nativeTheme.themeSource = "dark";
     }
     return nativeTheme.shouldUseDarkColors;
-  });
+  }); */
   win.on("close", (e) => {
     e.preventDefault();
     win.hide();
     winImage.destroy();
   });
   win.on("move", () => {
-    console.log("T move rồi nè");
+    //console.log("T move rồi nè");
   });
   win.on("moved", () => {
-    console.log("T đã move rồi nè");
+    //console.log("T đã move rồi nè");
   });
   win.on("enter-full-screen", () => {
-    console.log("mở full screen");
+    //console.log("mở full screen");
   });
   const icon = path.join(__dirname, "/logo192.png");
   const trayIcon = nativeImage.createFromPath(icon);
@@ -297,22 +293,31 @@ app.on("ready", () => {
   const isOnline = net.isOnline();
 
   if (isOnline) {
+    clipboard.write({
+      text: "test",
+      html: "<b>Hi</b>",
+      rtf: "{\\rtf1\\utf8 text}",
+      bookmark: " a title",
+    });
+    console.log(clipboard.readHTML());
+    const vision = process.versions.electron;
+    console.log(vision);
     createWin();
   } else {
     dialog.showMessageBox(options);
   }
 });
 app.on("browser-window-blur", () => {
-  console.log("T bị mờ nè");
+  //console.log("T bị mờ nè");
 });
 app.on("browser-window-focus", () => {
-  console.log("T bị focus nè");
+  //console.log("T bị focus nè");
 });
 app.on("browser-window-created", () => {
-  console.log("T mới tạo cửa sổ mới nè");
+  //console.log("T mới tạo cửa sổ mới nè");
 });
 app.on("session-created", (session) => {
-  console.log("session nè", session.netLog);
+  //console.log("session nè", session.netLog);
 });
 ipcMain.on("show-image", (e, arg) => {
   winImage.show();
@@ -324,7 +329,28 @@ ipcMain.on("open-settings", (e) => {
 ipcMain.on("set-title", (e, arg) => {
   win.webContents.send("title", arg);
 });
-
+ipcMain.on("get-app-path",(e,arg)=>{
+  e.sender.send('got-app-path', app.getAppPath())
+});
+app.setUserTasks([
+  {
+    program: process.execPath,
+    arguments: "--new-window",
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: "New Window",
+    description: "Create a new window",
+  },
+  {
+    program: process.execPath,
+    arguments: "--new-window",
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: "Open file",
+    description: "Open new file",
+    workingDirectory: "test",
+  },
+]);
 ///MACOS
 /* app.on("activate", () => {
   console.log("active");

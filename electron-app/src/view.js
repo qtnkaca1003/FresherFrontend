@@ -10,7 +10,7 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
-const { ipcRenderer } = window.require("electron");
+const { ipcRenderer,clipboard } = window.require("electron");
 const dataReddit = {
   kind: "Listing",
   data: {
@@ -9436,7 +9436,11 @@ function App() {
   const [value, setValue] = useState("");
   const [title, setTitle1] = useState("");
   const [isActive, setIsActive] = useState(true);
-
+  const [visionElectron, setVisionElectron] = useState("");
+  const [Path, setPath] = useState("");
+  const [valueCp, setValueCp] = useState("");
+  const [titleBtn, setTitleBtn] = useState("Copy");
+  const [valuePase, setValuePase] = useState("");
   useEffect(() => {
     setdata(dataReddit.data.children);
     /* const getData = () => {
@@ -9448,10 +9452,13 @@ function App() {
     };
     getData(); */
   }, []);
-  console.log(data);
+  //console.log(data);
   ipcRenderer.on("title", (e, arg) => {
     setTitle1(arg);
   });
+  ipcRenderer.on("got-app-path",(e, arg)=>{
+    setPath(arg)
+  })
 
   const toggle = () => {
     setIsActive(!isActive);
@@ -9470,12 +9477,43 @@ function App() {
   const getValue = (e) => {
     setValue(e.target.value);
   };
-
+  const checkVision= ()=>{
+      const visionElectron = process.versions.electron;
+      setVisionElectron(visionElectron)
+  }
+  const checkLocal= ()=>{
+    ipcRenderer.send('get-app-path')
+}
+const getValueCp =(e)=>{
+  setValueCp(e.target.value)
+  setTitleBtn("Copy")
+}
+const btnCopy =()=>{
+  clipboard.writeText(valueCp)
+  setTitleBtn('Copied!')
+}
+const btnPase =()=>{
+  setValuePase(clipboard.readText())
+    console.log(clipboard.readText())
+}
   return (
     <>
       <Container maxW={"container.xl"}>
+        <Box mt={'10'} mb={"10"}>
+          Test copy: <Input onChange={getValueCp} w={'500px'} type={'text'} /> <Button onClick={btnCopy}>{titleBtn}</Button><Button onClick={btnPase}>Pase</Button>
+        </Box>
+        <Box mt={'10'} mb={"10"}>
+          Test: <Input value={valuePase} onChange={getValueCp} w={'500px'} type={'text'} />
+        </Box>
         <Button onClick={toggle}>Toggle Dark Mode</Button>
         <Text>Title nè {title}</Text>
+        <Button mb={"5"} onClick={checkVision}>
+          Kiểm tra
+        </Button>
+        <Button mb={"5"} onClick={checkLocal}>
+          Kiểm tra nơi lưu app:
+        </Button>
+        <Text>App đang dùng electron phiên bản: {visionElectron}, nơi lưu ứng dụng: {Path}  </Text>
         <Text>Set title:</Text> <Input onChange={getValue} type={"text"} />
         <Button mb={"5"} onClick={setTitle}>
           Set title
