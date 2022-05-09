@@ -1,150 +1,132 @@
-import type { ReactElement } from "react";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import Layout from "../components/Layout";
-import styles from "../styles/Home.module.css";
-import { Box, Container, Wrap } from "@chakra-ui/react";
-import Card from "../components/Card";
-
+import { Box, Container, Heading, Text, Wrap } from "@chakra-ui/react";
+import CAccordion from "../components/Accordion";
 const data = [
   {
-    title: "Data Fetching",
-    name: "",
-    price: 0,
-
+    title: "Pages",
     data: [
       {
-        description: "Get Static Props",
-        id: 0,
+        name: "All Page",
+        path: "/all-page",
+      },
+      {
+        name: "About",
+        path: "/all-page/about",
+      },
+      {
+        name: "Contact",
+        path: "/all-page/contact",
+      },
+    ],
+  },
+  {
+    title: "Data Fetching",
+    data: [
+      {
+        name: "Get Static Props",
+
         path: "/data-fetching/get-static-props",
       },
-      { description: "Get Static Path", id: 1 },
+      { name: "Get Static Path", path: "/data-fetching/get-static-paths" },
       {
-        description: "Get Sever Side Props",
-        id: 2,
+        name: "Get Sever Side Props",
+
         path: "/data-fetching/get-sever-side-props",
       },
     ],
   },
   {
-    title: "CSS Modules",
-    name: "",
-    price: 0,
+    title: "Built-in CSS Support",
     data: [
-      { description: "CSS Modules", id: 0 },
-      { description: "CSS in Js", id: 1 },
-      { description: "Sass Support", id: 2 },
+      { name: "CSS Modules",path:"/built-in-css/css-modules" },
+      { name: "CSS in Js",path:"/built-in-css/css-in-js" },
+      { name: "Sass Support",path:"/built-in-css/scss-support" },
     ],
   },
   {
     title: "Layouts",
-    name: "",
-    price: 0,
     data: [
-      { description: "Single Shared Layout", id: 0 },
-      { description: "Per-Page Layouts", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Single Shared Layout", path:"/single-shared-layout" },
+      { name: "Per-Page Layouts",path:"/pre-page-layout" }, 
     ],
   },
   {
     title: "Static File Serving",
-    name: "",
-    price: 0,
     data: [
-      { description: "Get Static Props", id: 0 },
-      { description: "Get Static Path", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Get Static Props" },
+      { name: "Get Static Path" },
+      { name: "Get Sever Side Props" },
     ],
   },
   {
     title: "Routing",
-    name: "",
-    price: 0,
     data: [
-      { description: "Get Static Props", id: 0 },
-      { description: "Get Static Path", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Get Static Props" },
+      { name: "Get Static Path" },
+      { name: "Get Sever Side Props" },
     ],
   },
   {
     title: "API Routes",
-    name: "",
-    price: 0,
     data: [
-      { description: "Get Static Props", id: 0 },
-      { description: "Get Static Path", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Get Static Props" },
+      { name: "Get Static Path" },
+      { name: "Get Sever Side Props" },
     ],
   },
   {
     title: "Custom Sever",
-    name: "",
-    price: 0,
     data: [
-      { description: "Get Static Props", id: 0 },
-      { description: "Get Static Path", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Get Static Props" },
+      { name: "Get Static Path" },
+      { name: "Get Sever Side Props" },
     ],
   },
   {
     title: "Custom `App`",
-    name: "",
-    price: 0,
     data: [
-      { description: "Get Static Props", id: 0 },
-      { description: "Get Static Path", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Get Static Props" },
+      { name: "Get Static Path" },
+      { name: "Get Sever Side Props" },
     ],
   },
   {
     title: "Custom `Document`",
-    name: "",
-    price: 0,
     data: [
-      { description: "Get Static Props", id: 0 },
-      { description: "Get Static Path", id: 1 },
-      { description: "Get Sever Side Props", id: 2 },
+      { name: "Get Static Props" },
+      { name: "Get Static Path" },
+      { name: "Get Sever Side Props" },
     ],
   },
 ];
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <>
-      <Container maxW={"container.lg"}>
-        <h1 className={styles.title}>TÌM HIỂU NEXTJS</h1>
-        <Box>
-          <Wrap mt={"5"} spacing="20px">
-            {data.map((item) => {
+      <Container h={"100%"} maxW={"container.lg"}>
+        <Heading
+          fontSize={"6xl"}
+          bgClip={"text"}
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          textAlign={"center"}
+        >
+          {" "}
+          TÌM HIỂU NEXTJS
+        </Heading>
+        <Box borderWidth={"1px"} borderRadius={"lg"} mb={"5"}>
+          <Box p="6">
+            {data.map((item, index) => {
               return (
-                <Card
-                  key={item.name}
+                <CAccordion
+                  key={index}
                   title={item.title}
                   data={item.data}
-                />
+                ></CAccordion>
               );
             })}
-          </Wrap>
+          </Box>
         </Box>
       </Container>
     </>
   );
-}
-/* Home.getLayout = function getLayout(page : ReactElement){
-  return(
-    <Layout>
-      {page}
-    </Layout>
-  )
-} */
-
-/* export async function getStaticProps() {
-  const res = await (await fetch("https://demo.vercel.store/api/catalog/products"));
-  const data =await res.json();
- console.log("api: ",data);
-  return {
-    props: {
-      product: data
-    },
-  };
-} */
+};
+export default Home;

@@ -1,13 +1,12 @@
 import { Box, Container, Text, Wrap } from "@chakra-ui/react";
 import Link from "next/link";
-import Card from "../../../components/Card";
+import CardProduct from "../../../components/CardProduct";
 interface IProduct {
-  id?: number;
-  image?: string;
-  title?: string;
-  name?: string;
+  title: string;
+  description: string;
   price: number;
-  data?: [{ description: string; id: number; path: string }];
+  image: string;
+  id: number;
 }
 interface IProps {
   product: IProduct[];
@@ -23,17 +22,14 @@ const getDataStaticPaths = ({ product }: IProps) => {
           </Text>
         </Box>
         <Wrap mt={"5"} spacing="20px">
-          {product.map((item) => {
+          {product.map((item, index) => {
             return (
-              <Link
-                href={"/data-fetching/get-static-paths/"}
-                key={item.id}
-              >
+              <Link href={`/data-fetching/get-static-paths/${item.id}`} key={index}>
                 <a>
                   {" "}
-                  <Card
+                  <CardProduct
                     image={item.image}
-                    name={item.name}
+                    name={item.title}
                     price={item.price}
                   />
                 </a>
@@ -49,13 +45,11 @@ const getDataStaticPaths = ({ product }: IProps) => {
 export default getDataStaticPaths;
 
 export const getStaticProps = async () => {
-  const res = await await fetch(
-    "https://demo.vercel.store/api/catalog/products"
-  );
+  const res = await await fetch("https://fakestoreapi.com/products");
   const data = await res.json();
   return {
     props: {
-      product: data.data.products,
+      product: data,
     },
   };
 };

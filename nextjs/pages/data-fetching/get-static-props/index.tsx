@@ -1,5 +1,4 @@
-import { Box, Container, Text, Wrap } from "@chakra-ui/react";
-import Card from "../../../components/Card";
+import { Box, Center, Container, Text, Wrap } from "@chakra-ui/react";
 import CardProduct from "../../../components/CardProduct";
 interface IProduct {
   title: string;
@@ -22,14 +21,15 @@ const getDataStaticProps = ({ product }: IProps) => {
           </Text>
         </Box>
         <Wrap mt={"5"} spacing="20px">
-          {product.map((item) => {
+          {product.map((item, index) => {
             return (
-              <CardProduct
-                key={item.id}
-                image={item.image}
-                name={item.title}
-                price={item.price}
-              />
+              <Center key={index}>
+                <CardProduct
+                  image={item.image}
+                  name={item.title}
+                  price={item.price}
+                />
+              </Center>
             );
           })}
         </Wrap>
