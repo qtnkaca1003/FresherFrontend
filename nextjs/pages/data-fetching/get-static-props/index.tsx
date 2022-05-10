@@ -41,11 +41,11 @@ const getDataStaticProps = ({ product }: IProps) => {
 export default getDataStaticProps;
 
 export const getStaticProps = async () => {
-  const res = await await fetch("https://fakestoreapi.com/products");
+  const res = await await fetch("http://localhost:8080/api");
   const data = await res.json();
   return {
     props: {
-      product: data,
+      product: data.data,
     },
   };
 };

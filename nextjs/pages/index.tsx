@@ -38,64 +38,51 @@ const data = [
   {
     title: "Built-in CSS Support",
     data: [
-      { name: "CSS Modules",path:"/built-in-css/css-modules" },
-      { name: "CSS in Js",path:"/built-in-css/css-in-js" },
-      { name: "Sass Support",path:"/built-in-css/scss-support" },
+      { name: "CSS Modules", path: "/built-in-css/css-modules" },
+      { name: "CSS in Js", path: "/built-in-css/css-in-js" },
+      { name: "Sass Support", path: "/built-in-css/scss-support" },
     ],
   },
   {
     title: "Layouts",
-    data: [
-      { name: "Single Shared Layout", path:"/single-shared-layout" },
-      { name: "Per-Page Layouts",path:"/pre-page-layout" }, 
-    ],
+    data: [{ name: "Layouts", path: "/layouts" }],
   },
   {
     title: "Static File Serving",
-    data: [
-      { name: "Get Static Props" },
-      { name: "Get Static Path" },
-      { name: "Get Sever Side Props" },
-    ],
+    data: [{ name: "Static File Serving", path: "/static-file-serving" }],
   },
   {
     title: "Routing",
     data: [
-      { name: "Get Static Props" },
-      { name: "Get Static Path" },
-      { name: "Get Sever Side Props" },
+      { name: "Single Route", path: "/routing/single-route/single-page" },
+      {
+        name: "Multiple Route",
+        path: "/routing/multiple-route/multiple-page1/multiple-page2",
+      },
+      {
+        name: "Catch All Route",
+        path: "/routing/catch-all-routes/multiple-page1/multiple-page2/multiple-page3",
+      },
     ],
   },
   {
     title: "API Routes",
     data: [
-      { name: "Get Static Props" },
-      { name: "Get Static Path" },
-      { name: "Get Sever Side Props" },
+      { name: "Api Routes", path: "/api" },
+      { name: "Dynamic Routes", path: "api-routes/dynamic-route" },
     ],
   },
   {
-    title: "Custom Sever",
+    title: "Custom",
     data: [
-      { name: "Get Static Props" },
-      { name: "Get Static Path" },
-      { name: "Get Sever Side Props" },
-    ],
-  },
-  {
-    title: "Custom `App`",
-    data: [
-      { name: "Get Static Props" },
-      { name: "Get Static Path" },
-      { name: "Get Sever Side Props" },
-    ],
-  },
-  {
-    title: "Custom `Document`",
-    data: [
-      { name: "Get Static Props" },
-      { name: "Get Static Path" },
-      { name: "Get Sever Side Props" },
+      {
+        name: "Custom Sever",
+        path: "https://nextjs.org/docs/advanced-features/custom-server",
+      },
+      { name: "Custom `App`", path: "/custom/app" },
+      { name: "Custom `Document`", path: "/custom/document" },
+      { name: "Custom Error Page", path: "/error" },
+
     ],
   },
 ];

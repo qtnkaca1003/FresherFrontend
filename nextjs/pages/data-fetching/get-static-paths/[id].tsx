@@ -38,15 +38,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
-  const res = await fetch("https://fakestoreapi.com/products/" + id);
+  const res = await fetch("http://localhost:8080/api/" + id);
   const data = await res.json();
   return {
     props: {
-      product: data,
+      product: data.find,
     },
   };
 };
-const getDetailProduct = ({ product }: IProps) => {
+const getDetailProduct = ({ product }: IProps) => { 
   return (
     <>
       <Container maxW={"container.lg"}>
