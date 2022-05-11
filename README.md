@@ -1,1 +1,11 @@
-Link website bán hàng: https://qtn-webbanhang.netlify.app/
+Tuần 2, 3:  
+Link website: https://qtn-webbanhang.netlify.app/
+Git: https://github.com/qtnkaca1003/FresherFrontend/tree/master/webbanhang
+
+Tìm hiểu ElectronJs:
+Link app:
+Git: https://github.com/qtnkaca1003/FresherFrontend/blob/master/webbanhang/public/electron.js
+
+NextJs
+Link web: https://nextjs-demo-theta-puce.vercel.app/
+Git: https://github.com/qtnkaca1003/FresherFrontend/tree/master/nextjs
