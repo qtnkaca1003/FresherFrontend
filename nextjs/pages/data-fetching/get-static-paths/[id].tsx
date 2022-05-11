@@ -38,11 +38,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id;
-  const res = await fetch("http://localhost:8080/api/" + id);
+  const res = await fetch("http://fakestoreapi.com/products/" + id);
   const data = await res.json();
   return {
     props: {
-      product: data.find,
+      product: data,
     },
   };
 };
