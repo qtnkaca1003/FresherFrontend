@@ -1,5 +1,5 @@
-import { Box, Container, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Container, Text,Image } from "@chakra-ui/react";
+
 import React from "react";
 const CssBuilt = () => {
   return (
@@ -27,10 +27,8 @@ const CssBuilt = () => {
             </Text>
             <Image
              
-              src="/image/css-gobal.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/css-gobal.JPG"
+              mb={5}
               alt="css-gobal"
             />
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
@@ -38,10 +36,8 @@ const CssBuilt = () => {
             </Text>
             <Image
               
-              src="/image/importCss.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/importCss.JPG"
+              mb={5}
               alt="importCss"
             />
             <Text mb={5}>
@@ -54,10 +50,8 @@ const CssBuilt = () => {
             </Text>
             <Image
              
-              src="/image/importCssModules.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/importCssModules.JPG"
+              mb={5}
               alt="importCssModules"
             />
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
@@ -65,10 +59,8 @@ const CssBuilt = () => {
             </Text>
             <Image
               
-              src="/image/addingComponent.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/addingComponent.JPG"
+              mb={5}
               alt="addingComponent"
             />
 
@@ -76,11 +68,8 @@ const CssBuilt = () => {
               Importing and using the above CSS file:
             </Text>
             <Image
-              
-              src="/image/using-css.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/using-css.JPG"
+              mb={5}
               alt="using-css"
             />
           </Box>

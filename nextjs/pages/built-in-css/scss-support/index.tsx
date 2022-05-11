@@ -1,5 +1,5 @@
-import { Box, Container, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Container, Image, Text } from "@chakra-ui/react";
+
 import React from "react";
 const ScssSuport = () => {
   return (
@@ -61,10 +61,8 @@ const ScssSuport = () => {
               For example to add includePaths:
             </Text>
             <Image
-              src="/image/includePathScss.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/includePathScss.JPG"
+              mb={5}
               alt="includePath"
             />
             <Text color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
@@ -77,18 +75,14 @@ const ScssSuport = () => {
               For example, using the exported primaryColor Sass variable:
             </Text>
             <Image
-              src="/image/variableScss.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/variableScss.JPG"
+              mb={5}
               alt="variableScss"
             />
             <Image
               
-              src="/image/_app.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
+              src="/image/_app.JPG"
+              mb={5}
               alt="app"
             />
           </Box>

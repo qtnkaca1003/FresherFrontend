@@ -4,8 +4,8 @@ import {
   Text,
   UnorderedList,
   ListItem,
+  Image
 } from "@chakra-ui/react";
-import Image from "next/image";
 
 const CustomApp = () => {
   return (
@@ -37,9 +37,7 @@ const CustomApp = () => {
             To override the default App, create the file ./pages/_app.js as
             shown below:
           </Text>
-          <Image width={"800px"}
-              height={"300px"}
-              layout={"responsive"} src="/image/customApp.jpg" alt="customApp" />
+          <Image mb={5} src="/image/customApp.JPG" alt="customApp" />
         </Box>
       </Box>
     </Container>

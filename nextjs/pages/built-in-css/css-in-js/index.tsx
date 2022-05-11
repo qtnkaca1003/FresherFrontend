@@ -1,8 +1,7 @@
-import { Box, Container, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Container, Text, Image } from "@chakra-ui/react";
+
 import React from "react";
 const CssInJs = () => {
-  
   return (
     <>
       <Container maxW={"container.lg"}>
@@ -15,14 +14,8 @@ const CssInJs = () => {
               It is possible to use any existing CSS-in-JS solution. The
               simplest one is inline styles:
             </Text>
-           {/*  <Image src="/image/css-inline.jpg" alt="..." /> */}
-             <Image
-              src="/image/css-inline.jpg"
-              width={"800px"}
-              height={"300px"}
-              layout={"responsive"}
-              alt="css-inline"
-            />
+            {/*  <Image src="/image/css-inline.JPG" alt="..." /> */}
+            <Image src="/image/css-inline.JPG" mb={5} alt="css-inline" />
             <Text mb={5}>
               We bundle styled-jsx to provide support for isolated scoped CSS.
               The aim is to support shadow CSS similar to Web Components, which
@@ -33,14 +26,8 @@ const CssInJs = () => {
               Styled Components).
             </Text>
             <Text mb={5}>A component using styled-jsx looks like this:</Text>
-           {/*  <Image src="/image/style-jsx.jpg" alt="..." /> */}
-             <Image
-              src="/image/style-jsx.jpg"
-              width={"800px"}
-              height={"800px"}
-              layout={"responsive"}
-              alt="style-jsx"
-            />
+            {/*  <Image src="/image/style-jsx.JPG" alt="..." /> */}
+            <Image src="/image/style-jsx.JPG" mb={5} alt="style-jsx" />
           </Box>
         </Box>
       </Container>
