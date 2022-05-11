@@ -2,11 +2,9 @@ import {
   Box,
   Container,
   Text,
-  Image,
-  Center,
-  UnorderedList,
-  ListItem,
+ 
 } from "@chakra-ui/react";
+import Image from "next/image";
 
 const CustomDocument = () => {
   return (
@@ -28,7 +26,9 @@ const CustomDocument = () => {
             like onClick cannot be used in _document. To override the default
             Document, create the file pages/_document.js as shown below:
           </Text>
-          <Image mb={5} src="/customDocument.jpg" alt="customDocument   " />
+          <Image width={"800px"}
+              height={"300px"}
+              layout={"responsive"} src="/image/customDocument.jpg" alt="customDocument   " />
         </Box>
       </Box>
     </Container>

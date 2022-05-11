@@ -2,11 +2,10 @@ import {
   Box,
   Container,
   Text,
-  Image,
-  Center,
   UnorderedList,
   ListItem,
 } from "@chakra-ui/react";
+import Image from "next/image";
 
 const CustomApp = () => {
   return (
@@ -38,7 +37,9 @@ const CustomApp = () => {
             To override the default App, create the file ./pages/_app.js as
             shown below:
           </Text>
-          <Image mb={5} src="/customApp.jpg" alt="customApp" />
+          <Image width={"800px"}
+              height={"300px"}
+              layout={"responsive"} src="/image/customApp.jpg" alt="customApp" />
         </Box>
       </Box>
     </Container>

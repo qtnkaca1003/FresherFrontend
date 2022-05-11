@@ -1,4 +1,5 @@
-import { Box, Container, Image, Text } from "@chakra-ui/react";
+import { Box, Container, Text } from "@chakra-ui/react";
+import Image from "next/image";
 const Layouts = () => {
   return (
     <>
@@ -14,7 +15,14 @@ const Layouts = () => {
               pages. For example, you might have the same navigation bar and
               footer on every page.
             </Text>
-            <Image w={700} mb={5} src="/layout.jpg" alt="layout" />
+            <Image
+              width={"700px"}
+              height={"300px"}
+              layout={"responsive"}
+             
+              src="/image/layout.jpg"
+              alt="layout"
+            />
             <Text color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Single Shared Layout with Custom App
             </Text>
@@ -23,39 +31,44 @@ const Layouts = () => {
               within pages/_app.js.
             </Text>
             <Image
-              w={700}
-              mb={5}
-              src="/single-layout.jpg"
+              width={"700px"}
+              height={"300px"}
+              layout={"responsive"}
+              src="/image/single-layout.jpg"
               alt="single-layout"
             />
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Per-Page Layouts
             </Text>
             <Image
-              mb={5}
-              w={700}
-              src="/pre-page-layout-index.jpg"
+              width={"700px"}
+              height={"300px"}
+              layout={"responsive"}
+              src="/image/pre-page-layout-index.jpg"
               alt="pre-page-layout-index"
             />
             <Image
-              mb={5}
-              w={700}
-              src="/pre-page-layout-app.jpg"
+              width={"700px"}
+              height={"300px"}
+              layout={"responsive"}
+              src="/image/pre-page-layout-app.jpg"
               alt="pre-page-layout-app"
             />
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               With TypeScript
             </Text>
             <Image
-              mb={5}
-              w={700}
-              src="/pre-page-typescript-index.jpg"
+              width={"700px"}
+              height={"300px"}
+              layout={"responsive"}
+              src="/image/pre-page-typescript-index.jpg"
               alt="pre-page-typescript-index"
             />
             <Image
-              mb={5}
-              w={700}
-              src="/pre-page-typescript-app.jpg"
+              width={"700px"}
+              height={"300px"}
+              layout={"responsive"}
+              src="/image/pre-page-typescript-app.jpg"
               alt="pre-page-typescript-app"
             />
           </Box>

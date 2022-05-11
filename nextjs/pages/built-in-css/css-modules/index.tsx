@@ -1,5 +1,6 @@
-import { Box, Container, Image, Text } from "@chakra-ui/react";
-import { StyleCode } from "../../../components/style";
+import { Box, Container, Text } from "@chakra-ui/react";
+import Image from "next/image";
+import React from "react";
 const CssBuilt = () => {
   return (
     <>
@@ -17,19 +18,33 @@ const CssBuilt = () => {
             <Text color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Adding a Global Stylesheet
             </Text>
-            <Text >
+            <Text>
               To add a stylesheet to your application, import the CSS file
               within pages/_app.js.
             </Text>
             <Text mb={5}>
               For example, consider the following stylesheet named styles.css:
             </Text>
-            <Image mb={5} src="/css-gobal.jpg" alt="css-gobal" />
+            <Image
+             
+              src="/image/css-gobal.jpg"
+              width={"800px"}
+              height={"300px"}
+              layout={"responsive"}
+              alt="css-gobal"
+            />
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Improt style.css file
             </Text>
-            <Image mb={5} src="/importCss.jpg" alt="importCss" />
-            <Text mb={5}    >
+            <Image
+              
+              src="/image/importCss.jpg"
+              width={"800px"}
+              height={"300px"}
+              layout={"responsive"}
+              alt="importCss"
+            />
+            <Text mb={5}>
               These styles (styles.css) will apply to all pages and components
               in your application. Due to the global nature of stylesheets, and
               to avoid conflicts, you may only import them inside pages/_app.js.
@@ -37,16 +52,37 @@ const CssBuilt = () => {
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Import styles from node_modules
             </Text>
-            <Image mb={5} src="/importCssModules.jpg" alt="importCssModules" />
+            <Image
+             
+              src="/image/importCssModules.jpg"
+              width={"800px"}
+              height={"300px"}
+              layout={"responsive"}
+              alt="importCssModules"
+            />
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Adding Component-Level CSS
             </Text>
-            <Image mb={5} src="/addingComponent.jpg" alt="addingComponent" />
+            <Image
+              
+              src="/image/addingComponent.jpg"
+              width={"800px"}
+              height={"300px"}
+              layout={"responsive"}
+              alt="addingComponent"
+            />
 
             <Text mb={5} color={"black"} fontSize={"2xl"} fontWeight={"bold"}>
               Importing and using the above CSS file:
             </Text>
-            <Image mb={5} src="/using-css.jpg" alt="using-css" />
+            <Image
+              
+              src="/image/using-css.jpg"
+              width={"800px"}
+              height={"300px"}
+              layout={"responsive"}
+              alt="using-css"
+            />
           </Box>
         </Box>
       </Container>
