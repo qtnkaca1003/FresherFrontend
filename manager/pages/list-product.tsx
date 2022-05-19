@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import React from "react";
-import { CTable } from "../components/table";
+import { CTable } from "../components/table/TProduct";
 import { IProduct } from "../types/interface";
 
 interface IProps {
@@ -20,8 +20,6 @@ interface IProps {
 }
 const ListProduct = ({ products }: IProps) => {
   const countPage = products.length / 5;
-  console.log(products);
-
   return (
     <>
       <Box padding={"0 24px"}>
@@ -86,8 +84,6 @@ export default ListProduct;
 export const getServerSideProps: GetServerSideProps = async () => {
   const res = await await fetch("http://localhost:3000/api/page/5");
   const data = await res.json();
-  console.log("data nè:", data);
-
   return {
     props: {
       products: data.find,

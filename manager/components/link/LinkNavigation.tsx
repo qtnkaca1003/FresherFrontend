@@ -54,7 +54,7 @@ const LinkNavigation = () => {
         </Link>
       </Box>
       <Box>
-        <Link href={"/user"}>
+        <Link href={"/add-user"}>
           <a>
             <Text
               color={"#3d5170"}
@@ -71,13 +71,13 @@ const LinkNavigation = () => {
               padding={"20px 25px"}
             >
               <IconPlusUser />
-              Add user
+              User Profile
             </Text>
           </a>
         </Link>
       </Box>
       <Box>
-        <Link href={"/user"}>
+        <Link href={"/add-product"}>
           <a>
             <Text
               color={"#3d5170"}

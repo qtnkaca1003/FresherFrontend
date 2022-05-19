@@ -6,7 +6,7 @@ import LinkNavigation from "../link/LinkNavigation";
 export const Navigation = () => {
   return (
     <>
-      <Box h={"100vh"} boxShadow="2xl" bg="white" w={"320px"}>
+      <Box minH={"100vh"} boxShadow="2xl" bg="white" w={"320px"}>
         <Home />
         <LinkNavigation />
       </Box>

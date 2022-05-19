@@ -4,8 +4,6 @@ import data from "../../../dataprouct.json";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
   const perpage = Number(id);
-  console.log(perpage);
-
   const index = 0;
 
   const find = data.slice(index, index + perpage);
