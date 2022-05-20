@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Table,
   TableCaption,
   TableContainer,
@@ -10,6 +11,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { TUser } from "../components/table/TUser";
 import { useAppDispatch, useAppSelector } from "../hook";
@@ -18,6 +20,11 @@ import { IUser } from "../types/interface";
 
 const ListUser = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const toAddUser = () => {
+    //e.preventDefault()
+    router.push("/add-user");
+  };
   useEffect(() => {
     const getProduct = () => {
       axios.get("https://fakestoreapi.com/users?limit=5").then((res) => {
@@ -26,16 +33,24 @@ const ListUser = () => {
     };
     getProduct();
   }, [dispatch]);
-  const listUsers = useAppSelector((state) => state.users.postUser);
+  const listUsers = useAppSelector((state) => state.users.propsUsers);
   const users: IUser[] = Object.assign([], ...listUsers);
   return (
     <>
       <Box padding={"0 24px"}>
-        <Box padding={"24px 0"}>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          padding={"24px 0"}
+        >
           <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
             {" "}
             List User
           </Text>
+          <Button colorScheme={"blue"} onClick={toAddUser}>
+            {" "}
+            + Add User
+          </Button>
         </Box>
         <Box shadow={"2xl"} borderRadius={"10px"} padding={"24px 0"}>
           <TableContainer>

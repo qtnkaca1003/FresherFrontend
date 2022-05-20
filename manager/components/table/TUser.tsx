@@ -1,6 +1,8 @@
 import { Button, Td } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 import { IUser } from "../../types/interface";
+import ModalDel from "../modal";
 interface IProps {
   user: IUser;
 }
@@ -15,8 +17,10 @@ export const TUser = (props: IProps) => {
       <Td p={"12px"}>{props.user.address.zipcode}</Td>
       <Td p={"12px"}>{props.user.phone}</Td>
       <Td p={"12px"}>
-        <Button mr={5}>Edit</Button>
-        <Button>Delete</Button>
+        <Link href={`/edit/user/${props.user.id}`}>
+          <a className="chakra-button css-6urt9f"> Edit</a>
+        </Link>
+        <ModalDel title="Do you want to delete your account?" />
       </Td>
     </>
   );

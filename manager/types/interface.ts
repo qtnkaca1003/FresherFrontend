@@ -5,9 +5,10 @@ export interface IProduct {
   category: string;
   description: string;
   image: string;
+  data: [];
 }
 export interface IUser {
-  id:number
+  id: number;
   email: string;
   username: string;
   password: string;
@@ -25,5 +26,5 @@ export interface IUser {
       long: string;
     };
   };
-  phone: number;
+  phone: string;
 }

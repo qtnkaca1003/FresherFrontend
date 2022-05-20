@@ -13,7 +13,7 @@ import { useAppSelector } from "../../hook";
 import { IProduct } from "../../types/interface";
 axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
-const CFormProduct = () => {
+const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
   const product = useAppSelector((state) => state.product.propsProduct);
   const onSubmit: SubmitHandler<IProduct> = (data) => {
@@ -49,22 +49,22 @@ const CFormProduct = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box>
           {/* <FormControl>
-            <FormLabel fontWeight={"normal"} htmlFor="name.firstname">
-              First Name
-            </FormLabel>
-            <Input
-              {...register("name.firstname")}
-              name="name.firstname"
-              id="name.firstname"
-              type="text"
-            />
-          </FormControl> */}
+              <FormLabel fontWeight={"normal"} htmlFor="name.firstname">
+                First Name
+              </FormLabel>
+              <Input
+                {...register("name.firstname")}
+                name="name.firstname"
+                id="name.firstname"
+                type="text"
+              />
+            </FormControl> */}
           <FormControl mt={3} pr={5}>
             <FormLabel fontWeight={"normal"} htmlFor="title">
               Title
             </FormLabel>
             <Input
-              
+              value={product.title}
               {...register("title")}
               name="title"
               id="title"
@@ -77,7 +77,7 @@ const CFormProduct = () => {
             Price
           </FormLabel>
           <Input
-           
+            value={product.price}
             {...register("price")}
             name="price"
             id="price"
@@ -90,7 +90,7 @@ const CFormProduct = () => {
             Category
           </FormLabel>
           <Input
-           
+            value={product.category}
             {...register("category")}
             name="category"
             id="category"
@@ -101,7 +101,7 @@ const CFormProduct = () => {
           <FormLabel fontWeight={"normal"} htmlFor="description">
             Description
           </FormLabel>
-          <Textarea  placeholder="Description..." />
+          <Textarea value={product.description} placeholder="Description..." />
         </FormControl>
         <FormControl mt={3} pr={5}>
           <FormLabel fontWeight={"normal"} htmlFor="image">
@@ -123,4 +123,4 @@ const CFormProduct = () => {
     </Box>
   );
 };
-export default CFormProduct;
+export default CFormEditProduct;

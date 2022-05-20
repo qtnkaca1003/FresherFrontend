@@ -11,31 +11,44 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import React from "react";
 import { CTable } from "../components/table/TProduct";
 import { IProduct } from "../types/interface";
 
 interface IProps {
   products: IProduct[];
+  status: number;
 }
-const ListProduct = ({ products }: IProps) => {
+const ListProduct = ({ products, status }: IProps) => {
   const countPage = products.length / 5;
+  console.log(status);
+  const router = useRouter();
+  const toAddProduct = () => {
+    //e.preventDefault()
+    router.push("/add-product");
+  };
   return (
     <>
       <Box padding={"0 24px"}>
-        <Box padding={"24px 0"}>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          padding={"24px 0"}
+        >
           <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
             {" "}
             List Product
           </Text>
+          <Button colorScheme={"blue"} onClick={toAddProduct}>
+            {" "}
+            + Add Product
+          </Button>
         </Box>
         <Box shadow={"2xl"} borderRadius={"10px"} padding={"24px 0"}>
           <TableContainer>
             <Table variant="simple">
-              <TableCaption>{
-                 
-                 countPage
-                }</TableCaption>
+              <TableCaption>{countPage}</TableCaption>
               <Thead>
                 <Tr>
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
@@ -65,13 +78,17 @@ const ListProduct = ({ products }: IProps) => {
                 </Tr>
               </Thead>
               <Tbody>
-                {products.map((item: IProduct, index) => {
-                  return (
-                    <Tr key={index}>
-                      <CTable product={item} />
-                    </Tr>
-                  );
-                })}
+                {status === 200 ? (
+                  products.map((item: IProduct, index) => {
+                    return (
+                      <Tr key={index}>
+                        <CTable product={item} />
+                      </Tr>
+                    );
+                  })
+                ) : (
+                  <>Error</>
+                )}
               </Tbody>
             </Table>
           </TableContainer>
@@ -86,7 +103,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const data = await res.json();
   return {
     props: {
-      products: data.find,
+      products: data.data,
+      status: data.status,
     },
   };
 };
