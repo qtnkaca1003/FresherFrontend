@@ -31,7 +31,7 @@ const LinkNavigation = () => {
         </Link>
       </Box>
       <Box>
-        <Link href={"/list-product"}>
+        <Link href={"/list-product/1"}>
           <a>
             <Text
               color={"#3d5170"}

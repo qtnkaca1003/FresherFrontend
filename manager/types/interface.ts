@@ -5,7 +5,11 @@ export interface IProduct {
   category: string;
   description: string;
   image: string;
-  data: [];
+  rating: {
+    rate: number;
+    count: number;
+  };
+  /*  data: []; */
 }
 export interface IUser {
   id: number;

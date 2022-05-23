@@ -13,7 +13,7 @@ const EditUser = () => {
     const getUser = async () => {
       axios.get("https://fakestoreapi.com/users/" + id).then((res) => {
         dispatch(User1(res.data));
-        console.log(res.data);
+        //console.log(res.data);
       });
     };
     getUser();
