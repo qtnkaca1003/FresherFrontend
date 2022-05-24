@@ -6,19 +6,30 @@ import {
   Input,
   Textarea,
 } from "@chakra-ui/react";
-import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppSelector } from "../../hook";
+import apiProduct from "../../api/Product";
 import { IProduct } from "../../types/interface";
-axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+import ModalViewProduct from "../modal/modalProduct";
 
 const CFormProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
-  const product = useAppSelector((state) => state.product.propsProduct);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [product, setProduct] = useState<IProduct>();
   const onSubmit: SubmitHandler<IProduct> = (data) => {
-    const dataUser = JSON.stringify(data);
-    fetch("https://fakestoreapi.com/users", {
+    console.log(data);
+
+    apiProduct.addProduct(data).then((res) => {
+      setProduct(res.data);
+      setIsOpen(true);
+
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+    });
+
+    //dispatch(Product(data));
+    /* fetch("https://fakestoreapi.com/users", {
       method: "POST",
       body: JSON.stringify({
         email: "John@gmail.com",
@@ -42,85 +53,58 @@ const CFormProduct = () => {
       }),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => console.log(json)); */
   };
   return (
-    <Box>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box>
-          {/* <FormControl>
-            <FormLabel fontWeight={"normal"} htmlFor="name.firstname">
-              First Name
-            </FormLabel>
-            <Input
-              {...register("name.firstname")}
-              name="name.firstname"
-              id="name.firstname"
-              type="text"
-            />
-          </FormControl> */}
+    <>
+      <Box>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box>
+            <FormControl mt={3} pr={5}>
+              <FormLabel fontWeight={"normal"} htmlFor="title">
+                Title
+              </FormLabel>
+              <Input
+                {...register("title")}
+                name="title"
+                id="title"
+                type="text"
+              />
+            </FormControl>
+          </Box>
           <FormControl mt={3} pr={5}>
-            <FormLabel fontWeight={"normal"} htmlFor="title">
-              Title
+            <FormLabel fontWeight={"normal"} htmlFor="price">
+              Price
+            </FormLabel>
+            <Input {...register("price")} name="price" id="price" type="text" />
+          </FormControl>
+          <FormControl mt={3} pr={5}>
+            <FormLabel fontWeight={"normal"} htmlFor="category">
+              Category
             </FormLabel>
             <Input
-              
-              {...register("title")}
-              name="title"
-              id="title"
+              {...register("category")}
+              name="category"
+              id="category"
               type="text"
             />
           </FormControl>
-        </Box>
-        <FormControl mt={3} pr={5}>
-          <FormLabel fontWeight={"normal"} htmlFor="price">
-            Price
-          </FormLabel>
-          <Input
-           
-            {...register("price")}
-            name="price"
-            id="price"
-            type="text"
-          />
-        </FormControl>
-
-        <FormControl mt={3} pr={5}>
-          <FormLabel fontWeight={"normal"} htmlFor="category">
-            Category
-          </FormLabel>
-          <Input
-           
-            {...register("category")}
-            name="category"
-            id="category"
-            type="text"
-          />
-        </FormControl>
-        <FormControl mt={3} pr={5}>
-          <FormLabel fontWeight={"normal"} htmlFor="description">
-            Description
-          </FormLabel>
-          <Textarea  placeholder="Description..." />
-        </FormControl>
-        <FormControl mt={3} pr={5}>
-          <FormLabel fontWeight={"normal"} htmlFor="image">
-            Image
-          </FormLabel>
-          <Input
-            border={"none"}
-            {...register("image")}
-            name="image"
-            id="image"
-            type="file"
-          />
-        </FormControl>
-
-        <Button bg={"blue.300"} type="submit" mt={5}>
-          Add product
-        </Button>
-      </form>
-    </Box>
+          <FormControl mt={3} pr={5}>
+            <FormLabel fontWeight={"normal"} htmlFor="description">
+              Description
+            </FormLabel>
+            <Textarea
+              {...register("description")}
+              placeholder="Description..."
+            />
+          </FormControl>
+          <Button color={"#fff"} bg={"blue.300"} type="submit" mt={5}>
+            Add product
+          </Button>
+        </form>
+      </Box>
+      <ModalViewProduct product={product} isOpen={isOpen} />
+    </>
   );
 };
 export default CFormProduct;

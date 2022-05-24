@@ -10,10 +10,11 @@ const propsProduct: IProduct = {
   price: 0,
   description: "",
   image: "",
+  rating: { rate: 0, count: 0 },
 };
 
 const initialState: initialStateType = {
-  propsProduct
+  propsProduct,
 };
 export const productSlice = createSlice({
   name: "post",
@@ -25,7 +26,6 @@ export const productSlice = createSlice({
       state.propsProduct.price = action.payload.price;
       state.propsProduct.category = action.payload.category;
       state.propsProduct.description = action.payload.description;
-      state.propsProduct.image = action.payload.image;
     },
   },
 });

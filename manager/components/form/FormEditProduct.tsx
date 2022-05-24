@@ -11,60 +11,26 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../../hook";
 import { IProduct } from "../../types/interface";
-axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+
 
 const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
   const product = useAppSelector((state) => state.product.propsProduct);
   const onSubmit: SubmitHandler<IProduct> = (data) => {
-    const dataUser = JSON.stringify(data);
-    fetch("https://fakestoreapi.com/users", {
-      method: "POST",
-      body: JSON.stringify({
-        email: "John@gmail.com",
-        username: "johnd",
-        password: "m38rmF$",
-        name: {
-          firstname: "John",
-          lastname: "Doe",
-        },
-        address: {
-          city: "kilcoole",
-          street: "7835 new road",
-          number: 3,
-          zipcode: "12926-3874",
-          geolocation: {
-            lat: "-37.3159",
-            long: "81.1496",
-          },
-        },
-        phone: "1-570-236-7033",
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
+    
+    console.log(data);
   };
   return (
     <Box>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box>
-          {/* <FormControl>
-              <FormLabel fontWeight={"normal"} htmlFor="name.firstname">
-                First Name
-              </FormLabel>
-              <Input
-                {...register("name.firstname")}
-                name="name.firstname"
-                id="name.firstname"
-                type="text"
-              />
-            </FormControl> */}
           <FormControl mt={3} pr={5}>
             <FormLabel fontWeight={"normal"} htmlFor="title">
               Title
             </FormLabel>
             <Input
-              value={product.title}
+              
+              defaultValue={product.title}
               {...register("title")}
               name="title"
               id="title"
@@ -77,7 +43,7 @@ const CFormEditProduct = () => {
             Price
           </FormLabel>
           <Input
-            value={product.price}
+            defaultValue={product.price}
             {...register("price")}
             name="price"
             id="price"
@@ -90,7 +56,7 @@ const CFormEditProduct = () => {
             Category
           </FormLabel>
           <Input
-            value={product.category}
+            defaultValue={product.category}
             {...register("category")}
             name="category"
             id="category"
@@ -101,9 +67,9 @@ const CFormEditProduct = () => {
           <FormLabel fontWeight={"normal"} htmlFor="description">
             Description
           </FormLabel>
-          <Textarea value={product.description} placeholder="Description..." />
+          <Textarea defaultValue={product.description} placeholder="Description..." />
         </FormControl>
-        <FormControl mt={3} pr={5}>
+       {/*  <FormControl mt={3} pr={5}>
           <FormLabel fontWeight={"normal"} htmlFor="image">
             Image
           </FormLabel>
@@ -114,7 +80,7 @@ const CFormEditProduct = () => {
             id="image"
             type="file"
           />
-        </FormControl>
+        </FormControl> */}
 
         <Button bg={"blue.300"} type="submit" mt={5}>
           Add product

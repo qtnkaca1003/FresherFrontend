@@ -3,7 +3,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { CButtonFl } from "../../../components/buttonfl";
+import CAvatar from "../../../components/card";
 import CFormEditUser from "../../../components/form/FormEditUser";
+import { IconPlusUser } from "../../../components/icons/IconUserPlus";
+import CTitle from "../../../components/title";
 import { User1 } from "../../../redux/slices/userSlices";
 const EditUser = () => {
   const router = useRouter();
@@ -30,47 +34,36 @@ const EditUser = () => {
         </Box>
         <Grid display={"flex"} templateColumns="repeat(1, 1fr)" gap={6}>
           <GridItem shadow={"2xl"} borderRadius={5} w="50%">
-            {" "}
-            <Box>
-              <Box>
-                <Box maxW="sm" borderRadius="lg" overflow="hidden">
-                  <Box p="6">
-                    <Box display="flex" alignItems="baseline">
-                      <Box
-                        color="gray.500"
-                        fontWeight="semibold"
-                        letterSpacing="wide"
-                        fontSize="xs"
-                        textTransform="uppercase"
-                        ml="2"
-                      ></Box>
-                    </Box>
-
-                    <Box
-                      mt="1"
-                      fontWeight="semibold"
-                      as="h4"
-                      lineHeight="tight"
-                      noOfLines={1}
-                    ></Box>
-
-                    <Box>
-                      <Box as="span" color="gray.600" fontSize="sm">
-                        / wk
-                      </Box>
-                    </Box>
-
-                    <Box display="flex" mt="2" alignItems="center">
-                      <Box
-                        as="span"
-                        ml="2"
-                        color="gray.600"
-                        fontSize="sm"
-                      ></Box>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
+          {" "}
+            <Box
+              pt={5}
+              display={"flex"}
+              flexDirection={"column"}
+              alignItems={"center"}
+            >
+              <CAvatar />
+              <CTitle
+                color="#3d5170"
+                fontSize="2xl"
+                fontWeight="500"
+                title="Nhân Quách"
+              />
+              <CTitle
+                color="#868e96"
+                fontSize="16px"
+                fontWeight="500"
+                title="Dev"
+              />
+              <CButtonFl
+                borderRadius="20px"
+                fontSize="11px"
+                fontWeight="400"
+                width="75px"
+                height="30px"
+                title="Follow"
+                icon={<IconPlusUser fill="blue" />}
+                color="blue"
+              />
             </Box>
           </GridItem>
           <GridItem shadow={"2xl"} borderRadius={5} w="100%">

@@ -14,10 +14,11 @@ import {
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React from "react";
+import apiProduct from "../../api/Product";
 import ButtonPagin from "../../components/pagin";
 import { CTable } from "../../components/table/TProduct";
+import data from "../../dataprouct.json";
 import { IProduct } from "../../types/interface";
-import data from "../../dataprouct.json"
 interface IProps {
   products: IProduct[];
   status: number;
@@ -25,7 +26,6 @@ interface IProps {
 const ListProduct = ({ products, status }: IProps) => {
   const router = useRouter();
   const toAddProduct = () => {
-    //e.preventDefault()
     router.push("/add-product");
   };
   return (
@@ -51,9 +51,9 @@ const ListProduct = ({ products, status }: IProps) => {
               <TableCaption>
                 <ButtonPagin
                   itemPage={5}
-                  maxPageNumerLitmit={5}
+                  maxPageNumerLitmit={3}
                   path="/list-product/"
-                  pageNumerLitmit={5}
+                  pageNumerLitmit={3}
                   data={data}
                 />
               </TableCaption>
@@ -111,9 +111,8 @@ const ListProduct = ({ products, status }: IProps) => {
 };
 export default ListProduct;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const page = query.id || 1;
-  const res = await await fetch("http://localhost:3000/api/page/" + page);
-  const data = await res.json();
+  const page: string | string[] | number = query.id || 1;
+  const data = (await apiProduct.getPage(page)).data;
   return {
     props: {
       products: data.data,

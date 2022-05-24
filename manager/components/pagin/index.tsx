@@ -1,13 +1,13 @@
 import { Box, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { IProduct } from "../../types/interface";
+import { IProduct, IUser } from "../../types/interface";
 
 interface IPagination {
   itemPage: number;
   pageNumerLitmit: number;
   maxPageNumerLitmit: number;
-  data: IProduct[]
+  data: IProduct[] | IUser[];
   path: string;
 }
 const Pagination = (props: IPagination) => {
@@ -50,7 +50,7 @@ const Pagination = (props: IPagination) => {
   });
   const handleNext = () => {
     setCurrentPage(currentPage + 1);
-    router.push("/list-product/" + Number(currentPage + 1));
+    router.push(`${props.path}` + Number(currentPage + 1));
     if (currentPage + 1 > maxPageNumerLitmit) {
       setmaxPageNumerLitmit(maxPageNumerLitmit + pageNumerLitmit);
       setminPageNumerLitmit(minPageNumerLitmit + pageNumerLitmit);
@@ -58,7 +58,7 @@ const Pagination = (props: IPagination) => {
   };
   const handlePrev = () => {
     setCurrentPage(currentPage - 1);
-    router.push("/list-product/" + Number(currentPage - 1));
+    router.push(`${props.path}` + Number(currentPage - 1));
     if ((currentPage - 1) % pageNumerLitmit === 0) {
       setmaxPageNumerLitmit(maxPageNumerLitmit - pageNumerLitmit);
       setminPageNumerLitmit(minPageNumerLitmit - pageNumerLitmit);
@@ -67,7 +67,11 @@ const Pagination = (props: IPagination) => {
   let pageIncrementBtn;
   if (pages.length > maxPageNumerLitmit) {
     pageIncrementBtn = (
-      <Button disabled={currentPage === pages[pages.length - 1] ? true : false}  m={2} onClick={handleNext}>
+      <Button
+        disabled={currentPage === pages[pages.length - 1] ? true : false}
+        m={2}
+        onClick={handleNext}
+      >
         ...
       </Button>
     );
@@ -75,7 +79,11 @@ const Pagination = (props: IPagination) => {
   let pageDecrementBtn;
   if (pages.length > maxPageNumerLitmit) {
     pageDecrementBtn = (
-      <Button disabled={currentPage === pages[0] ? true : false} m={2} onClick={handlePrev}>
+      <Button
+        disabled={currentPage === pages[0] ? true : false}
+        m={2}
+        onClick={handlePrev}
+      >
         ...
       </Button>
     );

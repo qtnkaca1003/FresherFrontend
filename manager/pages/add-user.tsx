@@ -10,7 +10,7 @@ import { IUser } from "../types/interface";
 
 const AddUser = () => {
   const listUser = useAppSelector((state) => state.users.propsUsers);
-  const user: IUser = Object.assign([], ...listUser);
+  //const user: IUser = Object.assign([], ...listUser);
   return (
     <>
       <Box padding={"0 24px"}>

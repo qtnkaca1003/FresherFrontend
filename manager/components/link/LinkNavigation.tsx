@@ -8,7 +8,7 @@ const LinkNavigation = () => {
   return (
     <>
       <Box>
-        <Link href={"/list-user"}>
+        <Link href={"/list-user/1"}>
           <a>
             <Text
               lineHeight={"16px"}

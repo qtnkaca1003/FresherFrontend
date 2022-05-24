@@ -11,7 +11,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../../hook";
 import { IUser } from "../../types/interface";
-axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+
 const CFormEditUser = () => {
   const { register, handleSubmit } = useForm<IUser>();
   const user = useAppSelector((state) => state.users.User);

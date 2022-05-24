@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import CFormEditProduct from "../../../components/form/FormEditProduct";
 import { Product } from "../../../redux/slices/productSlices";
