@@ -1,17 +1,16 @@
 import { Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useState } from "react";
-import { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { CartIcon } from "../icons/CartIcon";
 import { IconPlusUser } from "../icons/IconUserPlus";
 import { IconList } from "../icons/list";
 interface IButton {
-  link:string,
-  icon: ReactNode,
-  title:string,
-  id:string
+  link: string;
+  icon: ReactNode;
+  title: string;
+  id: string;
 }
-const button :IButton[] = [
+const button: IButton[] = [
   {
     link: "/list-user/1",
     icon: <IconList />,
@@ -25,13 +24,13 @@ const button :IButton[] = [
     id: "2",
   },
   {
-    link: "/add-user",
+    link: "add/add-user",
     icon: <IconPlusUser />,
     title: "User Profile",
     id: "3",
   },
   {
-    link: "/add-product",
+    link: "add/add-product",
     icon: <CartIcon />,
     title: "Add Product",
     id: "4",
