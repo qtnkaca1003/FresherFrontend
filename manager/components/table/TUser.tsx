@@ -14,8 +14,8 @@ export const TUser = (props: IProps) => {
       <Td p={"12px"}>{props.user.name.lastname}</Td>
       <Td p={"12px"}>{props.user.address.city}</Td>
       <Td p={"12px"}>{props.user.address.street}</Td>
-      <Td p={"12px"}>{props.user.address.zipcode}</Td>
-      <Td p={"12px"}>{props.user.phone}</Td>
+     {/*  <Td p={"12px"}>{props.user.address.zipcode}</Td>
+      <Td p={"12px"}>{props.user.phone}</Td> */}
       <Td p={"12px"}>
         <Link href={`/edit/user/${props.user.id}`}>
           <a className="chakra-button css-6urt9f"> Edit</a>

@@ -11,6 +11,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import apiUser from "../../api/User";
@@ -20,25 +21,16 @@ import data from "../../datauser.json";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { addNewUser } from "../../redux/slices/userSlices";
 import { IUser } from "../../types/interface";
-
-const ListUser = () => {
-  const dispatch = useAppDispatch();
+interface IProps {
+  users: IUser[];
+  status: number;
+}
+const ListUser = ({ users, status }: IProps) => {
   const router = useRouter();
-  const id: string | undefined = router.query.id?.toString();
   const toAddUser = () => {
     router.push("/add-user");
   };
-  useEffect(() => {
-    const getProduct = () => {
-      apiUser.getPage(id).then((res) => {
-        dispatch(addNewUser(res.data.data));
-      });
-      
-    };
-    getProduct();
-  }, [id, dispatch]);
-  const listUsers = useAppSelector((state) => state.users.propsUsers);
-  const users: IUser[] = Object.assign([], ...listUsers);
+
   return (
     <>
       <Box padding={"0 24px"}>
@@ -92,24 +84,27 @@ const ListUser = () => {
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                     Street
                   </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+                  {/*  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                     Zip-Code
                   </Th>
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                     Phone
-                  </Th>
+                  </Th> */}
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}></Th>
-                 
                 </Tr>
               </Thead>
               <Tbody>
-                {users.map((item: IUser, index) => {
-                  return (
-                    <Tr key={index}>
-                      <TUser user={item} />
-                    </Tr>
-                  );
-                })}
+                {status == 200 ? (
+                  users.map((item: IUser, index) => {
+                    return (
+                      <Tr key={index}>
+                        <TUser user={item} />
+                      </Tr>
+                    );
+                  })
+                ) : (
+                  <>Erorr</>
+                )}
               </Tbody>
             </Table>
           </TableContainer>
@@ -119,3 +114,20 @@ const ListUser = () => {
   );
 };
 export default ListUser;
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const page: string | string[] | number = query.id || 1;
+  const data = await (await apiUser.getAll()).data;
+  const itemPerPage = 5;
+  const currenPage = Number(page);
+  const indexOfLastItem = currenPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItem = data.slice(indexOfFirstItem, indexOfLastItem);
+  //console.log(currentItem);
+
+  return {
+    props: {
+      users: currentItem,
+      status: (data.status = "200"),
+    },
+  };
+};

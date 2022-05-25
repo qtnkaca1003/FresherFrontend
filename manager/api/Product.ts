@@ -1,11 +1,10 @@
 import { IProduct } from "./../types/interface";
 import Axios from "./Axios";
-import AxiosPagin from "./AxiosPagin";
 
 const apiProduct = {
-  getPage: (id: string | string[] | number) => {
-    const url = `/list-product/${id}`;
-    return AxiosPagin.get(url);
+  getAll: () => {
+    const url = `/products`;
+    return Axios.get(url);
   },
   addProduct: (data: IProduct) => {
     const url = `/products`;
