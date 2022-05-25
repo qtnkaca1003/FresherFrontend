@@ -1,12 +1,11 @@
-import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Divider, Grid, GridItem, Text } from "@chakra-ui/react";
 import React from "react";
-import { CButtonFl } from "../components/buttonfl";
+import CButtonFl from "../components/buttonfl";
 import CAvatar from "../components/card";
 import CFormUser from "../components/form/FormUser";
 import { IconPlusUser } from "../components/icons/IconUserPlus";
 import CTitle from "../components/title";
 import { useAppSelector } from "../hook";
-import { IUser } from "../types/interface";
 
 const AddUser = () => {
   const listUser = useAppSelector((state) => state.users.propsUsers);
@@ -29,7 +28,7 @@ const AddUser = () => {
               flexDirection={"column"}
               alignItems={"center"}
             >
-              <CAvatar />
+              <CAvatar size="2xl" src="./images/avatar.jpg" />
               <CTitle
                 color="#3d5170"
                 fontSize="2xl"
@@ -54,13 +53,13 @@ const AddUser = () => {
               />
             </Box>
           </GridItem>
-          <GridItem shadow={"2xl"} borderRadius={5} w="100%">
+          <GridItem height={"660px"} shadow={"2xl"} borderRadius={5} w="100%">
             {" "}
             <Box p={"16px"}>
-              <Text fontSize={"2xl"} fontWeight={"600"}>
-                {" "}
+              <Text fontSize={"16px"} fontWeight={"600"}>
                 Account Details
               </Text>
+              <Divider />
               <CFormUser />
             </Box>
           </GridItem>

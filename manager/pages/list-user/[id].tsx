@@ -99,7 +99,7 @@ const ListUser = () => {
                     Phone
                   </Th>
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}></Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}></Th>
+                 
                 </Tr>
               </Thead>
               <Tbody>

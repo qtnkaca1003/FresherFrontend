@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import { Footer } from "./footer/Footer";
 import { Header } from "./head/Header";
 import { Navigation } from "./navigation/Navigation";
 
@@ -9,7 +10,8 @@ export default function Layout({ children }: any) {
         <Navigation />
         <Box w={"100%"}>
           <Header />
-          <main>{children}</main>
+          <main style={{ minHeight: "78.3vh" }}>{children}</main>
+          <Footer />
         </Box>
       </Box>
     </>

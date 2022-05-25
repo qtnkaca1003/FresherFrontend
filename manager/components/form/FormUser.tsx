@@ -37,10 +37,15 @@ const CFormUser = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box display={"flex"}>
             <FormControl>
-              <FormLabel fontWeight={"normal"} htmlFor="name.firstname">
+              <FormLabel
+                fontSize={"15px"}
+                fontWeight={"normal"}
+                htmlFor="name.firstname"
+              >
                 First Name
               </FormLabel>
               <Input
+                className="form-control"
                 {...register("name.firstname")}
                 name="name.firstname"
                 id="name.firstname"
@@ -48,10 +53,15 @@ const CFormUser = () => {
               />
             </FormControl>
             <FormControl ml={2}>
-              <FormLabel fontWeight={"normal"} htmlFor="name.lastname">
+              <FormLabel
+                fontSize={"15px"}
+                fontWeight={"normal"}
+                htmlFor="name.lastname"
+              >
                 Last Name
               </FormLabel>
               <Input
+                className="form-control"
                 {...register("name.lastname")}
                 name="name.lastname"
                 id="name.lastname"
@@ -60,10 +70,11 @@ const CFormUser = () => {
             </FormControl>
           </Box>
           <FormControl mt={3} isRequired>
-            <FormLabel fontWeight={"normal"} htmlFor="email">
+            <FormLabel fontSize={"15px"} fontWeight={"normal"} htmlFor="email">
               Email
             </FormLabel>
             <Input
+              className="form-control"
               {...register("email")}
               name="email"
               id="email"
@@ -73,10 +84,15 @@ const CFormUser = () => {
           <Box display={"flex"}>
             {" "}
             <FormControl mt={3} isRequired>
-              <FormLabel fontWeight={"normal"} htmlFor="username">
+              <FormLabel
+                fontSize={"15px"}
+                fontWeight={"normal"}
+                htmlFor="username"
+              >
                 Username
               </FormLabel>
               <Input
+                className="form-control"
                 {...register("username")}
                 name="username"
                 id="username"
@@ -84,10 +100,15 @@ const CFormUser = () => {
               />
             </FormControl>
             <FormControl ml={2} mt={3} isRequired>
-              <FormLabel fontWeight={"normal"} htmlFor="password">
+              <FormLabel
+                fontSize={"15px"}
+                fontWeight={"normal"}
+                htmlFor="password"
+              >
                 Password
               </FormLabel>
               <Input
+                className="form-control"
                 {...register("password")}
                 name="password"
                 id="password"
@@ -96,10 +117,11 @@ const CFormUser = () => {
             </FormControl>
           </Box>
           <FormControl mt={3} isRequired>
-            <FormLabel fontWeight={"normal"} htmlFor="phone">
+            <FormLabel fontSize={"15px"} fontWeight={"normal"} htmlFor="phone">
               Phone
             </FormLabel>
             <Input
+              className="form-control"
               {...register("phone")}
               name="phone"
               id="phone"
@@ -107,15 +129,20 @@ const CFormUser = () => {
             />
           </FormControl>
           <Box>
-            <Text fontSize={"20px"} fontWeight={"600"} mt={5}>
+            <Text fontSize={"16px"} fontWeight={"600"} mt={5}>
               Address
             </Text>
             <Box display={"flex"}>
               <FormControl>
-                <FormLabel fontWeight={"normal"} htmlFor="city">
+                <FormLabel
+                  fontSize={"15px"}
+                  fontWeight={"normal"}
+                  htmlFor="city"
+                >
                   City
                 </FormLabel>
                 <Input
+                  className="form-control"
                   {...register("address.city")}
                   name="address.city"
                   id="address.city"
@@ -123,10 +150,15 @@ const CFormUser = () => {
                 />
               </FormControl>
               <FormControl ml={2}>
-                <FormLabel fontWeight={"normal"} htmlFor="street">
+                <FormLabel
+                  fontSize={"15px"}
+                  fontWeight={"normal"}
+                  htmlFor="street"
+                >
                   Street
                 </FormLabel>
                 <Input
+                  className="form-control"
                   {...register("address.street")}
                   name="address.street"
                   id="address.street"
@@ -136,10 +168,15 @@ const CFormUser = () => {
             </Box>
             <Box display={"flex"}>
               <FormControl>
-                <FormLabel fontWeight={"normal"} htmlFor="number">
+                <FormLabel
+                  fontSize={"15px"}
+                  fontWeight={"normal"}
+                  htmlFor="number"
+                >
                   Number
                 </FormLabel>
                 <Input
+                  className="form-control"
                   {...register("address.number")}
                   name="address.number"
                   id="address.number"
@@ -147,10 +184,15 @@ const CFormUser = () => {
                 />
               </FormControl>
               <FormControl ml={2}>
-                <FormLabel fontWeight={"normal"} htmlFor="zipcode">
+                <FormLabel
+                  fontSize={"15px"}
+                  fontWeight={"normal"}
+                  htmlFor="zipcode"
+                >
                   Zip-code
                 </FormLabel>
                 <Input
+                  className="form-control"
                   {...register("address.zipcode")}
                   name="address.zipcode"
                   id="address.zipcode"
@@ -160,10 +202,15 @@ const CFormUser = () => {
             </Box>{" "}
             <Box display={"flex"}>
               <FormControl>
-                <FormLabel fontWeight={"normal"} htmlFor="lat">
+                <FormLabel
+                  fontSize={"15px"}
+                  fontWeight={"normal"}
+                  htmlFor="lat"
+                >
                   Lat
                 </FormLabel>
                 <Input
+                  className="form-control"
                   {...register("address.geolocation.lat")}
                   name="address.geolocation.lat"
                   id="address.geolocation.lat"
@@ -171,10 +218,15 @@ const CFormUser = () => {
                 />
               </FormControl>
               <FormControl ml={2}>
-                <FormLabel fontWeight={"normal"} htmlFor="long">
+                <FormLabel
+                  fontSize={"15px"}
+                  fontWeight={"normal"}
+                  htmlFor="long"
+                >
                   Long
                 </FormLabel>
                 <Input
+                  className="form-control"
                   {...register("address.geolocation.long")}
                   name="address.geolocation.long"
                   id="address.geolocation.long"

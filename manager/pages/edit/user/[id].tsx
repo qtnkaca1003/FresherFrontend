@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { CButtonFl } from "../../../components/buttonfl";
+import CButtonFl from "../../../components/buttonfl";
 import CAvatar from "../../../components/card";
 import CFormEditUser from "../../../components/form/FormEditUser";
 import { IconPlusUser } from "../../../components/icons/IconUserPlus";
@@ -34,14 +34,14 @@ const EditUser = () => {
         </Box>
         <Grid display={"flex"} templateColumns="repeat(1, 1fr)" gap={6}>
           <GridItem shadow={"2xl"} borderRadius={5} w="50%">
-          {" "}
+            {" "}
             <Box
               pt={5}
               display={"flex"}
               flexDirection={"column"}
               alignItems={"center"}
             >
-              <CAvatar />
+              <CAvatar size="2xl" src="http://localhost:3000/images/avatar.jpg" />
               <CTitle
                 color="#3d5170"
                 fontSize="2xl"

@@ -1,8 +1,11 @@
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
-import React from "react" ;
+import React from "react";
 import { SearchIcon } from "../icons/SearchIcon";
 
-export const CInput = () => {
+interface IInput {
+  placeholder: string;
+}
+const CInput = (props: IInput) => {
   return (
     <InputGroup h={"65px"} padding={"7px 12px 7px 30px"}>
       <InputLeftAddon
@@ -16,8 +19,9 @@ export const CInput = () => {
         border={"none"}
         focusBorderColor={"none"}
         height={"50px"}
-        placeholder="Search for something..."
+        placeholder={props.placeholder}
       />
     </InputGroup>
   );
 };
+export default CInput;

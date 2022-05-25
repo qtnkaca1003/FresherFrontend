@@ -9,21 +9,28 @@ interface IButtonFl {
   fontSize?: string;
   fontWeight?: string;
   height?: string;
+  className?: string;
+  disabled?: boolean;
   icon?: ReactNode;
+  onClick?: () => void;
 }
-export const CButtonFl = (props: IButtonFl) => {
+const CButtonFl = (props: IButtonFl) => {
   return (
     <>
       <Button
+        disabled={props.disabled}
+        className={props.className}
         w={props.width}
         h={props.height}
         fontWeight={props.fontWeight}
         fontSize={props.fontSize}
         color={props.color}
         borderRadius={props.borderRadius}
+        onClick={props.onClick}
       >
         {props.icon} {props.title}
       </Button>
     </>
   );
 };
+export default CButtonFl;

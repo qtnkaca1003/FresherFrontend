@@ -11,6 +11,7 @@ const CTitle = (props: ITitle) => {
   return (
     <>
       <Text
+        className="text"
         fontWeight={props.fontWeight}
         color={props.color}
         fontSize={props.fontSize}

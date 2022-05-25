@@ -8,6 +8,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@chakra-ui/storybook-addon",
+    
   ],
   features: {
     emotionAlias: false,

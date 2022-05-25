@@ -47,7 +47,7 @@ const CFormEditProduct = () => {
             {...register("price")}
             name="price"
             id="price"
-            type="text"
+            type="number"
           />
         </FormControl>
 
