@@ -24,13 +24,13 @@ const button: IButton[] = [
     id: "2",
   },
   {
-    link: "add/add-user",
+    link: "/add-user/add-user",
     icon: <IconPlusUser />,
     title: "User Profile",
     id: "3",
   },
   {
-    link: "add/add-product",
+    link: "/add-product/add-product",
     icon: <CartIcon />,
     title: "Add Product",
     id: "4",
