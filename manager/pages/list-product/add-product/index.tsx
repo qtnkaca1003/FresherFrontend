@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import CFormProduct from "../../components/form/FormProduct";
+import CFormProduct from "../../../components/form/FormProduct";
 
 const AddProduct = () => {
   return (

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 import apiUser from "../../api/User";
 import ButtonPagin from "../../components/pagin";
 import { TUser } from "../../components/table/TUser";
@@ -25,7 +25,7 @@ interface IProps {
 const ListUser = ({ users, status }: IProps) => {
   const router = useRouter();
   const toAddUser = () => {
-    router.push("/add-user");
+    router.push("/list-user/add-user");
   };
   return (
     <>
@@ -39,6 +39,7 @@ const ListUser = ({ users, status }: IProps) => {
             {" "}
             List User
           </Text>
+
           <Button colorScheme={"blue"} onClick={toAddUser}>
             {" "}
             + Add User

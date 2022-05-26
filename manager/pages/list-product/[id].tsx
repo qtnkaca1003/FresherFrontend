@@ -26,9 +26,9 @@ interface IProps {
 const ListProduct = ({ products, status }: IProps) => {
   const router = useRouter();
   //console.log(status);
-  
+
   const toAddProduct = () => {
-    router.push("/add-product");
+    router.push("/list-product/add-product");
   };
   return (
     <>
@@ -115,18 +115,18 @@ export default ListProduct;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const page: string | string[] | number = query.id || 1;
   const data = await (await apiProduct.getAll()).data;
-  
+
   const itemPerPage = 5;
   const currenPage = Number(page);
   const indexOfLastItem = currenPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const currentItem = data.slice(indexOfFirstItem, indexOfLastItem);
   //console.log(currentItem);
-  
+
   return {
     props: {
       products: currentItem,
-      status: data.status="200",
+      status: (data.status = "200"),
     },
   };
 };
