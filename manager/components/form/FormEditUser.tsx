@@ -6,42 +6,29 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import axios from "axios";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import apiUser from "../../api/User";
 import { useAppSelector } from "../../hook";
 import { IUser } from "../../types/interface";
+import ModalView from "../modal/modelUser";
 
 const CFormEditUser = () => {
   const { register, handleSubmit } = useForm<IUser>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [users, setUsers] = useState<IUser>();
+  const router = useRouter();
   const user = useAppSelector((state) => state.users.User);
+  const id: string | undefined = router.query.id?.toString();
   const onSubmit: SubmitHandler<IUser> = (data) => {
-    const dataUser = JSON.stringify(data);
-    fetch("https://fakestoreapi.com/users", {
-      method: "POST",
-      body: JSON.stringify({
-        email: "John@gmail.com",
-        username: "johnd",
-        password: "m38rmF$",
-        name: {
-          firstname: "John",
-          lastname: "Doe",
-        },
-        address: {
-          city: "kilcoole",
-          street: "7835 new road",
-          number: 3,
-          zipcode: "12926-3874",
-          geolocation: {
-            lat: "-37.3159",
-            long: "81.1496",
-          },
-        },
-        phone: "1-570-236-7033",
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
+    apiUser.editUser(id, data).then((res) => {
+      setUsers(res.data);
+      setIsOpen(true);
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+    });
   };
   return (
     <Box>
@@ -52,7 +39,8 @@ const CFormEditUser = () => {
               First Name
             </FormLabel>
             <Input
-              value={user.name.firstname}
+              readOnly
+              defaultValue={user.name.firstname}
               {...register("name.firstname")}
               name="name.firstname"
               id="name.firstname"
@@ -64,7 +52,8 @@ const CFormEditUser = () => {
               Last Name
             </FormLabel>
             <Input
-              value={user.name.lastname}
+              readOnly
+              defaultValue={user.name.lastname}
               {...register("name.lastname")}
               name="name.lastname"
               id="name.lastname"
@@ -77,7 +66,7 @@ const CFormEditUser = () => {
             Email
           </FormLabel>
           <Input
-            value={user.email}
+            defaultValue={user.email}
             {...register("email")}
             name="email"
             id="email"
@@ -91,7 +80,7 @@ const CFormEditUser = () => {
               Username
             </FormLabel>
             <Input
-              value={user.username}
+              defaultValue={user.username}
               {...register("username")}
               name="username"
               id="username"
@@ -103,7 +92,7 @@ const CFormEditUser = () => {
               Password
             </FormLabel>
             <Input
-              value={user.password}
+              defaultValue={user.password}
               {...register("password")}
               name="password"
               id="password"
@@ -116,7 +105,7 @@ const CFormEditUser = () => {
             Phone
           </FormLabel>
           <Input
-            value={user.phone}
+            defaultValue={user.phone}
             {...register("phone")}
             name="phone"
             id="phone"
@@ -133,7 +122,7 @@ const CFormEditUser = () => {
                 City
               </FormLabel>
               <Input
-                value={user.address.city}
+                defaultValue={user.address.city}
                 {...register("address.city")}
                 name="address.city"
                 id="address.city"
@@ -145,7 +134,7 @@ const CFormEditUser = () => {
                 Street
               </FormLabel>
               <Input
-                value={user.address.street}
+                defaultValue={user.address.street}
                 {...register("address.street")}
                 name="address.street"
                 id="address.street"
@@ -159,7 +148,8 @@ const CFormEditUser = () => {
                 Number
               </FormLabel>
               <Input
-                value={user.address.number}
+                readOnly
+                defaultValue={user.address.number}
                 {...register("address.number")}
                 name="address.number"
                 id="address.number"
@@ -171,7 +161,8 @@ const CFormEditUser = () => {
                 Zip-code
               </FormLabel>
               <Input
-                value={user.address.zipcode}
+                readOnly  
+                defaultValue={user.address.zipcode}
                 {...register("address.zipcode")}
                 name="address.zipcode"
                 id="address.zipcode"
@@ -185,7 +176,7 @@ const CFormEditUser = () => {
                 Lat
               </FormLabel>
               <Input
-                value={user.address.geolocation.lat}
+                defaultValue={user.address.geolocation.lat}
                 {...register("address.geolocation.lat")}
                 name="address.geolocation.lat"
                 id="address.geolocation.lat"
@@ -197,7 +188,7 @@ const CFormEditUser = () => {
                 Long
               </FormLabel>
               <Input
-                value={user.address.geolocation.long}
+                defaultValue={user.address.geolocation.long}
                 {...register("address.geolocation.long")}
                 name="address.geolocation.long"
                 id="address.geolocation.long"
@@ -210,6 +201,7 @@ const CFormEditUser = () => {
           Edit user
         </Button>
       </form>
+      <ModalView isOpen={isOpen} user={users} />
     </Box>
   );
 };

@@ -115,6 +115,7 @@ export default ListProduct;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const page: string | string[] | number = query.id || 1;
   const data = await (await apiProduct.getAll()).data;
+  
   const itemPerPage = 5;
   const currenPage = Number(page);
   const indexOfLastItem = currenPage * itemPerPage;

@@ -6,19 +6,31 @@ import {
   Input,
   Textarea,
 } from "@chakra-ui/react";
-import axios from "axios";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import apiProduct from "../../api/Product";
 import { useAppSelector } from "../../hook";
 import { IProduct } from "../../types/interface";
-
+import ModalViewProduct from "../modal/modalProduct";
 
 const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
-  const product = useAppSelector((state) => state.product.propsProduct);
+  const products = useAppSelector((state) => state.product.propsProduct);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [product, setProduct] = useState<IProduct>();
+  const router = useRouter();
+  const id: string | undefined = router.query.id?.toString();
+  //console.log(id);
+
   const onSubmit: SubmitHandler<IProduct> = (data) => {
-    
-    console.log(data);
+    apiProduct.editProduct(id, data).then((res) => {
+      setProduct(res.data);
+      setIsOpen(true);
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+    });
   };
   return (
     <Box>
@@ -29,8 +41,7 @@ const CFormEditProduct = () => {
               Title
             </FormLabel>
             <Input
-              
-              defaultValue={product.title}
+              defaultValue={products.title}
               {...register("title")}
               name="title"
               id="title"
@@ -43,11 +54,11 @@ const CFormEditProduct = () => {
             Price
           </FormLabel>
           <Input
-            defaultValue={product.price}
+            defaultValue={products.price}
             {...register("price")}
             name="price"
             id="price"
-            type="number"
+            type="text"
           />
         </FormControl>
 
@@ -56,7 +67,7 @@ const CFormEditProduct = () => {
             Category
           </FormLabel>
           <Input
-            defaultValue={product.category}
+            defaultValue={products.category}
             {...register("category")}
             name="category"
             id="category"
@@ -67,9 +78,12 @@ const CFormEditProduct = () => {
           <FormLabel fontWeight={"normal"} htmlFor="description">
             Description
           </FormLabel>
-          <Textarea defaultValue={product.description} placeholder="Description..." />
+          <Textarea
+            defaultValue={products.description}
+            placeholder="Description..."
+          />
         </FormControl>
-       {/*  <FormControl mt={3} pr={5}>
+        {/*  <FormControl mt={3} pr={5}>
           <FormLabel fontWeight={"normal"} htmlFor="image">
             Image
           </FormLabel>
@@ -83,9 +97,10 @@ const CFormEditProduct = () => {
         </FormControl> */}
 
         <Button bg={"blue.300"} type="submit" mt={5}>
-          Add product
+          Edit product
         </Button>
       </form>
+      <ModalViewProduct isOpen={isOpen} product={product} />
     </Box>
   );
 };

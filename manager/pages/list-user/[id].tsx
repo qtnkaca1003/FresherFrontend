@@ -10,7 +10,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -18,8 +17,6 @@ import apiUser from "../../api/User";
 import ButtonPagin from "../../components/pagin";
 import { TUser } from "../../components/table/TUser";
 import dataUser from "../../datauser.json";
-import { useAppDispatch, useAppSelector } from "../../hook";
-import { addNewUser } from "../../redux/slices/userSlices";
 import { IUser } from "../../types/interface";
 interface IProps {
   users: IUser[];
@@ -30,8 +27,6 @@ const ListUser = ({ users, status }: IProps) => {
   const toAddUser = () => {
     router.push("/add-user");
   };
-console.log(dataUser.length);
-
   return (
     <>
       <Box padding={"0 24px"}>

@@ -16,7 +16,7 @@ const Home: NextPage = ({ children }: any) => {
         <Box padding={"24px 0"}>
           <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
             {" "}
-            User Profile
+            Profile
           </Text>
         </Box>
         <Grid display={"flex"} templateColumns="repeat(1, 1fr)" gap={6}>
@@ -53,7 +53,7 @@ const Home: NextPage = ({ children }: any) => {
               />
             </Box>
           </GridItem>
-          <GridItem height={"660px"} shadow={"2xl"} borderRadius={5} w="100%">
+         {/*  <GridItem height={"700px"} shadow={"2xl"} borderRadius={5} w="100%">
             {" "}
             <Box p={"16px"}>
               <Text fontSize={"16px"} fontWeight={"600"}>
@@ -62,7 +62,7 @@ const Home: NextPage = ({ children }: any) => {
               <Divider />
               <CFormUser />
             </Box>
-          </GridItem>
+          </GridItem> */}
         </Grid>
       </Box>
     </>

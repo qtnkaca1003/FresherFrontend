@@ -9,6 +9,10 @@ const apiProduct = {
   addProduct: (data: IProduct) => {
     const url = `/products`;
     return Axios.post(url, data);
-  },    
+  },
+  editProduct: (id: string|undefined, data: IProduct) => {
+    const url = `/products/${id}`;
+    return Axios.put(url, data);
+  },
 };
 export default apiProduct;

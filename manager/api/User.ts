@@ -10,5 +10,9 @@ const apiUser = {
     const url = `/users`;
     return Axios.post(url, data);
   },
+  editUser: (id: string|undefined, data: IUser) => {
+    const url = `/users/${id}`;
+    return Axios.put(url, data);
+  },
 };
 export default apiUser;
