@@ -13,10 +13,11 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import apiProduct from "../../api/Product";
 import ButtonPagin from "../../components/pagin";
-import { CTable } from "../../components/table/TProduct";
+import CSearch from "../../components/search";
+import { TProduct } from "../../components/table/TProduct";
 import data from "../../dataprouct.json";
 import { IProduct } from "../../types/interface";
 interface IProps {
@@ -25,11 +26,21 @@ interface IProps {
 }
 const ListProduct = ({ products, status }: IProps) => {
   const router = useRouter();
-  //console.log(status);
-
+  const [search, setSearch] = useState<string>("");
   const toAddProduct = () => {
     router.push("/list-product/add-product");
   };
+  const handelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+  const filteredUsers = products.filter((item) => {
+    const query = search.toLowerCase();
+    return (
+      item.title.toLowerCase().indexOf(query) >= 0 ||
+      item.category.toLowerCase().indexOf(query) >= 0 ||
+      item.description.toLowerCase().indexOf(query) >= 0
+    );
+  });
   return (
     <>
       <Box padding={"0 24px"}>
@@ -38,10 +49,17 @@ const ListProduct = ({ products, status }: IProps) => {
           justifyContent={"space-between"}
           padding={"24px 0"}
         >
-          <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
-            {" "}
-            List Product
-          </Text>
+          <Box>
+            <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
+              {" "}
+              List Product
+            </Text>
+            <CSearch
+              onChange={handelChange}
+              placeholder="Saech for something..."
+            />
+          </Box>
+
           <Button colorScheme={"blue"} onClick={toAddProduct}>
             {" "}
             + Add Product
@@ -89,13 +107,17 @@ const ListProduct = ({ products, status }: IProps) => {
               </Thead>
               <Tbody>
                 {status == 200 ? (
-                  products.map((item: IProduct, index) => {
-                    return (
-                      <Tr key={index}>
-                        <CTable product={item} />
-                      </Tr>
-                    );
-                  })
+                  filteredUsers.length == 0 ? (
+                    <>Not found</>
+                  ) : (
+                    filteredUsers.map((item: IProduct, index) => {
+                      return (
+                        <Tr key={index}>
+                          <TProduct product={item} />
+                        </Tr>
+                      );
+                    })
+                  )
                 ) : (
                   <>
                     <Tr>

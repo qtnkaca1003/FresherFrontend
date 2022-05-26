@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import CAvatar from "../card";
-import CInput from "../input";
+import CSearch from "../search";
 export const Header = () => {
   return (
     <>
@@ -12,7 +12,7 @@ export const Header = () => {
         justifyContent={"space-between"}
       >
         <Box maxW={"630px"}>
-          <CInput placeholder="Search for something..." />
+          <CSearch placeholder="Search for something..." />
         </Box>
         <CAvatar m={"10px"} src="./image/avatar.jpg" size="md" />
       </Box>

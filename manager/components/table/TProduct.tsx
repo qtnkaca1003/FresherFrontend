@@ -6,13 +6,13 @@ import ModalDel from "../modal";
 interface IProps {
   product: IProduct;
 }
-export const CTable = (props: IProps) => {
+export const TProduct = (props: IProps) => {
   return (
     <>
       <Td p={"12px"}>{props.product.id}</Td>
-      <Td p={"12px"}>{props.product.title.slice(0, 5)}</Td>
+      <Td p={"12px"}>{props.product.title.slice(0, 10)}</Td>
       <Td p={"12px"}>{props.product.category}</Td>
-      <Td p={"12px"}>{props.product.description.slice(0, 10)}</Td>
+      <Td p={"12px"}>{props.product.description.slice(0, 15)} ...</Td>
       <Td p={"12px"}>{props.product.price}</Td>
       {/* <Td>{user.phone}</Td> */}
       <Td p={"12px"}>

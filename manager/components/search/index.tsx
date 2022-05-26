@@ -4,8 +4,9 @@ import { SearchIcon } from "../icons/SearchIcon";
 
 interface IInput {
   placeholder: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const CInput = (props: IInput) => {
+const CSearch = (props: IInput) => {
   return (
     <InputGroup h={"65px"} padding={"7px 12px 7px 30px"}>
       <InputLeftAddon
@@ -13,9 +14,10 @@ const CInput = (props: IInput) => {
         border={"none"}
         bg={"#fff"}
         height={"50px"}
-        /* children={<SearchIcon />} */
+        children={<SearchIcon />}
       />
       <Input
+        onChange={props.onChange}
         border={"none"}
         focusBorderColor={"none"}
         height={"50px"}
@@ -24,4 +26,4 @@ const CInput = (props: IInput) => {
     </InputGroup>
   );
 };
-export default CInput;
+export default CSearch;

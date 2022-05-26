@@ -12,9 +12,10 @@ import {
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import apiUser from "../../api/User";
 import ButtonPagin from "../../components/pagin";
+import CSearch from "../../components/search";
 import { TUser } from "../../components/table/TUser";
 import dataUser from "../../datauser.json";
 import { IUser } from "../../types/interface";
@@ -24,9 +25,22 @@ interface IProps {
 }
 const ListUser = ({ users, status }: IProps) => {
   const router = useRouter();
+  const [search, setSearch] = useState<string>("");
   const toAddUser = () => {
     router.push("/list-user/add-user");
   };
+  const handelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+  const filteredUsers = users.filter((item) => {
+    const query = search.toLowerCase();
+    return (
+      item.name.firstname.toLowerCase().indexOf(query) >= 0 ||
+      item.name.lastname.toLowerCase().indexOf(query) >= 0 ||
+      item.address.city.toLowerCase().indexOf(query) >= 0 ||
+      item.address.street.toLowerCase().indexOf(query) >= 0
+    );
+  });
   return (
     <>
       <Box padding={"0 24px"}>
@@ -35,11 +49,17 @@ const ListUser = ({ users, status }: IProps) => {
           justifyContent={"space-between"}
           padding={"24px 0"}
         >
-          <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
-            {" "}
-            List User
-          </Text>
-
+          {" "}
+          <Box>
+            <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
+              {" "}
+              List User
+            </Text>
+            <CSearch
+              onChange={handelChange}
+              placeholder="Saech for something..."
+            />
+          </Box>
           <Button colorScheme={"blue"} onClick={toAddUser}>
             {" "}
             + Add User
@@ -81,24 +101,22 @@ const ListUser = ({ users, status }: IProps) => {
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                     Street
                   </Th>
-                  {/*  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    Zip-Code
-                  </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    Phone
-                  </Th> */}
                   <Th p={"12px"} textTransform={"none"} fontSize={"16px"}></Th>
                 </Tr>
               </Thead>
               <Tbody>
                 {status == 200 ? (
-                  users.map((item: IUser, index) => {
-                    return (
-                      <Tr key={index}>
-                        <TUser user={item} />
-                      </Tr>
-                    );
-                  })
+                  filteredUsers.length == 0 ? (
+                    <>Not found</>
+                  ) : (
+                    filteredUsers.map((item: IUser, index) => {
+                      return (
+                        <Tr key={index}>
+                          <TUser user={item} />
+                        </Tr>
+                      );
+                    })
+                  )
                 ) : (
                   <>Erorr</>
                 )}
