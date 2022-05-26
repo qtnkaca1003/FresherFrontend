@@ -14,7 +14,7 @@ export const TProduct = (props: IProps) => {
       <Td p={"12px"}>{props.product.category}</Td>
       <Td p={"12px"}>{props.product.description.slice(0, 15)} ...</Td>
       <Td p={"12px"}>{props.product.price}</Td>
-      {/* <Td>{user.phone}</Td> */}
+     
       <Td p={"12px"}>
         <Link href={`/edit/product/${props.product.id}`}>
           <a className="chakra-button css-6urt9f"> Edit</a>

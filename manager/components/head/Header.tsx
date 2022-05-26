@@ -12,7 +12,7 @@ export const Header = () => {
         justifyContent={"space-between"}
       >
         <Box maxW={"630px"}>
-          <CSearch placeholder="Search for something..." />
+          <CSearch border="none" placeholder="Search for something..." />
         </Box>
         <CAvatar m={"10px"} src="./image/avatar.jpg" size="md" />
       </Box>

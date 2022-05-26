@@ -1,9 +1,9 @@
 import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
 import React from "react";
-import { SearchIcon } from "../icons/SearchIcon";
 
 interface IInput {
   placeholder: string;
+  border?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const CSearch = (props: IInput) => {
@@ -13,14 +13,15 @@ const CSearch = (props: IInput) => {
         p={0}
         border={"none"}
         bg={"#fff"}
-        height={"50px"}
+        height={"45px"}
         //children={<SearchIcon />}
       />
+
       <Input
         onChange={props.onChange}
-        border={"none"}
+        border={props.border}
         focusBorderColor={"none"}
-        height={"50px"}
+        height={"45px"}
         placeholder={props.placeholder}
       />
     </InputGroup>
