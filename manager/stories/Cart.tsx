@@ -5,7 +5,7 @@ const CAvatar = () => {
   return (
     <>
       <WrapItem>
-        <Avatar size="2xl" src="./images/avatar.jpg" />{" "}
+        <Avatar size="2xl" src="./image/avatar.jpg" />{" "}
       </WrapItem>
     </>
   );

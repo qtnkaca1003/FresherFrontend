@@ -17,7 +17,7 @@ import React, { useEffect } from "react";
 import apiUser from "../../api/User";
 import ButtonPagin from "../../components/pagin";
 import { TUser } from "../../components/table/TUser";
-import data from "../../datauser.json";
+import dataUser from "../../datauser.json";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { addNewUser } from "../../redux/slices/userSlices";
 import { IUser } from "../../types/interface";
@@ -30,6 +30,7 @@ const ListUser = ({ users, status }: IProps) => {
   const toAddUser = () => {
     router.push("/add-user");
   };
+console.log(dataUser.length);
 
   return (
     <>
@@ -57,7 +58,7 @@ const ListUser = ({ users, status }: IProps) => {
                   maxPageNumerLitmit={3}
                   path="/list-user/"
                   pageNumerLitmit={3}
-                  data={data}
+                  data={dataUser}
                 />
               </TableCaption>
               <Thead>

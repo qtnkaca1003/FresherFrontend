@@ -41,7 +41,7 @@ const EditUser = () => {
               flexDirection={"column"}
               alignItems={"center"}
             >
-              <CAvatar size="2xl" src="http://localhost:3000/images/avatar.jpg" />
+              <CAvatar size="2xl" src="/image/avatar.jpg" />
               <CTitle
                 color="#3d5170"
                 fontSize="2xl"

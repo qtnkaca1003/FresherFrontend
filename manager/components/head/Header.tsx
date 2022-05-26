@@ -14,7 +14,7 @@ export const Header = () => {
         <Box maxW={"630px"}>
           <CInput placeholder="Search for something..." />
         </Box>
-        <CAvatar m={"10px"} src="./images/avatar.jpg" size="md" />
+        <CAvatar m={"10px"} src="./image/avatar.jpg" size="md" />
       </Box>
     </>
   );
