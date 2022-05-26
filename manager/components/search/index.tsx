@@ -14,7 +14,7 @@ const CSearch = (props: IInput) => {
         border={"none"}
         bg={"#fff"}
         height={"50px"}
-        children={<SearchIcon />}
+        //children={<SearchIcon />}
       />
       <Input
         onChange={props.onChange}
