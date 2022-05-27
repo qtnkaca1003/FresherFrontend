@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import CTitle from "../title";
+import CTitle from "../atoms/title";
 
 describe("Running Test for CAvatar ", () => {
   test("render CTitle ", () => {

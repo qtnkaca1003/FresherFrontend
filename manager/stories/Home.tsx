@@ -11,7 +11,6 @@ const Home = () => {
         fontWeight="500"
         fontSize={"17px"}
         _hover={{
-          //background: "#f5f6f8",
           color: "#000",
         }}
       >

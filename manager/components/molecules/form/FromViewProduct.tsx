@@ -1,6 +1,6 @@
 import { Box, FormControl, FormLabel, Input, Textarea } from "@chakra-ui/react";
 import React from "react";
-import { IProduct } from "../../types/interface";
+import { IProduct } from "../../../types/interface";
 interface IPropsProduct {
   product: IProduct | undefined;
 }

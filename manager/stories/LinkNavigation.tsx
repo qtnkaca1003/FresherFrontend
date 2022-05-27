@@ -1,9 +1,9 @@
 import { Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import { CartIcon } from "../components/icons/CartIcon";
-import { IconPlusUser } from "../components/icons/IconUserPlus";
-import { IconList } from "../components/icons/list";
+import { CartIcon } from "../components/atoms/icons/CartIcon";
+import { IconPlusUser } from "../components/atoms/icons/IconUserPlus";
+import { IconList } from "../components/atoms/icons/list";
 const LinkNavigation = () => {
   return (
     <>

@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import CButtonFl from "../../components/buttonfl";
+import CButtonFl from "../atoms/button";
 
 describe("Running Test for CButtonFl ", () => {
   test("render Button ", () => {

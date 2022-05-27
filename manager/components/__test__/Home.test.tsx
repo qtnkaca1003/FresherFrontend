@@ -6,13 +6,10 @@ import Home from "../home/index";
 describe("Running Test for Home ", () => {
   test("render Home ", () => {
     render(<Home />);
-    //expect(screen.getByRole("button", { name: "Button" }));
   });
   test("test Home", () => {
     render(<Home />);
     const home = screen.getByRole("link");
     expect(home).toHaveAttribute("href", "/");
-    //expect(home).toHaveAttribute("placeholder", "Test Input");
-    //expect(image).toHaveAttribute("alt", "Logo");
   });
 });

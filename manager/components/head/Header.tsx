@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import CAvatar from "../card";
-import CSearch from "../search";
+import CAvatar from "../atoms/avatar";
+import CSearch from "../atoms/input";
 export const Header = () => {
   return (
     <>

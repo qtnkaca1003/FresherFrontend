@@ -1,15 +1,14 @@
 import { Box, Divider, Grid, GridItem, Text } from "@chakra-ui/react";
 import React from "react";
-import CButtonFl from "../../../components/buttonfl";
-import CAvatar from "../../../components/card";
-import CFormUser from "../../../components/form/FormUser";
-import { IconPlusUser } from "../../../components/icons/IconUserPlus";
-import CTitle from "../../../components/title";
+import CButtonFl from "../../../components/atoms/button";
+import CAvatar from "../../../components/atoms/avatar";
+import CFormUser from "../../../components/molecules/form/FormUser";
+import { IconPlusUser } from "../../../components/atoms/icons/IconUserPlus";
+import CTitle from "../../../components/atoms/title";
 import { useAppSelector } from "../../../hook";
 
 const AddUser = () => {
   const listUser = useAppSelector((state) => state.users.propsUsers);
-  //const user: IUser = Object.assign([], ...listUser);
   return (
     <>
       <Box padding={"0 24px"}>

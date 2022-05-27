@@ -9,20 +9,18 @@ import {
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import apiProduct from "../../api/Product";
-import { useAppSelector } from "../../hook";
-import { IProduct } from "../../types/interface";
-import ModalViewProduct from "../modal/modalProduct";
+import apiProduct from "../../../api/Product";
+import { useAppSelector } from "../../../hook";
+import { IProduct } from "../../../types/interface";
+import ModalViewProduct from "../../modal/modalProduct";
 
 const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
-  const products = useAppSelector((state) => state.product.propsProduct);
+  const products = useAppSelector((state) => state.product.product);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [product, setProduct] = useState<IProduct>();
   const router = useRouter();
   const id: string | undefined = router.query.id?.toString();
-  //console.log(id);
-
   const onSubmit: SubmitHandler<IProduct> = (data) => {
     apiProduct.editProduct(id, data).then((res) => {
       setProduct(res.data);

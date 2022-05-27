@@ -5,13 +5,11 @@ const Home = () => {
   return (
     <>
       <Box
-       
         borderBottom={"solid 1px #f5f6f8"}
         color={"#3d5170"}
         fontWeight="500"
         fontSize={"17px"}
         _hover={{
-          //background: "#f5f6f8",
           color: "#000",
         }}
       >

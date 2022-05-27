@@ -11,6 +11,9 @@ export interface IProduct {
   };
   /*  data: []; */
 }
+export interface ICategory{
+  category:string
+}
 export interface IUser {
   id: number;
   email: string;

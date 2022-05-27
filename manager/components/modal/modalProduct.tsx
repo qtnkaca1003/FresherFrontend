@@ -11,8 +11,8 @@ import {
   } from "@chakra-ui/react";
   import React from "react";
   import { IProduct } from "../../types/interface";
-import CFormViewroduct from "../form/FromViewProduct";
-  import CFormViewUser from "../form/FromViewUser";
+import CFormViewroduct from "../molecules/form/FromViewProduct";
+  import CFormViewUser from "../molecules/form/FromViewUser";
   interface IProspUser {
     product: IProduct | undefined;
     isOpen: boolean;

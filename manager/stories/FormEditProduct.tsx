@@ -12,14 +12,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppSelector } from "../hook";
 import { IProduct } from "../types/interface";
 
-
 const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
-  const product = useAppSelector((state) => state.product.propsProduct);
-  const onSubmit: SubmitHandler<IProduct> = (data) => {
-    //const dataUser = JSON.stringify(data);
-    console.log(data);
-  };
+  const product = useAppSelector((state) => state.product.product);
+ 
+
+  const onSubmit: SubmitHandler<IProduct> = (data) => {};
   return (
     <Box>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -29,7 +27,6 @@ const CFormEditProduct = () => {
               Title
             </FormLabel>
             <Input
-              
               defaultValue={product.title}
               {...register("title")}
               name="title"
@@ -67,9 +64,12 @@ const CFormEditProduct = () => {
           <FormLabel fontWeight={"normal"} htmlFor="description">
             Description
           </FormLabel>
-          <Textarea defaultValue={product.description} placeholder="Description..." />
+          <Textarea
+            defaultValue={product.description}
+            placeholder="Description..."
+          />
         </FormControl>
-       {/*  <FormControl mt={3} pr={5}>
+        {/*  <FormControl mt={3} pr={5}>
           <FormLabel fontWeight={"normal"} htmlFor="image">
             Image
           </FormLabel>

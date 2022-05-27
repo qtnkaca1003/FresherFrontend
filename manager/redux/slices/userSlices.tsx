@@ -34,7 +34,7 @@ export const userSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    addNewUser: (state, action: PayloadAction<IUser>) => {
+    addUser: (state, action: PayloadAction<IUser>) => {
       state.propsUsers.push(action.payload);
     },
     User1: (state, action: PayloadAction<IUser>) => {
@@ -56,5 +56,5 @@ export const userSlice = createSlice({
     },
   },
 });
-export const { addNewUser, User1 } = userSlice.actions;
+export const { addUser, User1 } = userSlice.actions;
 export default userSlice.reducer;

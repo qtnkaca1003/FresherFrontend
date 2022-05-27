@@ -3,11 +3,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import CButtonFl from "../../../components/buttonfl";
-import CAvatar from "../../../components/card";
-import CFormEditUser from "../../../components/form/FormEditUser";
-import { IconPlusUser } from "../../../components/icons/IconUserPlus";
-import CTitle from "../../../components/title";
+import CButtonFl from "../../../components/atoms/button";
+import CAvatar from "../../../components/atoms/avatar";
+import CFormEditUser from "../../../components/molecules/form/FormEditUser";
+import { IconPlusUser } from "../../../components/atoms/icons/IconUserPlus";
+import CTitle from "../../../components/atoms/title";
 import { User1 } from "../../../redux/slices/userSlices";
 const EditUser = () => {
   const router = useRouter();
@@ -17,12 +17,10 @@ const EditUser = () => {
     const getUser = async () => {
       axios.get("https://fakestoreapi.com/users/" + id).then((res) => {
         dispatch(User1(res.data));
-        //console.log(res.data);
       });
     };
     getUser();
   });
-
   return (
     <>
       <Box padding={"0 24px"}>

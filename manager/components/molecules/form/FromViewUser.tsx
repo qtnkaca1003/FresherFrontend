@@ -1,6 +1,6 @@
 import { Box, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import React from "react";
-import { IUser } from "../../types/interface";
+import { IUser } from "../../../types/interface";
 
 interface IProspUser {
   user: IUser | undefined;

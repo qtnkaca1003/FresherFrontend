@@ -15,9 +15,10 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import apiUser from "../../api/User";
 import ButtonPagin from "../../components/pagin";
-import CSearch from "../../components/search";
+import CSearch from "../../components/atoms/input";
 import { TUser } from "../../components/table/TUser";
 import dataUser from "../../datauser.json";
+import { useAppSelector } from "../../hook";
 import { IUser } from "../../types/interface";
 interface IProps {
   users: IUser[];
@@ -26,6 +27,9 @@ interface IProps {
 const ListUser = ({ users, status }: IProps) => {
   const router = useRouter();
   const [search, setSearch] = useState<string>("");
+  const user = useAppSelector((state) => state.users.propsUsers);
+  const arrUser = Object.assign([], ...user);
+
   const toAddUser = () => {
     router.push("/list-user/add-user");
   };
@@ -74,7 +78,7 @@ const ListUser = ({ users, status }: IProps) => {
                   maxPageNumerLitmit={3}
                   path="/list-user/"
                   pageNumerLitmit={3}
-                  data={dataUser}
+                  data={arrUser}
                 />
               </TableCaption>
               <Thead>
@@ -137,8 +141,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const indexOfLastItem = currenPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const currentItem = data.slice(indexOfFirstItem, indexOfLastItem);
-  //console.log(currentItem);
-
   return {
     props: {
       users: currentItem,

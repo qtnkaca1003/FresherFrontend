@@ -12,9 +12,9 @@ interface IButtonFl {
   className?: string;
   disabled?: boolean;
   icon?: ReactNode;
-  onClick?: () => void;
+  onClick?: () => (event: React.MouseEvent<HTMLButtonElement>, id:string) => void;
 }
-const CButtonFl = (props: IButtonFl) => {
+const CButton = (props: IButtonFl) => {
   return (
     <>
       <Button
@@ -33,4 +33,4 @@ const CButtonFl = (props: IButtonFl) => {
     </>
   );
 };
-export default CButtonFl;
+export default CButton;

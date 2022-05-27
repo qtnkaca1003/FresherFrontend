@@ -9,10 +9,10 @@ import {
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import apiUser from "../../api/User";
-import { useAppSelector } from "../../hook";
-import { IUser } from "../../types/interface";
-import ModalView from "../modal/modelUser";
+import apiUser from "../../../api/User";
+import { useAppSelector } from "../../../hook";
+import { IUser } from "../../../types/interface";
+import ModalView from "../../modal/modelUser";
 
 const CFormEditUser = () => {
   const { register, handleSubmit } = useForm<IUser>();

@@ -2,7 +2,7 @@ import { Avatar, WrapItem } from "@chakra-ui/react";
 import React from "react";
 interface ICard {
   size?: string;
-  src?: string;
+  src: string;
   m?:string
 }
 const CAvatar = (props: ICard) => {

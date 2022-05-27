@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import CInput from "../search/index";
+import CInput from "../atoms/input/index";
 
 describe("Running Test for CAvatar ", () => {
   test("render CAvatar ", () => {

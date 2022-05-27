@@ -1,9 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { Footer } from "./footer/Footer";
-import { Header } from "./head/Header";
-import { Navigation } from "./organisms/navigation";
+import React from "react";
+import { Footer } from "../organisms/footer";
+import { Header } from "../organisms/header";
+import { Navigation } from "../organisms/navigation";
 
-export default function Layout({ children }: any) {
+export default function Template({ children }: any) {
   return (
     <>
       <Box display={"flex"}>

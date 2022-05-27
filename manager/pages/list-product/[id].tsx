@@ -16,9 +16,10 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import apiProduct from "../../api/Product";
 import ButtonPagin from "../../components/pagin";
-import CSearch from "../../components/search";
+import CSearch from "../../components/atoms/input";
 import { TProduct } from "../../components/table/TProduct";
 import data from "../../dataprouct.json";
+import { useAppSelector } from "../../hook";
 import { IProduct } from "../../types/interface";
 interface IProps {
   products: IProduct[];
@@ -27,6 +28,9 @@ interface IProps {
 const ListProduct = ({ products, status }: IProps) => {
   const router = useRouter();
   const [search, setSearch] = useState<string>("");
+  const product = useAppSelector((state) => state.product.propsProducts);
+ 
+  const arrProduct = Object.assign([], ...product);
   const toAddProduct = () => {
     router.push("/list-product/add-product");
   };
@@ -74,7 +78,7 @@ const ListProduct = ({ products, status }: IProps) => {
                   maxPageNumerLitmit={3}
                   path="/list-product/"
                   pageNumerLitmit={3}
-                  data={data}
+                  data={arrProduct}
                 />
               </TableCaption>
               <Thead>
@@ -143,8 +147,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const indexOfLastItem = currenPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const currentItem = data.slice(indexOfFirstItem, indexOfLastItem);
-  //console.log(currentItem);
-
   return {
     props: {
       products: currentItem,

@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import  CInput  from "../components/search";
+import  CInput  from "../components/atoms/input";
 const Header = () => {
   return (
     <>

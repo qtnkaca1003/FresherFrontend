@@ -6,6 +6,10 @@ const apiProduct = {
     const url = `/products`;
     return Axios.get(url);
   },
+  getCategory:()=>{
+    const url=`/products/categories`;
+    return Axios.get(url)
+  },
   addProduct: (data: IProduct) => {
     const url = `/products`;
     return Axios.post(url, data);

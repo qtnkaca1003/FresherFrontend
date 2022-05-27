@@ -8,11 +8,11 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import apiUser from "../../api/User";
-import { useAppDispatch } from "../../hook";
-import { addNewUser } from "../../redux/slices/userSlices";
-import { IUser } from "../../types/interface";
-import ModalView from "../modal/modelUser";
+import apiUser from "../../../api/User";
+import { useAppDispatch } from "../../../hook";
+import { addNewUser } from "../../../redux/slices/userSlices";
+import { IUser } from "../../../types/interface";
+import ModalView from "../../modal/modelUser";
 
 const CFormUser = () => {
   const { register, handleSubmit } = useForm<IUser>();
