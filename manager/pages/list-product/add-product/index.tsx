@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import CFormProduct from "../../../components/molecules/form/FormProduct";
+import CFormAddProduct from "../../../components/organisms/from/addproduct";
 
 const AddProduct = () => {
   return (
@@ -13,7 +13,7 @@ const AddProduct = () => {
           </Text>
         </Box>
         <Box shadow={"2xl"} p={"16px"}>
-          <CFormProduct />
+          <CFormAddProduct />
         </Box>
       </Box>
     </>

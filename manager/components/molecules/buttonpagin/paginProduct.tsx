@@ -1,16 +1,16 @@
 import { Box, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { IProduct, IUser } from "../../types/interface";
+import { IProduct } from "../../../types/interface";
 
 interface IPagination {
   itemPage: number;
   pageNumerLitmit: number;
   maxPageNumerLitmit: number;
-  data: IProduct[] | IUser[];
+  data: IProduct[];
   path: string;
 }
-const Pagination = (props: IPagination) => {
+const PaginationProduct = (props: IPagination) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemPage, setItemPage] = useState<number>(props.itemPage);
@@ -100,7 +100,6 @@ const Pagination = (props: IPagination) => {
         {pageDecrementBtn}
         {renderPageNumber}
         {pageIncrementBtn}
-
         <Button
           disabled={currentPage === pages[pages.length - 1] ? true : false}
           onClick={handleNext}
@@ -111,4 +110,4 @@ const Pagination = (props: IPagination) => {
     </>
   );
 };
-export default Pagination;
+export default PaginationProduct;

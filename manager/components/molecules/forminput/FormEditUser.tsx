@@ -12,7 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../api/User";
 import { useAppSelector } from "../../../hook";
 import { IUser } from "../../../types/interface";
-import ModalView from "../../modal/modelUser";
+
 
 const CFormEditUser = () => {
   const { register, handleSubmit } = useForm<IUser>();
@@ -201,7 +201,7 @@ const CFormEditUser = () => {
           Edit user
         </Button>
       </form>
-      <ModalView isOpen={isOpen} user={users} />
+    
     </Box>
   );
 };

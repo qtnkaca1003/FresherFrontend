@@ -1,10 +1,11 @@
 import { IUser } from "../types/interface";
 import Axios from "./Axios";
+import AxiosUser from "./AxiosUser";
 
 const apiUser = {
-  getAll: () => {
-    const url = `/users`;
-    return Axios.get(url);
+  getPagin: (id:string | string[] | number) => {
+    const url = `/api/users?page=${id}`;
+    return AxiosUser.get(url);
   },
   addUser: (data :IUser ) => {
     const url = `/users`;

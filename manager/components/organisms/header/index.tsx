@@ -19,7 +19,13 @@ export const Header = () => {
         alignItems={"center"}
       >
         <CSearch placeholder="Search for something..." />
-        <CDropDown src={"./image/avatar.jpg"} title="Nhan" />
+        <CDropDown
+          
+          heightItem={"30px"}
+          contentMenuItem="Log out"
+          src={"./image/avatar.jpg"}
+          title="Nhan"
+        />
       </Box>
     </>
   );

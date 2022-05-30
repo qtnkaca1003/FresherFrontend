@@ -1,149 +1,40 @@
-import {
-  Box,
-  Button,
-  Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import apiUser from "../../api/User";
-import ButtonPagin from "../../components/pagin";
-import CSearch from "../../components/atoms/input";
-import { TUser } from "../../components/table/TUser";
-import dataUser from "../../datauser.json";
-import { useAppSelector } from "../../hook";
-import { IUser } from "../../types/interface";
+import { IPage, IUser } from "../../types/interface";
+import ListUser from "../../components/organisms/main/list-user";
 interface IProps {
   users: IUser[];
   status: number;
+  pages: IPage
 }
-const ListUser = ({ users, status }: IProps) => {
-  const router = useRouter();
-  const [search, setSearch] = useState<string>("");
-  const user = useAppSelector((state) => state.users.propsUsers);
-  const arrUser = Object.assign([], ...user);
-
-  const toAddUser = () => {
-    router.push("/list-user/add-user");
-  };
-  const handelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
-  const filteredUsers = users.filter((item) => {
-    const query = search.toLowerCase();
-    return (
-      item.name.firstname.toLowerCase().indexOf(query) >= 0 ||
-      item.name.lastname.toLowerCase().indexOf(query) >= 0 ||
-      item.address.city.toLowerCase().indexOf(query) >= 0 ||
-      item.address.street.toLowerCase().indexOf(query) >= 0
-    );
-  });
+const ViewListUser = ({ users, status,pages }: IProps) => {
   return (
     <>
-      <Box padding={"0 24px"}>
-        <Box
-          display={"flex"}
-          justifyContent={"space-between"}
-          padding={"24px 0"}
-        >
-          {" "}
-          <Box>
-            <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
-              {" "}
-              List User
-            </Text>
-            <CSearch
-              onChange={handelChange}
-              placeholder="Saech for something..."
-            />
-          </Box>
-          <Button colorScheme={"blue"} onClick={toAddUser}>
-            {" "}
-            + Add User
-          </Button>
-        </Box>
-        <Box shadow={"2xl"} borderRadius={"10px"} padding={"24px 0"}>
-          <TableContainer>
-            <Table variant="simple">
-              <TableCaption>
-                <ButtonPagin
-                  itemPage={5}
-                  maxPageNumerLitmit={3}
-                  path="/list-user/"
-                  pageNumerLitmit={3}
-                  data={arrUser}
-                />
-              </TableCaption>
-              <Thead>
-                <Tr>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    User
-                  </Th>
-                </Tr>
-              </Thead>
-              <Thead fontSize={"15px"} background={"#f5f6f8"}>
-                <Tr h={"47px"}>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    #
-                  </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    First Name
-                  </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    Last Name
-                  </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    City
-                  </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                    Street
-                  </Th>
-                  <Th p={"12px"} textTransform={"none"} fontSize={"16px"}></Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {status == 200 ? (
-                  filteredUsers.length == 0 ? (
-                    <>Not found</>
-                  ) : (
-                    filteredUsers.map((item: IUser, index) => {
-                      return (
-                        <Tr key={index}>
-                          <TUser user={item} />
-                        </Tr>
-                      );
-                    })
-                  )
-                ) : (
-                  <>Erorr</>
-                )}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </Box>
-      </Box>
+      <ListUser pages={pages} status={status} users={users} />
     </>
   );
 };
-export default ListUser;
+export default ViewListUser;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const page: string | string[] | number = query.id || 1;
-  const data = await (await apiUser.getAll()).data;
-  const itemPerPage = 5;
+  const data = await (await apiUser.getPagin(page)).data;
+  console.log(data);
+
+  /* const itemPerPage = 5;
   const currenPage = Number(page);
   const indexOfLastItem = currenPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItem = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItem = data.slice(indexOfFirstItem, indexOfLastItem); */
   return {
     props: {
-      users: currentItem,
+      users: data.data,
+      pages: {
+        page: data.page,
+        per_page: data.per_page,
+        total: data.total,
+        total_pages: data.total_pages,
+      },
       status: (data.status = "200"),
     },
   };

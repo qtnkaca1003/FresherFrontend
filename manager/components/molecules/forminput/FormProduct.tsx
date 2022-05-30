@@ -12,7 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import apiProduct from "../../../api/Product";
 import { useAppSelector } from "../../../hook";
 import { ICategory, IProduct } from "../../../types/interface";
-import ModalViewProduct from "../../modal/modalProduct";
+//import ModalViewProduct from "../../molecules/modal/modalProduct";
 const CFormProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -86,7 +86,7 @@ const CFormProduct = () => {
           </Button>
         </form>
       </Box>
-      <ModalViewProduct product={product} isOpen={isOpen} />
+   
     </>
   );
 };

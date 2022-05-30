@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CButtonFl from "../../../components/atoms/button";
 import CAvatar from "../../../components/atoms/avatar";
-import CFormEditUser from "../../../components/molecules/form/FormEditUser";
+import CFormEditUser from "../../../components/molecules/forminput/FormEditUser";
 import { IconPlusUser } from "../../../components/atoms/icons/IconUserPlus";
 import CTitle from "../../../components/atoms/title";
 import { User1 } from "../../../redux/slices/userSlices";

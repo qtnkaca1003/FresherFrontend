@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import CFormEditProduct from "../../../components/molecules/form/FormEditProduct";
+import CFormEditProduct from "../../../components/molecules/forminput/FormEditProduct";
 import { Product } from "../../../redux/slices/productSlices";
 import { IProduct } from "../../../types/interface";
 

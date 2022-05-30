@@ -12,7 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import apiProduct from "../../../api/Product";
 import { useAppSelector } from "../../../hook";
 import { IProduct } from "../../../types/interface";
-import ModalViewProduct from "../../modal/modalProduct";
+
 
 const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
@@ -98,7 +98,7 @@ const CFormEditProduct = () => {
           Edit product
         </Button>
       </form>
-      <ModalViewProduct isOpen={isOpen} product={product} />
+
     </Box>
   );
 };

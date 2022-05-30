@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 interface ILink {
   link: string;
   title: string;

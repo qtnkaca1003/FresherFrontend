@@ -1,7 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import CLink from "../../atoms/link";
-
 interface ICLinknavi {
   fontWeight?: string;
   fontSize?: string;

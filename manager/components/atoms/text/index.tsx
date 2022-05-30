@@ -1,14 +1,14 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
 
-interface ITitle {
+interface IText {
   title?: string;
   fontWeight?: string;
   fontSize?: string;
   color?: string;
   textAlign?: string;
 }
-const CText = (props: ITitle) => {
+const CText = (props: IText) => {
   return (
     <>
       <Text

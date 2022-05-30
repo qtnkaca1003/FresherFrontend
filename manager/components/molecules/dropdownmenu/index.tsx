@@ -1,9 +1,9 @@
-import { Box } from "@chakra-ui/react";
-import React, { ReactNode } from "react";
+import { Box, Menu, MenuList } from "@chakra-ui/react";
+import React from "react";
 import CAvatar from "../../atoms/avatar";
-import { ArrowDownIcon } from "../../atoms/icons/ArrowDownIcon";
+import CMenuButton from "../../atoms/menubutton";
+import CMenuItem from "../../atoms/menuitem";
 import CText from "../../atoms/text";
-
 interface IDropdownMenu {
   fontWeight?: string;
   fontSize?: string;
@@ -13,16 +13,32 @@ interface IDropdownMenu {
   borderLeft?: string;
   display?: string;
   lineHeight?: string;
+  contentMenuItem: string;
+  heightItem?: string;
+  widthItem?: string;
   w?: string;
-  src:string
+  src: string;
 }
 const CDropDown = (props: IDropdownMenu) => {
   return (
     <>
-      <Box display={"inline-flex"} alignItems={"center"}>
-        <CAvatar src={props.src}  />
-        <CText title={props.title} />
-        <ArrowDownIcon />
+      <Box mr={5}>
+        <Menu>
+          <CMenuButton>
+            <Box alignItems={"center"} display={"flex"}>
+              {" "}
+              <CAvatar size="sm" src={props.src} />
+              <CText title={props.title} />
+            </Box>
+          </CMenuButton>
+          <MenuList>
+            <CMenuItem
+              heightItem={props.heightItem}
+              widthItem={props.widthItem}
+              contentMenuItem={props.contentMenuItem}
+            />
+          </MenuList>
+        </Menu>
       </Box>
     </>
   );

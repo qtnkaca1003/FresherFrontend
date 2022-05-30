@@ -10,9 +10,9 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../api/User";
 import { useAppDispatch } from "../../../hook";
-import { addNewUser } from "../../../redux/slices/userSlices";
+//import { addNewUser } from "../../../redux/slices/userSlices";
 import { IUser } from "../../../types/interface";
-import ModalView from "../../modal/modelUser";
+
 
 const CFormUser = () => {
   const { register, handleSubmit } = useForm<IUser>();
@@ -20,7 +20,7 @@ const CFormUser = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [user, setUser] = useState<IUser>();
   const onSubmit: SubmitHandler<IUser> = (data) => {
-    dispatch(addNewUser(data));
+    //dispatch(addNewUser(data));
     apiUser.addUser(data).then((res) => {
       if (res.status === 200) {
         setUser(res.data);
@@ -240,7 +240,7 @@ const CFormUser = () => {
           </Button>
         </form>
       </Box>
-      <ModalView user={user} isOpen={isOpen} />
+     {/*  <ModalView user={user} isOpen={isOpen} /> */}
     </>
   );
 };

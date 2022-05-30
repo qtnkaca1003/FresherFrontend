@@ -11,14 +11,19 @@ interface IInput {
   focusBorderColor?: string;
   width?: string;
   height?: string;
+  value?: string;
+  readOnly?: boolean;
+  outline?:string
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const CInput = (props: IInput) => {
   return (
     <Input
-      outline={"none"}
+      readOnly={props.readOnly}
+      outline={props.outline}
       width={props.width}
       height={props.height}
+      value={props.value}
       defaultValue={props.defaultValue}
       name={props.name}
       id={props.id}

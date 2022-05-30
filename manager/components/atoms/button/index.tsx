@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
-interface IButtonFl {
+interface IButton {
   title: string;
   borderRadius?: string;
   color?: string;
@@ -11,15 +11,19 @@ interface IButtonFl {
   height?: string;
   className?: string;
   disabled?: boolean;
+  colorScheme?: string;
   icon?: ReactNode;
-  onClick?: () => (event: React.MouseEvent<HTMLButtonElement>, id:string) => void;
+  m?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const CButton = (props: IButtonFl) => {
+const CButton = (props: IButton) => {
   return (
     <>
       <Button
+        m={props.m}
         disabled={props.disabled}
         className={props.className}
+        colorScheme={props.colorScheme}
         w={props.width}
         h={props.height}
         fontWeight={props.fontWeight}

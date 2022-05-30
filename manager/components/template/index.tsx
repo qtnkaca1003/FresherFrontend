@@ -1,20 +1,31 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import Login from "../../pages/login";
 import { Footer } from "../organisms/footer";
 import { Header } from "../organisms/header";
 import { Navigation } from "../organisms/navigation";
 
 export default function Template({ children }: any) {
+  const router = useRouter();
+  const isLogin = false;
+ /*  useEffect(() => {
+    if (isLogin === false) {
+      router.push("/login");
+    }
+  }); */
+
   return (
     <>
-      <Box display={"flex"}>
+    {isLogin=== true?(<Box display={"flex"}>
         <Navigation />
-        <Box w={"100%"}>
+        <Box position={"relative"} w={"100%"}>
           <Header />
-          <main style={{ minHeight: "78.3vh" }}>{children}</main>
-          <Footer />
+          <main>{children}</main>
+          <Footer mt="30px" position={"absolute"} />
         </Box>
-      </Box>
+      </Box>):(<><Login/></>)}
+      
     </>
   );
 }

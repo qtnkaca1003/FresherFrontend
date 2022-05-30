@@ -11,27 +11,19 @@ export interface IProduct {
   };
   /*  data: []; */
 }
-export interface ICategory{
-  category:string
+export interface ICategory {
+  category: string;
 }
 export interface IUser {
-  id: number;
+  avatar: string;
   email: string;
-  username: string;
-  password: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  address: {
-    city: string;
-    street: string;
-    number: number;
-    zipcode: string;
-    geolocation: {
-      lat: string;
-      long: string;
-    };
-  };
-  phone: string;
+  first_name: string;
+  id: number;
+  last_name: string;
+}
+export interface IPage{
+  page: number,
+  per_page:number,
+  total: number,
+  total_pages:number,
 }
