@@ -1,60 +1,47 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "../../types/interface";
+import { IToken, IUser } from "../../types/interface";
 type initialStateType = {
   propsUsers: IUser[];
   User: IUser;
+  token: IToken;
 };
 const propsUsers: IUser[] = [];
 const User: IUser = {
-  id: 0,
+  avatar: "",
   email: "",
-  username: "",
-  password: "",
-  name: {
-    firstname: "",
-    lastname: "",
-  },
-  address: {
-    city: "",
-    street: "",
-    number: 0,
-    zipcode: "",
-    geolocation: {
-      lat: "",
-      long: "",
-    },
-  },
-  phone: "",
+  first_name: "",
+  id: 0,
+  last_name: "",
+};
+const token: IToken = {
+  token: "",
 };
 const initialState: initialStateType = {
   propsUsers,
   User,
+  token,
 };
 export const userSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    addUser: (state, action: PayloadAction<IUser>) => {
-      state.propsUsers.push(action.payload);
+    addToken: (state, action: PayloadAction<IToken>) => {
+      state.token.token = action.payload.token;
     },
-    User1: (state, action: PayloadAction<IUser>) => {
+    deleteToken: (state, action: PayloadAction<IToken>) => {
+      state.token.token = action.payload.token;
+    },
+    addUsers: (state, action: PayloadAction<IUser>) => {
+      state.propsUsers.push(action.payload)
+    },
+    addUser: (state, action: PayloadAction<IUser>) => {
       state.User.id = action.payload.id;
       state.User.email = action.payload.email;
-      state.User.username = action.payload.username;
-      state.User.password = action.payload.password;
-      state.User.phone = action.payload.phone;
-      state.User.name.firstname = action.payload.name.firstname;
-      state.User.name.lastname = action.payload.name.lastname;
-      state.User.address.city = action.payload.address.city;
-      state.User.address.number = action.payload.address.number;
-      state.User.address.street = action.payload.address.street;
-      state.User.address.zipcode = action.payload.address.zipcode;
-      state.User.address.geolocation.lat =
-        action.payload.address.geolocation.lat;
-      state.User.address.geolocation.long =
-        action.payload.address.geolocation.long;
+      state.User.first_name = action.payload.first_name;
+      state.User.last_name = action.payload.last_name;
+      state.User.avatar = action.payload.avatar;
     },
   },
 });
-export const { addUser, User1 } = userSlice.actions;
+export const { addUsers, addUser, addToken, deleteToken } = userSlice.actions;
 export default userSlice.reducer;

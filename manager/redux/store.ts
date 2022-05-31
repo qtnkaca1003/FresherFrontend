@@ -5,6 +5,7 @@ export const store = configureStore({
   reducer: {
     product: productSlice.reducer,
     users: userSlice.reducer,
+    addToken: userSlice.reducer
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

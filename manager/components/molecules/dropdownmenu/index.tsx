@@ -18,6 +18,7 @@ interface IDropdownMenu {
   widthItem?: string;
   w?: string;
   src: string;
+  onClickMenuItem: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const CDropDown = (props: IDropdownMenu) => {
   return (
@@ -33,6 +34,7 @@ const CDropDown = (props: IDropdownMenu) => {
           </CMenuButton>
           <MenuList>
             <CMenuItem
+              onClick={props.onClickMenuItem}
               heightItem={props.heightItem}
               widthItem={props.widthItem}
               contentMenuItem={props.contentMenuItem}

@@ -1,18 +1,31 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
-import React from "react";
+import { Box, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../../api/User";
 import { useAppDispatch } from "../../../../hook";
 import { addToken } from "../../../../redux/slices/userSlices";
 import { IAccount } from "../../../../types/interface";
 import CButton from "../../../atoms/button";
-const CFormLogin = () => {
+const CFormRegister = () => {
   const { register, handleSubmit } = useForm<IAccount>();
+  const [Error, setError] = useState(false);
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IAccount> = (data) => {
-    apiUser.login(data).then((res) => {
-      dispatch(addToken(res.data));
-    });
+    if (data.password === data.confirmpassword) {
+      setError(false);
+      apiUser
+        .register(data)
+        .then((res) => {
+          dispatch(addToken(res.data));
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            alert(error.response.data.error);
+          }
+        });
+    } else {
+      setError(true);
+    }
   };
   return (
     <>
@@ -24,6 +37,7 @@ const CFormLogin = () => {
                 Email
               </FormLabel>
               <Input
+                required
                 {...register("email")}
                 name="email"
                 id="email"
@@ -36,18 +50,37 @@ const CFormLogin = () => {
               Password
             </FormLabel>
             <Input
+              required
               {...register("password")}
               name="password"
               id="password"
               type="password"
             />
-             <FormErrorMessage>Email is required.</FormErrorMessage>
+          </FormControl>
+          <FormControl isRequired mt={3} pr={5}>
+            <FormLabel fontWeight={"normal"} htmlFor="password">
+              Confirm Password
+            </FormLabel>
+            <Input
+              required
+              {...register("confirmpassword")}
+              name="confirmpassword"
+              id="confirmpassword"
+              type="password"
+            />
+            {Error === true ? (
+              <Text color={"red"}>
+                Password and Confirm Password do mot match !!!
+              </Text>
+            ) : (
+              <></>
+            )}
           </FormControl>
           <Box textAlign={"center"}>
             <CButton
               color={"#fff"}
               colorScheme={"blue"}
-              title={"Login"}
+              title={"Register"}
               type="submit"
               mt={5}
             />
@@ -57,4 +90,4 @@ const CFormLogin = () => {
     </>
   );
 };
-export default CFormLogin;
+export default CFormRegister;

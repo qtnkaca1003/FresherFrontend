@@ -10,12 +10,13 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import { IPage, IProduct, IUser } from "../../../types/interface";
+import { IPage, IUser } from "../../../types/interface";
+import CAvatar from "../../atoms/avatar";
 import Pagination from "../buttonpagin";
 interface IProps {
   filteredUsers: IUser[];
   status: number;
-  data: IPage ;
+  data: IPage;
 }
 const TUser = (props: IProps) => {
   return (
@@ -23,7 +24,7 @@ const TUser = (props: IProps) => {
       <TableContainer>
         <Table variant="simple">
           <TableCaption>
-             <Pagination
+            <Pagination
               itemPage={5}
               maxPageNumerLitmit={3}
               path="/list-user/"
@@ -44,6 +45,9 @@ const TUser = (props: IProps) => {
                 #
               </Th>
               <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+                Avatar
+              </Th>
+              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 First Name
               </Th>
               <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
@@ -52,7 +56,7 @@ const TUser = (props: IProps) => {
               <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Email
               </Th>
-             
+
               <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Action
               </Th>
@@ -67,12 +71,12 @@ const TUser = (props: IProps) => {
                   return (
                     <Tr key={index}>
                       <Td p={"12px"}>{item.id}</Td>
+                      <Td p={"12px"}> 
+                        <CAvatar src={item.avatar} size={"sm"} />
+                      </Td>
                       <Td p={"12px"}>{item.first_name}</Td>
                       <Td p={"12px"}>{item.last_name}</Td>
                       <Td p={"12px"}>{item.email}</Td>
-                     {/*  <Td p={"12px"}>{item.address.street}</Td> */}
-                      {/*  <Td p={"12px"}>{props.user.address.zipcode}</Td>
-      <Td p={"12px"}>{props.user.phone}</Td> */}
                       <Td p={"12px"}>
                         <Link href={`/edit/user/${item.id}`}>
                           <a className="chakra-button css-6urt9f"> Edit</a>

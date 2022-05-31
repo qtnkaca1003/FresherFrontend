@@ -4,15 +4,17 @@ import CText from "../../atoms/text";
 interface IFooter {
   position?: any;
   right?: number;
-  top?: number;
+  top?: number |string;
   left?: number;
   bottom?: number;
   mt?: string;
+  minHeight?:string |number
 }
 export const Footer = (props: IFooter) => {
   return (
     <Box
       mt={props.mt}
+      minHeight={props.minHeight}
       position={props.position}
       top={props.top}
       left={props.left}

@@ -12,15 +12,16 @@ interface IMenuItem {
   className?: string;
   disabled?: boolean;
   rightIcon?: ReactNode;
-  onClick?: () => (
-    event: React.MouseEvent<HTMLButtonElement>,
-    id: string
-  ) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const CMenuItem = (props: IMenuItem) => {
   return (
     <>
-      <MenuItem width={props.widthItem} height={props.heightItem}>
+      <MenuItem
+        onClick={props.onClick}
+        width={props.widthItem}
+        height={props.heightItem}
+      >
         {props.contentMenuItem}
       </MenuItem>
     </>

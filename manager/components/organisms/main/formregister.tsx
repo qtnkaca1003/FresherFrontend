@@ -1,7 +1,8 @@
-import { Box, Link } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import CFormLogin from "../from/login";
+import CFormRegister from "../from/register";
 
-const FromLogin = () => {
+const FromRegister = () => {
   return (
     <Box
       className="login__center"
@@ -10,10 +11,9 @@ const FromLogin = () => {
       borderRadius={"10px"}
       padding={"10px 10px"}
     >
-      <CFormLogin />
-      <Link href="/register">Register</Link>
+      <CFormRegister />
     </Box>
   );
 };
 
-export default FromLogin;
+export default FromRegister;

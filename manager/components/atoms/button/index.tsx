@@ -13,7 +13,9 @@ interface IButton {
   disabled?: boolean;
   colorScheme?: string;
   icon?: ReactNode;
-  m?: string;
+  m?: string |number;
+  type: "button" | "submit" | "reset";
+  mt?: string |number;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const CButton = (props: IButton) => {
@@ -21,6 +23,8 @@ const CButton = (props: IButton) => {
     <>
       <Button
         m={props.m}
+        type={props.type}
+        mt={props.mt}
         disabled={props.disabled}
         className={props.className}
         colorScheme={props.colorScheme}
