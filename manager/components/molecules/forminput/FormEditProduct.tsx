@@ -12,8 +12,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import apiProduct from "../../../api/Product";
 import { useAppSelector } from "../../../hook";
 import { IProduct } from "../../../types/interface";
-
-
 const CFormEditProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
   const products = useAppSelector((state) => state.product.product);
@@ -81,24 +79,10 @@ const CFormEditProduct = () => {
             placeholder="Description..."
           />
         </FormControl>
-        {/*  <FormControl mt={3} pr={5}>
-          <FormLabel fontWeight={"normal"} htmlFor="image">
-            Image
-          </FormLabel>
-          <Input
-            border={"none"}
-            {...register("image")}
-            name="image"
-            id="image"
-            type="file"
-          />
-        </FormControl> */}
-
         <Button bg={"blue.300"} type="submit" mt={5}>
           Edit product
         </Button>
       </form>
-
     </Box>
   );
 };

@@ -1,13 +1,11 @@
 import { FormLabel } from "@chakra-ui/react";
 import React from "react";
-
 interface IFormlabel {
   htmlFor?: string;
   textformlabel: string;
   fontWeight?: string;
   fontSize?: string;
   color?: string;
-  
 }
 const CFormlabel = (props: IFormlabel) => {
   return (

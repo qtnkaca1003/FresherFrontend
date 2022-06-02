@@ -1,5 +1,5 @@
 import { Box, Link } from "@chakra-ui/react";
-import CFormLogin from "../from/login";
+import CFormLogin from "../form/login";
 
 const FromLogin = () => {
   return (

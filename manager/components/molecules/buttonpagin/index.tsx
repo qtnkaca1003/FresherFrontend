@@ -1,13 +1,12 @@
 import { Box, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { IPage, IProduct, IUser } from "../../../types/interface";
-
+import { IPage } from "../../../types/interface";
 interface IPagination {
   itemPage: number;
   pageNumerLitmit: number;
   maxPageNumerLitmit: number;
-  data: IPage ;
+  data: IPage;
   path: string;
 }
 const Pagination = (props: IPagination) => {
@@ -28,7 +27,11 @@ const Pagination = (props: IPagination) => {
   };
   // page number
   const pages = [];
-  for (let i = 1; i <= Math.ceil(props.data?.total / props.data.per_page); i++) {
+  for (
+    let i = 1;
+    i <= Math.ceil(props.data?.total / props.data.per_page);
+    i++
+  ) {
     pages.push(i);
   }
   const renderPageNumber = pages.map((number: number) => {

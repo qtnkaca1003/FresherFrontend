@@ -1,6 +1,5 @@
 import { Button } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
-
 interface IButton {
   title: string;
   borderRadius?: string;

@@ -5,11 +5,13 @@ interface ITitle {
   fontWeight?: string;
   fontSize?: string;
   color?: string;
+  
 }
 const CTitle = (props: ITitle) => {
   return (
     <>
       <Text
+       
         className="text"
         fontWeight={props.fontWeight}
         color={props.color}

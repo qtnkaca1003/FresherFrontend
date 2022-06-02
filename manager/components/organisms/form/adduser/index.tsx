@@ -1,29 +1,41 @@
-import { Box, Button, FormControl, Input } from "@chakra-ui/react";
-import React from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../../api/User";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
-import { addUsers } from "../../../../redux/slices/userSlices";
-
-import { IUser } from "../../../../types/interface";
+import { addCreateUser } from "../../../../redux/slices/userSlices";
+import { IAccount } from "../../../../types/interface";
 import CFormlabel from "../../../atoms/formlabel";
+import TCreate from "../../../molecules/table/TCreate";
 
 const CFormAddUser = () => {
-  const { register, handleSubmit } = useForm<IUser>();
-  const dispatch =useAppDispatch();
-  const users = useAppSelector((state) => state.users.propsUsers);
-  const onSubmit: SubmitHandler<IUser> = (data) => {    
-     apiUser.addUser(data).then((res) => {
-      console.log(res.data);
-      dispatch(addUsers(res.data));
-    });
+  const { register, handleSubmit } = useForm<IAccount>();
+  const [Error, setError] = useState(false);
+  const dispatch = useAppDispatch();
+  const users = useAppSelector((state) => state.users.createUser);
+  const onSubmit: SubmitHandler<IAccount> = (data) => {
+    if (data.password === data.confirmpassword) {
+      setError(false);
+      apiUser.addUser(data).then((res) => {
+        dispatch(addCreateUser(res.data));
+      });
+    } else {
+      setError(true);
+    }
   };
   return (
     <>
       <Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box display={"flex"}>
-            <FormControl>
+            <FormControl isRequired>
               <CFormlabel
                 textformlabel="First name"
                 fontSize={"15px"}
@@ -39,7 +51,7 @@ const CFormAddUser = () => {
                 type="text"
               />
             </FormControl>
-            <FormControl ml={2}>
+            <FormControl isRequired ml={2}>
               <CFormlabel
                 textformlabel="Last name"
                 fontSize={"15px"}
@@ -56,7 +68,7 @@ const CFormAddUser = () => {
             </FormControl>
           </Box>
           <Box display={"flex"}>
-            <FormControl>
+            <FormControl isRequired>
               <CFormlabel
                 textformlabel="Email"
                 fontSize={"15px"}
@@ -72,29 +84,48 @@ const CFormAddUser = () => {
                 type="email"
               />
             </FormControl>
-            <FormControl ml={2}>
-              <CFormlabel
-                textformlabel="Password"
-                fontSize={"15px"}
-                fontWeight={"normal"}
-                htmlFor="password"
-              />
+          </Box>
+          <Box display={"flex"}>
+            <FormControl isRequired mt={3} pr={5}>
+              <FormLabel fontWeight={"normal"} htmlFor="password">
+                Password
+              </FormLabel>
               <Input
-                className="form-control"
+                required
                 {...register("password")}
                 name="password"
-                id="password"
+                id="passwordregister"
                 type="password"
               />
             </FormControl>
+            <FormControl isRequired mt={3} pr={5}>
+              <FormLabel fontWeight={"normal"} htmlFor="password">
+                Confirm Password
+              </FormLabel>
+              <Input
+                required
+                {...register("confirmpassword")}
+                name="confirmpassword"
+                id="confirmpassword"
+                type="password"
+              />
+              {Error === true ? (
+                <Text color={"red"}>
+                  Password and Confirm Password do mot match !!!
+                </Text>
+              ) : (
+                <></>
+              )}
+            </FormControl>
           </Box>
-
           <Button type="submit" mt={5}>
             Create User
           </Button>
         </form>
       </Box>
-      {/*  <ModalView user={user} isOpen={isOpen} /> */}
+      <Box>
+      <TCreate data={users} />
+      </Box>
     </>
   );
 };

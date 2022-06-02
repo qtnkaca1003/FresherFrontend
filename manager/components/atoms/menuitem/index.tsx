@@ -1,6 +1,5 @@
 import { MenuItem } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
-
 interface IMenuItem {
   contentMenuItem: string;
   borderRadius?: string;

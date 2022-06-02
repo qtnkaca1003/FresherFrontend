@@ -2,11 +2,11 @@ import { Box, Divider, Grid, GridItem, Text } from "@chakra-ui/react";
 import React from "react";
 import CButtonFl from "../../atoms/button";
 import CAvatar from "../../atoms/avatar";
-import CFormUser from "../from/adduser";
+import CFormUser from "../form/adduser";
 import { IconPlusUser } from "../../atoms/icons/IconUserPlus";
 import CTitle from "../../atoms/title";
 import { useAppSelector } from "../../../hook";
-import CFormAddUser from "../from/adduser";
+import CFormAddUser from "../form/adduser";
 
 const CAddUser = () => {
   const listUser = useAppSelector((state) => state.users.propsUsers);

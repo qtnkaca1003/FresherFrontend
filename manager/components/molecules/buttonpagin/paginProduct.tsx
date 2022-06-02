@@ -2,7 +2,6 @@ import { Box, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { IProduct } from "../../../types/interface";
-
 interface IPagination {
   itemPage: number;
   pageNumerLitmit: number;

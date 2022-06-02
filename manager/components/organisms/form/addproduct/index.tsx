@@ -7,30 +7,23 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import apiProduct from "../../../../api/Product";
-import { useAppSelector } from "../../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../../hook";
+import { addCreateProduct } from "../../../../redux/slices/productSlices";
 import { IProduct } from "../../../../types/interface";
-
-//import ModalViewProduct from "../../molecules/modal/modalProduct";
+import TCreateProduct from "../../../molecules/table/TCreateProduct";
 const CFormProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [product, setProduct] = useState<IProduct>();
   const categorys = useAppSelector((state) => state.product.category);
+  const createProduct = useAppSelector((state) => state.product.createProduct);
   const arrCategorys = Object.assign([], ...categorys);
-
+  const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IProduct> = (data) => {
-    console.log(data);
-
-    /*  apiProduct.addProduct(data).then((res) => {
-      setProduct(res.data);
-      setIsOpen(true);
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 3000);
-    }); */
+    apiProduct.addProduct(data).then((res) => {
+      dispatch(addCreateProduct(res.data));
+    });
   };
   return (
     <>
@@ -64,7 +57,7 @@ const CFormProduct = () => {
                 {...register("category")}
                 //placeholder="Select Category"
               >
-                {arrCategorys.map((opt: string, index:any) => {
+                {arrCategorys.map((opt: string, index: any) => {
                   return (
                     <option key={index} value={opt}>
                       {opt}
@@ -94,6 +87,7 @@ const CFormProduct = () => {
           </Button>
         </form>
       </Box>
+      <TCreateProduct data={createProduct} />
     </>
   );
 };

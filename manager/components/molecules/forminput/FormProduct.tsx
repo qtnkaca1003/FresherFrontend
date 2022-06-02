@@ -11,15 +11,13 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import apiProduct from "../../../api/Product";
 import { useAppSelector } from "../../../hook";
-import { ICategory, IProduct } from "../../../types/interface";
-//import ModalViewProduct from "../../molecules/modal/modalProduct";
+import {  IProduct } from "../../../types/interface";
 const CFormProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [product, setProduct] = useState<IProduct>();
   const categorys = useAppSelector((state) => state.product.category);
   const arrCategorys = Object.assign([], ...categorys);
-
   const onSubmit: SubmitHandler<IProduct> = (data) => {
     apiProduct.addProduct(data).then((res) => {
       setProduct(res.data);

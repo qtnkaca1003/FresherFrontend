@@ -40,7 +40,7 @@ const CFormRegister = () => {
                 required
                 {...register("email")}
                 name="email"
-                id="email"
+                id="emailregister"
                 type="email"
               />
             </FormControl>
@@ -53,7 +53,7 @@ const CFormRegister = () => {
               required
               {...register("password")}
               name="password"
-              id="password"
+              id="passwordregister"
               type="password"
             />
           </FormControl>

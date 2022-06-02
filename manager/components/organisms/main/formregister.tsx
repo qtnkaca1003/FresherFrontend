@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
-import CFormLogin from "../from/login";
-import CFormRegister from "../from/register";
+import CFormLogin from "../form/login";
+import CFormRegister from "../form/register";
 
 const FromRegister = () => {
   return (

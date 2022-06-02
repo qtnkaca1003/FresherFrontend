@@ -12,23 +12,31 @@ import {
 import React from "react";
 interface IModel {
   title: string;
+  id: string | number;
+  name?: string;
+  onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const ModalDel = (props: IModel) => {
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { isOpen, onClose ,onOpen} = useDisclosure();
+ 
   return (
     <>
-      <Button outlineColor={"none"} ml={2} onClick={onOpen}>
-        Delete
-      </Button>
+      <Button colorScheme={"red"} ml={3} onClick={onOpen}>Delete</Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{props.title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
+          <ModalBody>{`Do you want to delete ${props.name} ?`}</ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="red" mr={3}>
+            <Button
+              value={props.id}
+              onClick={props.onClickBtn}
+              onClickCapture={onClose}
+              colorScheme="red"
+              mr={3}
+            >
               Delete
             </Button>
             <Button variant="ghost" onClick={onClose}>

@@ -1,20 +1,21 @@
 import { GetServerSideProps } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 import apiUser from "../../api/User";
 import { IPage, IUser } from "../../types/interface";
 import ListUser from "../../components/organisms/main/list-user";
 import { useAppDispatch, useAppSelector } from "../../hook";
 import { addUsers } from "../../redux/slices/userSlices";
 interface IProps {
-  users: IUser[];
+  users: IUser;
   status: number;
-  pages: IPage
+  pages: IPage;
 }
-const ViewListUser = ({ users, status,pages }: IProps) => {
-  const dispatch =useAppDispatch();
- 
-
-  //dispatch(addUsers(users))
+const ViewListUser = ({ users, status, pages }: any) => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    //const dispatch = useAppDispatch();
+    dispatch(addUsers(users))
+  }, [users]);
   return (
     <>
       <ListUser pages={pages} status={status} users={users} />

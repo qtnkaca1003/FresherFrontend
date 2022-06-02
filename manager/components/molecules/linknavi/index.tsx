@@ -15,11 +15,13 @@ interface ICLinknavi {
   lineHeight?: string;
   w?: string;
   _hover?: {};
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 const CLinknavi = (props: ICLinknavi) => {
   return (
     <>
       <Box
+        onClick={props.onClick}
         padding={props.padding}
         borderLeft={props.borderLeft}
         display={props.display}
@@ -29,7 +31,6 @@ const CLinknavi = (props: ICLinknavi) => {
       >
         <Box>{props.icon}</Box>
         <CLink
-         
           color={props.color}
           fontSize={props.fontSize}
           fontWeight={props.fontWeight}

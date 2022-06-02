@@ -10,12 +10,14 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import { IPage, IProduct } from "../../../types/interface";
+import { IProduct } from "../../../types/interface";
 import PaginationProduct from "../buttonpagin/paginProduct";
+import ModalDel from "../modal";
 interface IProps {
   filteredProduct: IProduct[];
   status: number;
   data: IProduct[];
+  onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const TProduct = (props: IProps) => {
   return (
@@ -23,13 +25,13 @@ const TProduct = (props: IProps) => {
       <TableContainer>
         <Table variant="simple">
           <TableCaption>
-             <PaginationProduct
-                itemPage={5}
-                maxPageNumerLitmit={3}
-                path="/list-product/"
-                pageNumerLitmit={3}
-                data={props.data}
-              />
+            <PaginationProduct
+              itemPage={5}
+              maxPageNumerLitmit={3}
+              path="/list-product/"
+              pageNumerLitmit={3}
+              data={props.data}
+            />
           </TableCaption>
           <Thead>
             <Tr>
@@ -76,10 +78,14 @@ const TProduct = (props: IProps) => {
                       {/*  <Td p={"12px"}>{props.user.address.zipcode}</Td>
         <Td p={"12px"}>{props.user.phone}</Td> */}
                       <Td p={"12px"}>
-                        <Link href={`/edit/user/${item.id}`}>
+                        <Link href={`/edit/product/${item.id}`}>
                           <a className="chakra-button css-6urt9f"> Edit</a>
                         </Link>
-                        {/*  <ModalDel title="Do you want to delete your account?" /> */}
+                        <ModalDel
+                          title="Delete"
+                          id={item.id}
+                          onClickBtn={props.onClickBtn}
+                        />
                       </Td>
                     </Tr>
                   );

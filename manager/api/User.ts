@@ -12,6 +12,10 @@ const apiUser = {
     const url = `/api/users/${id}`;
     return AxiosUser.get(url);
   },
+  getAllUser: () => {
+    const url = `/api/users`;
+    return AxiosUser.get(url);
+  },
   //post
   login: (data: IAccount) => {
     const url = `/api/login`;
@@ -21,13 +25,13 @@ const apiUser = {
     const url = `/api/register`;
     return AxiosUser.post(url, data);
   },
-  addUser: (data: IUser) => {
+  addUser: (data: IAccount) => {
     const url = `/api/users`;
     return AxiosUser.post(url, data);
   },
-  editUser: (id: string | undefined, data: IUser) => {
-    const url = `/users/${id}`;
-    return Axios.put(url, data);
+  editUser: ( data: IUser) => {
+    const url = `/api/users/2`;
+    return AxiosUser.put(url, data);
   },
 };
 export default apiUser;

@@ -1,10 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
-import CAvatar from "../../atoms/avatar";
-import { ArrowDownIcon } from "../../atoms/icons/ArrowDownIcon";
 import { SearchIcon } from "../../atoms/icons/SearchIcon";
 import CInput from "../../atoms/input";
-import CText from "../../atoms/text";
+
 interface ICSearch {
   fontWeight?: string;
   fontSize?: string;

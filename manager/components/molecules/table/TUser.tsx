@@ -13,10 +13,13 @@ import React from "react";
 import { IPage, IUser } from "../../../types/interface";
 import CAvatar from "../../atoms/avatar";
 import Pagination from "../buttonpagin";
+import ModalDel from "../modal";
 interface IProps {
   filteredUsers: IUser[];
   status: number;
   data: IPage;
+
+  onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const TUser = (props: IProps) => {
   return (
@@ -71,7 +74,7 @@ const TUser = (props: IProps) => {
                   return (
                     <Tr key={index}>
                       <Td p={"12px"}>{item.id}</Td>
-                      <Td p={"12px"}> 
+                      <Td p={"12px"}>
                         <CAvatar src={item.avatar} size={"sm"} />
                       </Td>
                       <Td p={"12px"}>{item.first_name}</Td>
@@ -81,8 +84,21 @@ const TUser = (props: IProps) => {
                         <Link href={`/edit/user/${item.id}`}>
                           <a className="chakra-button css-6urt9f"> Edit</a>
                         </Link>
-                        {/*  <ModalDel title="Do you want to delete your account?" /> */}
+                        <ModalDel
+                          title="Delete"
+                          id={item.id}
+                          onClickBtn={props.onClickBtn}
+                        />
+                        {/* <Button
+                          ml={3}
+                          value={item.id}
+                          onClick={props.onClickBtn}
+                          colorScheme={"red"}
+                        >
+                          Delete
+                        </Button> */}
                       </Td>
+                      <Td p={"12px"}></Td>
                     </Tr>
                   );
                 })

@@ -1,15 +1,17 @@
+import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import apiProduct from "../api/Product";
+import CTitle from "../components/atoms/title";
 import { useAppDispatch } from "../hook";
-import { addCategory, addProduct } from "../redux/slices/productSlices";
+import { addCategory, addProducts } from "../redux/slices/productSlices";
 
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     const getAllProduct = () => {
       apiProduct.getAll().then((res) => {
-        dispatch(addProduct(res.data));
+        dispatch(addProducts(res.data));
       });
     };
     const getAllCategory = () => {
@@ -26,7 +28,15 @@ const Home: NextPage = () => {
     getAllProduct();
     //getAllUser();
   });
-  return <></>;
+  return (
+    <>
+      <Box w={"1oo%"} mt={10} textAlign={"center"}>
+        {" "}
+        <CTitle title="Dashboard" fontWeight="bold" fontSize="5xl" />
+      </Box>
+      
+    </>
+  );
 };
 
 export default Home;

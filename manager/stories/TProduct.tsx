@@ -1,7 +1,8 @@
 import { Table, Td, Tr } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import ModalDel from "../components/modal";
+import ModalDel from "../components/molecules/modal";
+
 import { IProduct } from "../types/interface";
 interface IProps {
   product: IProduct;
@@ -20,7 +21,7 @@ const CTable = (props: IProps) => {
         <Link href={`/edit/product/${props.product.id}`}>
           <a className="chakra-button css-6urt9f"> Edit</a>
         </Link>
-        <ModalDel title="Do you want to delete your products?" />
+        <ModalDel id={"1"} title="Do you want to delete your products?" />
       </Td>
       </Tr>
       </Table>

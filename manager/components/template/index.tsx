@@ -27,11 +27,11 @@ export default function Template({ children }: any) {
           </Box>
           <Footer mt="30px" top={"100%"} position={"absolute"} />
         </Box>
-      ) : (
+       ) : (
         <>
           <Login />
         </>
-      )}
+      )} 
     </>
   );
 }

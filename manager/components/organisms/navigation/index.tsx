@@ -1,5 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
+import { useAppDispatch } from "../../../hook";
+import { addUserEdit } from "../../../redux/slices/userSlices";
+import { IUser } from "../../../types/interface";
 import { CartIcon } from "../../atoms/icons/CartIcon";
 import { IconPlusUser } from "../../atoms/icons/IconUserPlus";
 import { IconList } from "../../atoms/icons/list";
@@ -20,7 +23,7 @@ const button = [
   {
     link: "/list-user/add-user",
     icon: <IconPlusUser />,
-    title: "User Profile",
+    title: "Add User",
     id: "3",
   },
   {
@@ -31,6 +34,19 @@ const button = [
   },
 ];
 export const Navigation = () => {
+  const dispatch = useAppDispatch();
+  const handleBack = () => {
+    const userEdit: IUser = {
+      avatar: "",
+      email: "",
+      first_name: "",
+      id: "",
+      last_name: "",
+      password: "",
+    };
+    dispatch(addUserEdit(userEdit));
+  };
+
   return (
     <>
       <Box minH={"100vh"} boxShadow="2xl" bg="white" w={"320px"}>
@@ -45,6 +61,7 @@ export const Navigation = () => {
         {button.map((item, index) => {
           return (
             <CLinknavi
+              onClick={handleBack}
               padding="20px 25px"
               borderLeft={"solid 4px #fff"}
               display={"inline-flex"}

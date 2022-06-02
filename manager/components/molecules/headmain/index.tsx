@@ -30,7 +30,7 @@ const CHeadmain = (props: IHeadmain) => {
           placeholder={props.placeholder}
         />
       </Box>
-      <CButton
+      <CButton type="button"
         title={props.titleBtn}
         colorScheme={"blue"}
         onClick={props.onClickBtn}

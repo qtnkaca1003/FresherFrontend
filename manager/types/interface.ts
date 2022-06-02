@@ -18,9 +18,10 @@ export interface IUser {
   avatar: string;
   email: string;
   first_name: string;
-  id: number|string;
+  id: number | string;
   last_name: string;
-  password?:string
+  password?: string;
+  updatedAt?: string;
 }
 export interface IPage {
   page: number;
@@ -29,10 +30,13 @@ export interface IPage {
   total_pages: number;
 }
 export interface IAccount {
+  first_name: string;
+  id: string | number;
+  last_name: string;
   email: string;
   password: string;
-  confirmpassword:string
+  confirmpassword: string;
 }
-export interface IToken{
-  token:string
+export interface IToken {
+  token: string;
 }
