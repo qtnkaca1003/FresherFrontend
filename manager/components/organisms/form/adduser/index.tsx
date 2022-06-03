@@ -18,16 +18,28 @@ import TCreate from "../../../molecules/table/TCreate";
 const CFormAddUser = () => {
   const { register, handleSubmit } = useForm<IAccount>();
   const [Error, setError] = useState(false);
+  const [textError, setTextError] = useState<string>();
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users.createUser);
   const onSubmit: SubmitHandler<IAccount> = (data) => {
-    if (data.password === data.confirmpassword) {
-      setError(false);
-      apiUser.addUser(data).then((res) => {
-        dispatch(addCreateUser(res.data));
-      });
+    if (
+      data.password.length >= 6 &&
+      data.password.length <= 18 &&
+      data.confirmpassword.length >= 6 &&
+      data.confirmpassword.length <= 18
+    ) {
+      if (data.password === data.confirmpassword) {
+        setError(false);
+        apiUser.addUser(data).then((res) => {
+          dispatch(addCreateUser(res.data));
+        });
+      } else {
+        setError(true);
+        setTextError("Password and Confirm Password do mot match");
+      }
     } else {
       setError(true);
+      setTextError("Password must be 8-16 characters ");
     }
   };
   return (
@@ -109,13 +121,7 @@ const CFormAddUser = () => {
                 id="confirmpassword"
                 type="password"
               />
-              {Error === true ? (
-                <Text color={"red"}>
-                  Password and Confirm Password do mot match !!!
-                </Text>
-              ) : (
-                <></>
-              )}
+              {Error === true ? <Text color={"red"}>{textError}</Text> : <></>}
             </FormControl>
           </Box>
           <Button type="submit" mt={5}>
@@ -124,7 +130,7 @@ const CFormAddUser = () => {
         </form>
       </Box>
       <Box>
-      <TCreate data={users} />
+        <TCreate data={users} />
       </Box>
     </>
   );

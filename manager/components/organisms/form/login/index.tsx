@@ -1,5 +1,12 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
-import React from "react";
+import {
+  Box,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Text,
+} from "@chakra-ui/react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../../api/User";
 import { useAppDispatch } from "../../../../hook";
@@ -9,10 +16,21 @@ import CButton from "../../../atoms/button";
 const CFormLogin = () => {
   const { register, handleSubmit } = useForm<IAccount>();
   const dispatch = useAppDispatch();
+  const [Error, setError] = useState<boolean>(false);
+  const [textError, setTextError] = useState<string>();
   const onSubmit: SubmitHandler<IAccount> = (data) => {
-    apiUser.login(data).then((res) => {
-      dispatch(addToken(res.data));
-    });
+    apiUser
+      .login(data)
+      .then((res) => {
+        setError(false);
+        dispatch(addToken(res.data));
+      })
+      .catch((error) => {
+        setError(true);
+        if (error.response.status === 400)
+          setTextError(error.response.data.error);
+        //console.log("Hi config response ", error.response.status);
+      });
   };
   return (
     <>
@@ -41,8 +59,9 @@ const CFormLogin = () => {
               id="password"
               type="password"
             />
-             <FormErrorMessage>Email is required.</FormErrorMessage>
+            <FormErrorMessage>Email is required.</FormErrorMessage>
           </FormControl>
+          {Error === true ? <Text color={"red"}>{textError}</Text> : <></>}
           <Box textAlign={"center"}>
             <CButton
               color={"#fff"}

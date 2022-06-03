@@ -9,22 +9,30 @@ import CButton from "../../../atoms/button";
 const CFormRegister = () => {
   const { register, handleSubmit } = useForm<IAccount>();
   const [Error, setError] = useState(false);
+  const [textError, setTextError] = useState<string>();
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IAccount> = (data) => {
-    if (data.password === data.confirmpassword) {
-      setError(false);
-      apiUser
-        .register(data)
-        .then((res) => {
-          dispatch(addToken(res.data));
-        })
-        .catch((error) => {
-          if (error.response.status === 400) {
-            alert(error.response.data.error);
-          }
-        });
-    } else {
-      setError(true);
+    if (data.password.length >= 6 &&data.password.length <= 18 && data.confirmpassword.length >= 6 && data.confirmpassword.length <= 18) {
+      if (data.password === data.confirmpassword) {
+        setError(false);
+        apiUser
+          .register(data)
+          .then((res) => {
+            dispatch(addToken(res.data));
+          })
+          .catch((error) => {
+            if (error.response.status === 400) {
+              alert(error.response.data.error);
+            }
+          });
+      } else {
+        setError(true);
+        setTextError("Password and Confirm Password do mot match")
+      }
+    }
+    else{
+      setError(true)
+      setTextError("Password must be 8-16 characters ")
     }
   };
   return (
@@ -70,7 +78,7 @@ const CFormRegister = () => {
             />
             {Error === true ? (
               <Text color={"red"}>
-                Password and Confirm Password do mot match !!!
+                {textError}
               </Text>
             ) : (
               <></>
