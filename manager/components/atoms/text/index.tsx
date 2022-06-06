@@ -6,21 +6,21 @@ interface IText {
   fontSize?: string;
   color?: string;
   textAlign?: string;
-  mt?:string|number
-  fontStyle?:string
+  mt?: string | number;
+  fontStyle?: string;
 }
-const CText = (props: IText) => {
+const CText = (textProps: IText) => {
   return (
     <>
       <Text
-      mt={props.mt}
+        mt={textProps.mt}
         className="text"
-        fontStyle={props.fontStyle}
-        fontWeight={props.fontWeight}
-        color={props.color}
-        fontSize={props.fontSize}
+        fontStyle={textProps.fontStyle}
+        fontWeight={textProps.fontWeight}
+        color={textProps.color}
+        fontSize={textProps.fontSize}
       >
-        {props.title}
+        {textProps.title}
       </Text>
     </>
   );

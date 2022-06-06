@@ -6,45 +6,79 @@ import {
   Th,
   Thead,
   Tr,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
-import { IProduct} from "../../../types/interface";
+import { IProduct } from "../../../types/interface";
 interface IProps {
   data: IProduct[];
 }
-const TCreateProduct = (props: IProps) => {
+const TCreateProduct = (createProductProps: IProps) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const color = colorMode === "dark" ? "#fff" : "#4A5568";
+  const bgTr = colorMode === "dark" ? "#7393B3 " : "#F5F6F8";
   return (
     <>
       <TableContainer>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
-                User
+              <Th
+                color={color}
+                p={"12px"}
+                textTransform={"none"}
+                fontSize={"16px"}
+              >
+                Product
               </Th>
             </Tr>
           </Thead>
           <Thead fontSize={"15px"} background={"#f5f6f8"}>
-            <Tr h={"47px"}>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+            <Tr  bg={bgTr} h={"47px"}>
+              <Th
+                color={color}
+                p={"12px"}
+                textTransform={"none"}
+                fontSize={"16px"}
+              >
                 ID
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th
+                color={color}
+                p={"12px"}
+                textTransform={"none"}
+                fontSize={"16px"}
+              >
                 Title
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th
+                color={color}
+                p={"12px"}
+                textTransform={"none"}
+                fontSize={"16px"}
+              >
                 Price
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th
+                color={color}
+                p={"12px"}
+                textTransform={"none"}
+                fontSize={"16px"}
+              >
                 Category
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th
+                color={color}
+                p={"12px"}
+                textTransform={"none"}
+                fontSize={"16px"}
+              >
                 Description
               </Th>
             </Tr>
           </Thead>
           <Tbody>
-            {props.data?.map((item: IProduct, index: number) => {
+            {createProductProps.data?.map((item: IProduct, index: number) => {
               return (
                 <Tr key={index}>
                   <Td p={"12px"}>{item.id}</Td>

@@ -2,11 +2,8 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
 import { FC } from "react";
 import CFormLogin from "../form/login";
 import CFormRegister from "../form/register";
-interface Ichildren {
-  children?: React.ReactNode;
-}
-interface ITabs {}
-const CTabs: FC<Ichildren> = ({ children }) => {
+
+const CTabs = () => {
   return (
     <Box
       className="login__center"

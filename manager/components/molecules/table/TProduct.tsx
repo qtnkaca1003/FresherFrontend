@@ -7,11 +7,12 @@ import {
   Th,
   Thead,
   Tr,
+  useColorMode,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 import { IProduct } from "../../../types/interface";
-import PaginationProduct from "../buttonpagin/paginProduct";
+import PaginationProduct from "../../atoms/buttonpagin/paginProduct";
 import ModalDel from "../modal";
 interface IProps {
   filteredProduct: IProduct[];
@@ -19,7 +20,11 @@ interface IProps {
   data: IProduct[];
   onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const TProduct = (props: IProps) => {
+const TProduct = (TProductProps: IProps) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const color = colorMode === "dark" ? "#fff" : "#4A5568";
+  const bgTr = colorMode === "dark" ? "#7393B3 " : "#F5F6F8";
+  const colorEdit = colorMode === "dark" ? "#000" : "#4A5568";
   return (
     <>
       <TableContainer>
@@ -30,44 +35,44 @@ const TProduct = (props: IProps) => {
               maxPageNumerLitmit={3}
               path="/list-product/"
               pageNumerLitmit={3}
-              data={props.data}
+              data={TProductProps.data}
             />
           </TableCaption>
           <Thead>
             <Tr>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Product
               </Th>
             </Tr>
           </Thead>
-          <Thead fontSize={"15px"} background={"#f5f6f8"}>
-            <Tr h={"47px"}>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+          <Thead   fontSize={"15px"} background={"#f5f6f8"}>
+            <Tr bg={bgTr} h={"47px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 #
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Title
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Category
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Description
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Price
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Action
               </Th>
             </Tr>
           </Thead>
           <Tbody>
-            {props.status == 200 ? (
-              props.filteredProduct?.length == 0 ? (
+            {TProductProps.status == 200 ? (
+              TProductProps.filteredProduct?.length == 0 ? (
                 <>Not found</>
               ) : (
-                props.filteredProduct?.map((item: IProduct, index) => {
+                TProductProps.filteredProduct?.map((item: IProduct, index) => {
                   return (
                     <Tr key={index}>
                       <Td p={"12px"}>{item.id}</Td>
@@ -75,16 +80,15 @@ const TProduct = (props: IProps) => {
                       <Td p={"12px"}>{item.category}</Td>
                       <Td p={"12px"}>{item.description.slice(0, 20)}</Td>
                       <Td p={"12px"}>{item.price}</Td>
-                      {/*  <Td p={"12px"}>{props.user.address.zipcode}</Td>
-        <Td p={"12px"}>{props.user.phone}</Td> */}
-                      <Td p={"12px"}>
+                      
+                      <Td color={colorEdit} p={"12px"}>
                         <Link href={`/edit/product/${item.id}`}>
                           <a className="chakra-button css-6urt9f"> Edit</a>
                         </Link>
                         <ModalDel
                           title="Delete"
                           id={item.id}
-                          onClickBtn={props.onClickBtn}
+                          onClickBtn={TProductProps.onClickBtn}
                         />
                       </Td>
                     </Tr>

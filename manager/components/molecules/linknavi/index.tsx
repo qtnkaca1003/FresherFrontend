@@ -12,30 +12,38 @@ interface ICLinknavi {
   padding?: string;
   borderLeft?: string;
   display?: string;
+  borderBottom?: string;
   lineHeight?: string;
+  textAlign?: any;
+  alignItems?: any;
+  fill?: string;
   w?: string;
   _hover?: {};
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
-const CLinknavi = (props: ICLinknavi) => {
+const CLinknavi = (linknaviProps: ICLinknavi) => {
   return (
     <>
       <Box
-        onClick={props.onClick}
-        padding={props.padding}
-        borderLeft={props.borderLeft}
-        display={props.display}
-        lineHeight={props.lineHeight}
-        w={props.w}
-        _hover={props._hover}
+        borderBottom={linknaviProps.borderBottom}
+        textAlign={linknaviProps.textAlign}
+        onClick={linknaviProps.onClick}
+        padding={linknaviProps.padding}
+        borderLeft={linknaviProps.borderLeft}
+        display={linknaviProps.display}
+        alignItems={linknaviProps.alignItems}
+        lineHeight={linknaviProps.lineHeight}
+        w={linknaviProps.w}
+        _hover={linknaviProps._hover}
       >
-        <Box>{props.icon}</Box>
+        <Box fill={linknaviProps.fill}>{linknaviProps.icon}</Box>
         <CLink
-          color={props.color}
-          fontSize={props.fontSize}
-          fontWeight={props.fontWeight}
-          title={props.title}
-          link={props.link}
+         
+          color={linknaviProps.color}
+          fontSize={linknaviProps.fontSize}
+          fontWeight={linknaviProps.fontWeight}
+          title={linknaviProps.title}
+          link={linknaviProps.link}
         />
       </Box>
     </>

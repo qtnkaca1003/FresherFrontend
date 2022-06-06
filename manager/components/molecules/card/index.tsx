@@ -10,15 +10,15 @@ interface ICard {
   fontWeightTitle?: string;
   titleTitle: string;
 }
-const CCard = (props: ICard) => {
+const CCard = (cardprops: ICard) => {
   return (
     <Box pt={5} display={"flex"} flexDirection={"column"} alignItems={"center"}>
-      <CAvatar size={props.sizeAvatar} src={props.srcAvatar} />
+      <CAvatar size={cardprops.sizeAvatar} src={cardprops.srcAvatar} />
       <CTitle
-        color={props.colorTitle}
-        fontSize={props.fontSizeTitle}
-        fontWeight={props.fontWeightTitle}
-        title={props.titleTitle}
+        color={cardprops.colorTitle}
+        fontSize={cardprops.fontSizeTitle}
+        fontWeight={cardprops.fontWeightTitle}
+        title={cardprops.titleTitle}
       />
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hook";
@@ -10,14 +10,13 @@ interface IProps {
   products: IProduct[];
   status: number;
 }
-interface IButton {
-  toAddProduct?: () => (event: React.MouseEvent<HTMLButtonElement>) => void;
-}
-const ListProduct = (props: IProps) => {
+
+const ListProduct = (listProductProps: IProps) => {
   const router = useRouter();
   const [search, setSearch] = useState<string>("");
   const product = useAppSelector((state) => state.product.propsProduct);
   const products = useAppSelector((state) => state.product.propsProducts);
+  const { colorMode, toggleColorMode } = useColorMode();
   //const arrProduct = Object.assign([], ...products);
   const dispatch = useAppDispatch();
   const toAddProduct = (props: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,6 +40,7 @@ const ListProduct = (props: IProps) => {
     const id = currentTarget.value;
     dispatch(deleteProduct(id));
   };
+  const color = colorMode === "dark" ? "#fff" : "#4A5568";
   return (
     <>
       <Box padding={"0 24px"}>
@@ -51,6 +51,9 @@ const ListProduct = (props: IProps) => {
         >
           {" "}
           <CHeadmain
+            color={color}
+            fontSize={"3xl"}
+            fontWeight={"600"}
             onChangeSearch={handelChange}
             title="List product"
             placeholder="Search for something..."
@@ -61,7 +64,7 @@ const ListProduct = (props: IProps) => {
         <Box shadow={"2xl"} borderRadius={"10px"} padding={"24px 0"}>
           <TProduct
             data={products}
-            status={props.status}
+            status={listProductProps.status}
             filteredProduct={filteredProduct}
             onClickBtn={handleDelete}
           />

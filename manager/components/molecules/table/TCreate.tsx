@@ -6,36 +6,41 @@ import {
   Th,
   Thead,
   Tr,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
-import { IAccount, IPage, IUser } from "../../../types/interface";
+import { IAccount } from "../../../types/interface";
 interface IProps {
   data: IAccount[];
 }
-const TCreate= (props: IProps) => {
+const TCreate= (createProps: IProps) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const color = colorMode === "dark" ? "#fff" : "#4A5568";
+  const bgTr = colorMode === "dark" ? "#7393B3 " : "#F5F6F8";
+  const colorEdit = colorMode === "dark" ? "#000" : "#4A5568";
   return (
     <>
       <TableContainer>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 User
               </Th>
             </Tr>
           </Thead>
           <Thead fontSize={"15px"} background={"#f5f6f8"}>
-            <Tr h={"47px"}>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+            <Tr bg={bgTr} h={"47px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 ID
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 First Name
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Last Name
               </Th>
-              <Th p={"12px"} textTransform={"none"} fontSize={"16px"}>
+              <Th color={color} p={"12px"} textTransform={"none"} fontSize={"16px"}>
                 Email
               </Th>
 
@@ -43,7 +48,7 @@ const TCreate= (props: IProps) => {
             </Tr>
           </Thead>
           <Tbody>
-            {props.data?.map((item: IAccount, index:number) => {
+            {createProps.data?.map((item: IAccount, index:number) => {
               return (
                 <Tr key={index}>
                   <Td p={"12px"}>{item.id}</Td>

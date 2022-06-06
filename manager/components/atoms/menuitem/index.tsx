@@ -13,15 +13,15 @@ interface IMenuItem {
   rightIcon?: ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const CMenuItem = (props: IMenuItem) => {
+const CMenuItem = (menuItemProps: IMenuItem) => {
   return (
     <>
       <MenuItem
-        onClick={props.onClick}
-        width={props.widthItem}
-        height={props.heightItem}
+        onClick={menuItemProps.onClick}
+        width={menuItemProps.widthItem}
+        height={menuItemProps.heightItem}
       >
-        {props.contentMenuItem}
+        {menuItemProps.contentMenuItem}
       </MenuItem>
     </>
   );

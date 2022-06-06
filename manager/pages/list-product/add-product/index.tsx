@@ -1,13 +1,15 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CFormAddProduct from "../../../components/organisms/form/addproduct";
 
 const AddProduct = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const color = colorMode === "dark" ? "#fff" : "#3d5170";
   return (
     <>
       <Box padding={"0 24px"}>
         <Box padding={"24px 0"}>
-          <Text color={"#3d5170"} fontSize="3xl" fontWeight={"600"}>
+          <Text color={color} fontSize="3xl" fontWeight={"600"}>
             {" "}
             Add Product
           </Text>

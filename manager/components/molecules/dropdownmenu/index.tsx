@@ -20,7 +20,7 @@ interface IDropdownMenu {
   src: string;
   onClickMenuItem: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const CDropDown = (props: IDropdownMenu) => {
+const CDropDown = (dropDownProps: IDropdownMenu) => {
   return (
     <>
       <Box mr={5}>
@@ -28,17 +28,18 @@ const CDropDown = (props: IDropdownMenu) => {
           <CMenuButton>
             <Box alignItems={"center"} display={"flex"}>
               {" "}
-              <CAvatar size="sm" src={props.src} />
-              <CText title={props.title} />
+              <CAvatar size="sm" src={dropDownProps.src} />
+              <CText title={dropDownProps.title} />
             </Box>
           </CMenuButton>
           <MenuList>
             <CMenuItem
-              onClick={props.onClickMenuItem}
-              heightItem={props.heightItem}
-              widthItem={props.widthItem}
-              contentMenuItem={props.contentMenuItem}
+              onClick={dropDownProps.onClickMenuItem}
+              heightItem={dropDownProps.heightItem}
+              widthItem={dropDownProps.widthItem}
+              contentMenuItem={dropDownProps.contentMenuItem}
             />
+          
           </MenuList>
         </Menu>
       </Box>

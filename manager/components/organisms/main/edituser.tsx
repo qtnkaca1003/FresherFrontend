@@ -1,13 +1,8 @@
 import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
-import axios from "axios";
+
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import CButtonFl from "../../../components/atoms/button";
-import CAvatar from "../../../components/atoms/avatar";
 
-import { IconPlusUser } from "../../../components/atoms/icons/IconUserPlus";
-import CTitle from "../../../components/atoms/title";
 import { addUser, addUserEdit } from "../../../redux/slices/userSlices";
 import apiUser from "../../../api/User";
 import CButton from "../../../components/atoms/button";
@@ -16,9 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../hook";
 import { IUser } from "../../../types/interface";
 import CFormEditUser from "../form/edituser/FormEditUser";
 import CFormEditUserAfter from "../form/edituser/FormEditUserAfter";
-interface IEditUser {
-  id: string | undefined;
-}
+
 const CEditUser = () => {
   const router = useRouter();
   const id = router.query.id?.toString();

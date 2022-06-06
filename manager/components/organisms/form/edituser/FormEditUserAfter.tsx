@@ -1,50 +1,46 @@
 import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { useAppSelector } from "../../../../hook";
 import CText from "../../../atoms/text";
+import CFromInput from "../../../molecules/formitem";
 
 const CFormEditUserAfter = () => {
   const userAfterEdit = useAppSelector((state) => state.users.UserEdit);
+  const methods = useForm();
   return (
     <Box>
-      <Box display={"flex"}>
-        <FormControl>
-          <FormLabel fontWeight={"normal"} htmlFor="name.firstname">
-            First Name
-          </FormLabel>
-          <Input
-            readOnly
-            defaultValue={userAfterEdit.first_name}
-            name="first_name"
-            id="first_name"
-            type="text"
+      <FormProvider {...methods}>
+        <form>
+          <Box display={"flex"}>
+            <CFromInput
+              textformlabel="First name"
+              name="first_name"
+              idInput="first_name"
+              isRequired={true}
+              typeInput={"text"}
+              defaultValueInput={userAfterEdit.first_name}
+            />
+
+            <CFromInput
+              textformlabel="Last name"
+              name="last_name"
+              idInput="last_name"
+              isRequired={true}
+              typeInput={"text"}
+              defaultValueInput={userAfterEdit.last_name}
+            />
+          </Box>
+          <CFromInput
+            textformlabel="Email"
+            name="email"
+            idInput="email"
+            isRequired={true}
+            typeInput={"email"}
+            defaultValueInput={userAfterEdit.email}
           />
-        </FormControl>
-        <FormControl ml={2}>
-          <FormLabel fontWeight={"normal"} htmlFor="name.lastname">
-            Last Name
-          </FormLabel>
-          <Input
-            readOnly
-            defaultValue={userAfterEdit.last_name}
-            name="last_name"
-            id="last_name"
-            type="text"
-          />
-        </FormControl>
-      </Box>
-      <FormControl>
-        <FormLabel fontWeight={"normal"} htmlFor="email">
-          Email
-        </FormLabel>
-        <Input
-          readOnly
-          defaultValue={userAfterEdit.email}
-          name="e"
-          id="email"
-          type="email"
-        />
-      </FormControl>
+        </form>
+      </FormProvider>
       <CText
         mt={3}
         fontStyle="italic"

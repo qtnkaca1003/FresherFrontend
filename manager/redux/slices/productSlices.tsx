@@ -5,11 +5,11 @@ type initialStateType = {
   category: ICategory[];
   propsProducts: IProduct[];
   propsProduct: IProduct[];
-  createProduct:IProduct[]
+  createProduct: IProduct[];
 };
 const propsProducts: IProduct[] = [];
 const propsProduct: IProduct[] = [];
-const createProduct: IProduct[]=[]
+const createProduct: IProduct[] = [];
 const category: ICategory[] = [];
 const product: IProduct = {
   id: 0,
@@ -26,7 +26,7 @@ const initialState: initialStateType = {
   category,
   propsProducts,
   propsProduct,
-  createProduct
+  createProduct,
 };
 export const productSlice = createSlice({
   name: "post",
@@ -40,15 +40,15 @@ export const productSlice = createSlice({
       state.product.description = action.payload.description;
     },
     addProduct: (state, action: PayloadAction<IProduct[]>) => {
-      state.propsProduct=[...action.payload]
+      state.propsProduct = [...action.payload];
     },
     addProducts: (state, action: PayloadAction<IProduct[]>) => {
-      state.propsProducts=[...action.payload]
+      state.propsProducts = [...action.payload];
     },
     addCategory: (state, action: PayloadAction<ICategory>) => {
       state.category.push(action.payload);
     },
-    addCreateProduct: (state, action:PayloadAction<IProduct>)=>{
+    addCreateProduct: (state, action: PayloadAction<IProduct>) => {
       state.createProduct.push(action.payload);
     },
     deleteProduct: (state, action) => {
@@ -62,5 +62,12 @@ export const productSlice = createSlice({
     },
   },
 });
-export const { Product, addCategory, addProduct,addCreateProduct,addProducts,deleteProduct } = productSlice.actions;
+export const {
+  Product,
+  addCategory,
+  addProduct,
+  addCreateProduct,
+  addProducts,
+  deleteProduct,
+} = productSlice.actions;
 export default productSlice.reducer;

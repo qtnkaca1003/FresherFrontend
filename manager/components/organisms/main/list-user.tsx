@@ -1,4 +1,4 @@
-import { Box, useDisclosure } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hook";
@@ -11,8 +11,10 @@ interface IProps {
   status: number;
   pages: IPage;
 }
-const ListUser = (props: IProps) => {
+const ListUser = (listUserProps: IProps) => {
   const router = useRouter();
+  const { colorMode, toggleColorMode } = useColorMode();
+  
   const [search, setSearch] = useState<string>("");
   const listUser = useAppSelector((state) => state.users.propsUsers);
 
@@ -38,6 +40,7 @@ const ListUser = (props: IProps) => {
     dispatch(deleteUser(id));
    
   };
+  const color = colorMode === "dark" ? "#fff" : "#4A5568";
   return (
     <>
       <Box padding={"0 24px"}>
@@ -50,17 +53,20 @@ const ListUser = (props: IProps) => {
           <CHeadmain
             onClickBtn={toAddUser}
             onChangeSearch={handelChange}
+            color={color}
+            fontSize={"3xl"}
+            fontWeight={"600"}
             title="List user"
             placeholder="Search for something..."
             titleBtn="+ Add user"
           />
         </Box>
-        <Box shadow={"2xl"} borderRadius={"10px"} padding={"24px 0"}>
+        <Box shadow={"2xl"}  borderRadius={"10px"}  padding={"24px 0"}>
           <TUser
            
             onClickBtn={handleDelete}
-            data={props.pages}
-            status={props.status}
+            data={listUserProps.pages}
+            status={listUserProps.status}
             filteredUsers={filteredUsers}
           />
         </Box>

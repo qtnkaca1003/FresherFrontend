@@ -7,17 +7,17 @@ interface ITitle {
   color?: string;
   
 }
-const CTitle = (props: ITitle) => {
+const CTitle = (titleProps: ITitle) => {
   return (
     <>
       <Text
        
         className="text"
-        fontWeight={props.fontWeight}
-        color={props.color}
-        fontSize={props.fontSize}
+        fontWeight={titleProps.fontWeight}
+        color={titleProps.color}
+        fontSize={titleProps.fontSize}
       >
-        {props.title}
+        {titleProps.title}
       </Text>
     </>
   );

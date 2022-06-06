@@ -12,30 +12,34 @@ interface IButton {
   disabled?: boolean;
   colorScheme?: string;
   icon?: ReactNode;
-  m?: string |number;
+  m?: string | number;
   type: "button" | "submit" | "reset";
-  mt?: string |number;
+  mt?: string | number;
+  mr?: string | number;
+  ml?: string | number;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const CButton = (props: IButton) => {
+const CButton = (ButtonProps: IButton) => {
   return (
     <>
       <Button
-        m={props.m}
-        type={props.type}
-        mt={props.mt}
-        disabled={props.disabled}
-        className={props.className}
-        colorScheme={props.colorScheme}
-        w={props.width}
-        h={props.height}
-        fontWeight={props.fontWeight}
-        fontSize={props.fontSize}
-        color={props.color}
-        borderRadius={props.borderRadius}
-        onClick={props.onClick}
+        ml={ButtonProps.ml}
+        mr={ButtonProps.mr}
+        m={ButtonProps.m}
+        type={ButtonProps.type}
+        mt={ButtonProps.mt}
+        disabled={ButtonProps.disabled}
+        className={ButtonProps.className}
+        colorScheme={ButtonProps.colorScheme}
+        w={ButtonProps.width}
+        h={ButtonProps.height}
+        fontWeight={ButtonProps.fontWeight}
+        fontSize={ButtonProps.fontSize}
+        color={ButtonProps.color}
+        borderRadius={ButtonProps.borderRadius}
+        onClick={ButtonProps.onClick}
       >
-        {props.icon} {props.title}
+        {ButtonProps.icon} {ButtonProps.title}
       </Button>
     </>
   );

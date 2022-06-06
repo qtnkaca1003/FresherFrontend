@@ -14,26 +14,26 @@ interface IHeadmain {
   onChangeSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const CHeadmain = (props: IHeadmain) => {
+const CHeadmain = (headmainProps: IHeadmain) => {
   return (
     <Box w={"100%"} display={"flex"} justifyContent={"space-between"}>
       <Box>
         <CTitle
-          title={props.title}
-          color={"#3d5170"}
-          fontSize={"3xl"}
-          fontWeight={"600"}
+          title={headmainProps.title}
+          color={headmainProps.color}
+          fontSize={headmainProps.fontSize}
+          fontWeight={headmainProps.fontWeight}
         />
 
         <CSearch
-          onChange={props.onChangeSearch}
-          placeholder={props.placeholder}
+          onChange={headmainProps.onChangeSearch}
+          placeholder={headmainProps.placeholder}
         />
       </Box>
       <CButton type="button"
-        title={props.titleBtn}
+        title={headmainProps.titleBtn}
         colorScheme={"blue"}
-        onClick={props.onClickBtn}
+        onClick={headmainProps.onClickBtn}
       />
     </Box>
   );

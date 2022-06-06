@@ -1,4 +1,4 @@
-import { IAccount, IUser } from "../types/interface";
+import { IAccount, ILogin, IUser } from "../types/interface";
 import Axios from "./Axios";
 import AxiosUser from "./AxiosUser";
 
@@ -17,7 +17,7 @@ const apiUser = {
     return AxiosUser.get(url);
   },
   //post
-  login: (data: IAccount) => {
+  login: (data: ILogin) => {
     const url = `/api/login`;
     return AxiosUser.post(url, data);
   },

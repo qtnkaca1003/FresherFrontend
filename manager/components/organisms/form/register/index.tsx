@@ -1,18 +1,25 @@
 import { Box, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../../api/User";
 import { useAppDispatch } from "../../../../hook";
 import { addToken } from "../../../../redux/slices/userSlices";
 import { IAccount } from "../../../../types/interface";
 import CButton from "../../../atoms/button";
+import CFromInput from "../../../molecules/formitem";
 const CFormRegister = () => {
-  const { register, handleSubmit } = useForm<IAccount>();
+  //const { register, handleSubmit } = useForm<IAccount>();
   const [Error, setError] = useState(false);
   const [textError, setTextError] = useState<string>();
   const dispatch = useAppDispatch();
-  const onSubmit: SubmitHandler<IAccount> = (data) => {
-    if (data.password.length >= 6 &&data.password.length <= 18 && data.confirmpassword.length >= 6 && data.confirmpassword.length <= 18) {
+  const methods = useForm();
+  const onSubmit = (data: any) => {
+    if (
+      data.password.length >= 6 &&
+      data.password.length <= 18 &&
+      data.confirmpassword.length >= 6 &&
+      data.confirmpassword.length <= 18
+    ) {
       if (data.password === data.confirmpassword) {
         setError(false);
         apiUser
@@ -27,73 +34,54 @@ const CFormRegister = () => {
           });
       } else {
         setError(true);
-        setTextError("Password and Confirm Password do mot match")
+        setTextError("Password and Confirm Password do mot match");
       }
-    }
-    else{
-      setError(true)
-      setTextError("Password must be 8-16 characters ")
+    } else {
+      setError(true);
+      setTextError("Password must be 8-16 characters ");
     }
   };
+
   return (
     <>
       <Box>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box>
-            <FormControl isRequired mt={3} pr={5}>
-              <FormLabel fontWeight={"normal"} htmlFor="title">
-                Email
-              </FormLabel>
-              <Input
-                required
-                {...register("email")}
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <Box>
+              <CFromInput
+                textformlabel="Email"
                 name="email"
-                id="emailregister"
-                type="email"
+                idInput="email"
+                isRequired={true}
+                typeInput={"email"}
               />
-            </FormControl>
-          </Box>
-          <FormControl isRequired mt={3} pr={5}>
-            <FormLabel fontWeight={"normal"} htmlFor="password">
-              Password
-            </FormLabel>
-            <Input
-              required
-              {...register("password")}
+            </Box>
+            <CFromInput
+              textformlabel="Password"
               name="password"
-              id="passwordregister"
-              type="password"
+              idInput="password"
+              isRequired={true}
+              typeInput={"password"}
             />
-          </FormControl>
-          <FormControl isRequired mt={3} pr={5}>
-            <FormLabel fontWeight={"normal"} htmlFor="password">
-              Confirm Password
-            </FormLabel>
-            <Input
-              required
-              {...register("confirmpassword")}
+            <CFromInput
+              textformlabel="Confirm Password"
               name="confirmpassword"
-              id="confirmpassword"
-              type="password"
+              idInput="confirmpassword"
+              isRequired={true}
+              typeInput={"password"}
             />
-            {Error === true ? (
-              <Text color={"red"}>
-                {textError}
-              </Text>
-            ) : (
-              <></>
-            )}
-          </FormControl>
-          <Box textAlign={"center"}>
-            <CButton
-              color={"#fff"}
-              colorScheme={"blue"}
-              title={"Register"}
-              type="submit"
-              mt={5}
-            />
-          </Box>
-        </form>
+            {Error === true ? <Text color={"red"}>{textError}</Text> : <></>}
+            <Box textAlign={"center"}>
+              <CButton
+                color={"#fff"}
+                colorScheme={"green"}
+                title={"Register"}
+                type="submit"
+                mt={5}
+              />
+            </Box>
+          </form>
+        </FormProvider>
       </Box>
     </>
   );

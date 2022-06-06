@@ -9,25 +9,25 @@ interface IPagination {
   data: IProduct[];
   path: string;
 }
-const PaginationProduct = (props: IPagination) => {
+const PaginationProduct = (paginationProductProps: IPagination) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemPage, setItemPage] = useState<number>(props.itemPage);
+  const [itemPage, setItemPage] = useState<number>(paginationProductProps.itemPage);
   const [pageNumerLitmit, setpageNumerLitmit] = useState<number>(
-    props.pageNumerLitmit
+    paginationProductProps.pageNumerLitmit
   );
   const [maxPageNumerLitmit, setmaxPageNumerLitmit] = useState<number>(
-    props.maxPageNumerLitmit
+    paginationProductProps.maxPageNumerLitmit
   );
   const [minPageNumerLitmit, setminPageNumerLitmit] = useState<number>(0);
 
   const handelClick = (e: any) => {
     setCurrentPage(Number(e.target.id));
-    router.push(`${props.path}` + Number(e.target.id));
+    router.push(`${paginationProductProps.path}` + Number(e.target.id));
   };
   // page number
   const pages = [];
-  for (let i = 1; i <= Math.ceil(props.data.length / itemPage); i++) {
+  for (let i = 1; i <= Math.ceil(paginationProductProps.data.length / itemPage); i++) {
     pages.push(i);
   }
   const renderPageNumber = pages.map((number: number) => {
@@ -49,7 +49,7 @@ const PaginationProduct = (props: IPagination) => {
   });
   const handleNext = () => {
     setCurrentPage(currentPage + 1);
-    router.push(`${props.path}` + Number(currentPage + 1));
+    router.push(`${paginationProductProps.path}` + Number(currentPage + 1));
     if (currentPage + 1 > maxPageNumerLitmit) {
       setmaxPageNumerLitmit(maxPageNumerLitmit + pageNumerLitmit);
       setminPageNumerLitmit(minPageNumerLitmit + pageNumerLitmit);
@@ -57,7 +57,7 @@ const PaginationProduct = (props: IPagination) => {
   };
   const handlePrev = () => {
     setCurrentPage(currentPage - 1);
-    router.push(`${props.path}` + Number(currentPage - 1));
+    router.push(`${paginationProductProps.path}` + Number(currentPage - 1));
     if ((currentPage - 1) % pageNumerLitmit === 0) {
       setmaxPageNumerLitmit(maxPageNumerLitmit - pageNumerLitmit);
       setminPageNumerLitmit(minPageNumerLitmit - pageNumerLitmit);

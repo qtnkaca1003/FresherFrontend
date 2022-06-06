@@ -9,27 +9,27 @@ interface IPagination {
   data: IPage;
   path: string;
 }
-const Pagination = (props: IPagination) => {
+const Pagination = (paginationProps: IPagination) => {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemPage, setItemPage] = useState<number>(props.itemPage);
+  const [itemPage, setItemPage] = useState<number>(paginationProps.itemPage);
   const [pageNumerLitmit, setpageNumerLitmit] = useState<number>(
-    props.pageNumerLitmit
+    paginationProps.pageNumerLitmit
   );
   const [maxPageNumerLitmit, setmaxPageNumerLitmit] = useState<number>(
-    props.maxPageNumerLitmit
+    paginationProps.maxPageNumerLitmit
   );
   const [minPageNumerLitmit, setminPageNumerLitmit] = useState<number>(0);
 
   const handelClick = (e: any) => {
     setCurrentPage(Number(e.target.id));
-    router.push(`${props.path}` + Number(e.target.id));
+    router.push(`${paginationProps.path}` + Number(e.target.id));
   };
   // page number
   const pages = [];
   for (
     let i = 1;
-    i <= Math.ceil(props.data?.total / props.data.per_page);
+    i <= Math.ceil(paginationProps.data?.total / paginationProps.data.per_page);
     i++
   ) {
     pages.push(i);
@@ -53,7 +53,7 @@ const Pagination = (props: IPagination) => {
   });
   const handleNext = () => {
     setCurrentPage(currentPage + 1);
-    router.push(`${props.path}` + Number(currentPage + 1));
+    router.push(`${paginationProps.path}` + Number(currentPage + 1));
     if (currentPage + 1 > maxPageNumerLitmit) {
       setmaxPageNumerLitmit(maxPageNumerLitmit + pageNumerLitmit);
       setminPageNumerLitmit(minPageNumerLitmit + pageNumerLitmit);
@@ -61,7 +61,7 @@ const Pagination = (props: IPagination) => {
   };
   const handlePrev = () => {
     setCurrentPage(currentPage - 1);
-    router.push(`${props.path}` + Number(currentPage - 1));
+    router.push(`${paginationProps.path}` + Number(currentPage - 1));
     if ((currentPage - 1) % pageNumerLitmit === 0) {
       setmaxPageNumerLitmit(maxPageNumerLitmit - pageNumerLitmit);
       setminPageNumerLitmit(minPageNumerLitmit - pageNumerLitmit);

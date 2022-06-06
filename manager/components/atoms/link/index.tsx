@@ -8,29 +8,30 @@ interface ILink {
   fontWeight?: string;
   fontSize?: string;
   color?: string;
+  _hover?:any
 }
-const CLink = (props: ILink) => {
+const CLink = (linkProps: ILink) => {
   /* const [menuActive, setMenuState] = useState<number>(0);
   const handleClick = (index: any) => {
     const id = index.target.id;
     setMenuState(id);
   }; */
   return (
-    <>
-      <Link style={{ width: "100%" }} href={props.link}>
+    
+      <Link  style={{ width: "100%" }} href={linkProps.link}>
         <a>
           <Text
-            fontWeight={props.fontWeight}
-            color={props.color}
-            fontSize={props.fontSize}
+            fontWeight={linkProps.fontWeight}
+            color={linkProps.color}
+            fontSize={linkProps.fontSize}
             w={"100%"}
-            id={props.id}
+            id={linkProps.id}
           >
-            {props.title}
+            {linkProps.title}
           </Text>
         </a>
       </Link>
-    </>
+    
   );
 };
 export default CLink;

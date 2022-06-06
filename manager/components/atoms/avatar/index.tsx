@@ -5,11 +5,11 @@ interface ICard {
   src: string;
   m?:string
 }
-const CAvatar = (props: ICard) => {
+const CAvatar = (AvatarProps: ICard) => {
   return (
     <>
       <WrapItem>
-        <Avatar m={props.m} size={props.size} src={props.src} />{" "}
+        <Avatar m={AvatarProps.m} size={AvatarProps.size} src={AvatarProps.src} />{" "}
       </WrapItem>
     </>
   );

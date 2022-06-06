@@ -16,7 +16,7 @@ interface IModel {
   name?: string;
   onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-const ModalDel = (props: IModel) => {
+const ModalDel = (modalDelprops: IModel) => {
   const { isOpen, onClose ,onOpen} = useDisclosure();
  
   return (
@@ -25,14 +25,14 @@ const ModalDel = (props: IModel) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{props.title}</ModalHeader>
+          <ModalHeader>{modalDelprops.title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{`Do you want to delete ${props.name} ?`}</ModalBody>
+          <ModalBody>{`Do you want to delete ${modalDelprops.name} ?`}</ModalBody>
 
           <ModalFooter>
             <Button
-              value={props.id}
-              onClick={props.onClickBtn}
+              value={modalDelprops.id}
+              onClick={modalDelprops.onClickBtn}
               onClickCapture={onClose}
               colorScheme="red"
               mr={3}

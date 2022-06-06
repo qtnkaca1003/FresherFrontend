@@ -1,8 +1,6 @@
 import { Button, MenuButton } from "@chakra-ui/react";
 import React, { FC, ReactNode } from "react";
-interface Ichildren {
-  children?: React.ReactNode;
-}
+
 interface IMenuButton {
   borderRadius?: string;
   color?: string;
@@ -15,15 +13,16 @@ interface IMenuButton {
   rightIcon?: ReactNode;
   display?: string;
   size?: string;
+  children?: React.ReactNode;
   onClick?: () => (
     event: React.MouseEvent<HTMLButtonElement>,
     id: string
   ) => void;
 }
-const CMenuButton: FC<Ichildren> = ({ children }, props: IMenuButton) => {
+const CMenuButton  = ( menuButtonProps: IMenuButton) => {
   return (
     <MenuButton display={"flex"} as={Button}>
-      {children}
+      {menuButtonProps.children}
     </MenuButton>
   );
 };

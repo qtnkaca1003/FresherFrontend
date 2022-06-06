@@ -7,18 +7,26 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import apiUser from "../../../../api/User";
 import { useAppDispatch } from "../../../../hook";
 import { addToken } from "../../../../redux/slices/userSlices";
-import { IAccount } from "../../../../types/interface";
+import { IAccount, ILogin } from "../../../../types/interface";
 import CButton from "../../../atoms/button";
+import CFromInput from "../../../molecules/formitem";
+/* interface ILogin {
+  email: string;
+  password: string;
+} */
 const CFormLogin = () => {
   const { register, handleSubmit } = useForm<IAccount>();
   const dispatch = useAppDispatch();
   const [Error, setError] = useState<boolean>(false);
   const [textError, setTextError] = useState<string>();
-  const onSubmit: SubmitHandler<IAccount> = (data) => {
+  const methods = useForm();
+  const onSubmit = (data: any) => {
+    console.log(data);
+    
     apiUser
       .login(data)
       .then((res) => {
@@ -29,15 +37,22 @@ const CFormLogin = () => {
         setError(true);
         if (error.response.status === 400)
           setTextError(error.response.data.error);
-        //console.log("Hi config response ", error.response.status);
       });
   };
   return (
     <>
       <Box>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box>
-            <FormControl isRequired mt={3} pr={5}>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <Box>
+              <CFromInput
+                textformlabel="Email"
+                name="email"
+                idInput="email"
+                isRequired={true}
+                typeInput={"email"}
+              />
+              {/*  <FormControl isRequired mt={3} pr={5}>
               <FormLabel fontWeight={"normal"} htmlFor="title">
                 Email
               </FormLabel>
@@ -47,9 +62,16 @@ const CFormLogin = () => {
                 id="email"
                 type="email"
               />
-            </FormControl>
-          </Box>
-          <FormControl isRequired mt={3} pr={5}>
+            </FormControl> */}
+            </Box>
+            <CFromInput
+              textformlabel="Password"
+              name="password"
+              idInput="password"
+              isRequired={true}
+              typeInput={"password"}
+            />
+            {/*   <FormControl isRequired mt={3} pr={5}>
             <FormLabel fontWeight={"normal"} htmlFor="password">
               Password
             </FormLabel>
@@ -60,18 +82,19 @@ const CFormLogin = () => {
               type="password"
             />
             <FormErrorMessage>Email is required.</FormErrorMessage>
-          </FormControl>
-          {Error === true ? <Text color={"red"}>{textError}</Text> : <></>}
-          <Box textAlign={"center"}>
-            <CButton
-              color={"#fff"}
-              colorScheme={"blue"}
-              title={"Login"}
-              type="submit"
-              mt={5}
-            />
-          </Box>
-        </form>
+          </FormControl> */}
+            {Error === true ? <Text color={"red"}>{textError}</Text> : <></>}
+            <Box textAlign={"center"}>
+              <CButton
+                color={"#fff"}
+                colorScheme={"green"}
+                title={"Login"}
+                type="submit"
+                mt={5}
+              />
+            </Box>
+          </form>
+        </FormProvider>
       </Box>
     </>
   );
