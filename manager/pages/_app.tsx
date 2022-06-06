@@ -12,12 +12,11 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   const [change, setChange] = useState<string | null>();
   useEffect(() => {
-   
-      // Perform localStorage action
-      const isChange = localStorage.getItem("change");
-      setChange(isChange);
-   
-  },[change]);
+    localStorage.setItem("change", "template1");
+    // Perform localStorage action
+    const isChange = localStorage.getItem("change");
+    setChange(isChange);
+  }, [change]);
   return (
     <Provider store={store}>
       <ChakraProvider>

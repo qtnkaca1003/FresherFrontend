@@ -10,6 +10,7 @@ export default function Template({ children }: any) {
   const router = useRouter();
   const token = useAppSelector((state) => state.addToken.token.token);
   useEffect(() => {
+    localStorage.setItem("change", "template1");
     if (token === "") {
       router.push("/login");
     } else {

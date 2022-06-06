@@ -6,9 +6,11 @@ import Login from "../../pages/login";
 import { Footer } from "../organisms/footer";
 import { Header1 } from "../organisms/header/header1";
 export default function Template1({ children }: any) {
+  localStorage.setItem("change", "template1");
   const router = useRouter();
   const token = useAppSelector((state) => state.addToken.token.token);
   useEffect(() => {
+   
     if (token === "") {
       router.push("/login");
     } else {
@@ -23,7 +25,7 @@ export default function Template1({ children }: any) {
           <Box position={"relative"} height={"100vh"} w={"100%"}>
             <main>{children}</main>
           </Box>
-          <Footer mt={"30px"} top={"100%"} position={"absolute"}  />
+          <Footer mt={"30px"} top={"100%"} position={"absolute"} />
         </>
       ) : (
         <>
