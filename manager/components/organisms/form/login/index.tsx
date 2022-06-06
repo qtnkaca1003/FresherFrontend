@@ -25,7 +25,7 @@ const CFormLogin = () => {
   const [textError, setTextError] = useState<string>();
   const methods = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
+   
     
     apiUser
       .login(data)

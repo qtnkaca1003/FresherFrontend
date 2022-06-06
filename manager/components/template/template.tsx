@@ -6,7 +6,7 @@ import Login from "../../pages/login";
 import { Footer } from "../organisms/footer";
 import { Header1 } from "../organisms/header/header1";
 export default function Template1({ children }: any) {
-  localStorage.setItem("change", "template1");
+  
   const router = useRouter();
   const token = useAppSelector((state) => state.addToken.token.token);
   useEffect(() => {

@@ -9,7 +9,7 @@ import { addCategory, addProducts } from "../redux/slices/productSlices";
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    localStorage.setItem("change", "template1");
+   /*  localStorage.setItem("change", "template1"); */
     const getAllProduct = () => {
       apiProduct.getAll().then((res) => {
         dispatch(addProducts(res.data));

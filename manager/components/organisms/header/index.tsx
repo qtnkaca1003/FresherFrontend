@@ -24,10 +24,11 @@ export const Header = () => {
   };
   const handelChange = () => {
     const isChange: any = localStorage.getItem("change");
-    if (isChange === "template1") {
+   
+    if (isChange === "template1" || isChange == null) {
       localStorage.setItem("change", "template2");
     }
-    if (isChange === "template2") {
+    if (isChange === "template2" || isChange == null) {
       localStorage.setItem("change", "template1");
     }
     location.reload();

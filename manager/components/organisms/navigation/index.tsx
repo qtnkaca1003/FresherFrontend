@@ -53,7 +53,6 @@ export const Navigation = () => {
   const background = colorMode === "dark" ? "#7393B3" : "#EDF2F7";
   const colorHover = colorMode === "dark" ? "#fff" : "#0000FF";
   const fillHover = colorMode === "dark" ? "#fff" : "#0000FF";
-  console.log(colorHover);
 
   return (
     <>

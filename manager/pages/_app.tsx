@@ -12,7 +12,7 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   const [change, setChange] = useState<string | null>();
   useEffect(() => {
-    localStorage.setItem("change", "template1");
+    
     // Perform localStorage action
     const isChange = localStorage.getItem("change");
     setChange(isChange);
@@ -29,7 +29,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </Template1>
         ) : (
-          <> Hi</>
+          <Template>
+            <Component {...pageProps} />
+          </Template>
         )}
       </ChakraProvider>
     </Provider>

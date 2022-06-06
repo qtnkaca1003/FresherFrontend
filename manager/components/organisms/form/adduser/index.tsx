@@ -29,7 +29,7 @@ const CFormAddUser = () => {
  
   const colorScheme = colorMode === "dark" ? "#ADD8E6" : "#fff";
   const onSubmit =(data:any) => {
-    console.log(data);
+   
     
     if (
       data.password.length >= 6 &&
