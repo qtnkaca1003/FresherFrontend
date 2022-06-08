@@ -24,6 +24,8 @@ interface IProps {
 }
 
 const TUser = (TUserProps: IProps) => {
+  console.log(TUserProps);
+  
   const { colorMode, toggleColorMode } = useColorMode();
   const color = colorMode === "dark" ? "#fff" : "#4A5568";
   const bgTr = colorMode === "dark" ? "#7393B3 " : "#F5F6F8";

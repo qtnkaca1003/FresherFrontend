@@ -1,12 +1,14 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Box, IconButton, useColorMode } from "@chakra-ui/react";
 import React from "react";
-import { useAppDispatch } from "../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { changeMenu } from "../../../redux/slices/changeMenuSlice";
 import { deleteToken } from "../../../redux/slices/userSlices";
 import { IToken } from "../../../types/interface";
 import CButton from "../../atoms/button";
 import { SwitchIcon } from "../../atoms/icons/SwitchIcon";
 import CDropDown from "../../molecules/dropdownmenu";
+import CLinknavi from "../../molecules/linknavi";
 import CSearch from "../../molecules/search";
 /* interface IHeader {
   src: string;
@@ -15,6 +17,8 @@ import CSearch from "../../molecules/search";
 } */
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const color = colorMode === "dark" ? "#fff" : "#000";
+  const active = useAppSelector((state) => state.activeMenu.change);
   const dispatch = useAppDispatch();
   const handelLogout = () => {
     const token: IToken = {
@@ -24,7 +28,7 @@ export const Header = () => {
   };
   const handelChange = () => {
     const isChange: any = localStorage.getItem("change");
-   
+
     if (isChange === "template1" || isChange == null) {
       localStorage.setItem("change", "template2");
     }
@@ -32,6 +36,12 @@ export const Header = () => {
       localStorage.setItem("change", "template1");
     }
     location.reload();
+  };
+  const handelChangeMenu = () => {
+    if (active === true) dispatch(changeMenu(false));
+    else {
+      dispatch(changeMenu(true));
+    }
   };
   return (
     <>
@@ -44,6 +54,22 @@ export const Header = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
+        <Box display={"flex"} alignItems={"center"}>
+          <CLinknavi
+            color={color}
+            fontWeight="500"
+            fontSize={"17px"}
+            padding="20px 45px"
+            title={"Dashboard"}
+            link={"/"}
+          />
+          <IconButton
+            onClick={handelChangeMenu}
+            aria-label="toggle"
+            icon={<HamburgerIcon />}
+          />
+        </Box>
+
         <CSearch placeholder="Search for something..." />
 
         <Box display={"flex"} alignItems={"center"}>

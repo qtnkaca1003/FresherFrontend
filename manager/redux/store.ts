@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { changeSlice } from "./slices/changeTemplateSlice";
+import { activeSlice } from "./slices/changeMenuSlice";
 import { productSlice } from "./slices/productSlices";
 import { userSlice } from "./slices/userSlices";
 export const store = configureStore({
@@ -7,7 +7,7 @@ export const store = configureStore({
     product: productSlice.reducer,
     users: userSlice.reducer,
     addToken: userSlice.reducer,
-    change: changeSlice.reducer,
+    activeMenu: activeSlice.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

@@ -18,6 +18,15 @@ a {
 .active {
   background: #ADD8E6 !important;
 }
+.activeMenu {
+  opacity: 0;
+  transition: 1s;
+  /* //display:none; */
+  pointer-events: none;
+}
+.activeMenu1{
+  transition: 1s;
+}
 
 /* .active:focus {
   box-shadow: none !important;

@@ -21,6 +21,8 @@ interface IProps {
   onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 const TProduct = (TProductProps: IProps) => {
+
+  
   const { colorMode, toggleColorMode } = useColorMode();
   const color = colorMode === "dark" ? "#fff" : "#4A5568";
   const bgTr = colorMode === "dark" ? "#7393B3 " : "#F5F6F8";

@@ -1,6 +1,6 @@
 import { Box, useColorMode } from "@chakra-ui/react";
 import React, { FC, useEffect } from "react";
-import { useAppDispatch } from "../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../hook";
 import { addUserEdit } from "../../../redux/slices/userSlices";
 import { IUser } from "../../../types/interface";
 import { CartIcon } from "../../atoms/icons/CartIcon";
@@ -50,21 +50,17 @@ export const Navigation = () => {
   };
   const fill = colorMode === "dark" ? "#fff" : "#000";
   const color = colorMode === "dark" ? "#fff" : "#000";
-  const background = colorMode === "dark" ? "#7393B3" : "#EDF2F7";
-  const colorHover = colorMode === "dark" ? "#fff" : "#0000FF";
-  const fillHover = colorMode === "dark" ? "#fff" : "#0000FF";
+  const active = useAppSelector((state) => state.activeMenu.change);
 
   return (
     <>
-      <Box minH={"100vh"} boxShadow="2xl" /* bg="white" */ w={"320px"}>
-        <CLinknavi
-          color={color}
-          fontWeight="500"
-          fontSize={"17px"}
-          padding="20px 45px"
-          title={"Dashboard"}
-          link={"/"}
-        />
+      <Box
+        minH={"100vh"}
+        boxShadow="2xl"
+        className={
+          active === true ? "activeMenu1" : "activeMenu"
+        } /* bg="white" */
+      >
         {colorMode === "dark"
           ? button.map((item, index) => {
               return (

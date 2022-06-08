@@ -16,6 +16,7 @@ interface IFromInput {
   borderInput?: string;
   defaultValueInput?: string;
   name?: string;
+  nameInput?: string;
   idInput?: string;
   typeInput?: string;
   focusBorderColorInput?: string;
@@ -39,7 +40,7 @@ const CFromInput = (formInputProps: IFromInput) => {
       >
         {formInputProps.textformlabel}
       </CFormlabel>
-      <Input
+       <Input
         defaultValue={formInputProps.defaultValueInput}
         type={formInputProps.typeInput}
         {...register(`${formInputProps.name}`)}
@@ -51,6 +52,7 @@ const CFromInput = (formInputProps: IFromInput) => {
         height={formInputProps.heightInput}
         value={formInputProps.valueInput}
         defaultValue={formInputProps.defaultValueInput}
+        {...register(`${formInputProps.nameInput}`)}
         name={formInputProps.nameInput}
         id={formInputProps.idInput}
         type={formInputProps.typeInput}

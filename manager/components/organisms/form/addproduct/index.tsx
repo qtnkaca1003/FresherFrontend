@@ -18,7 +18,7 @@ const CFormProduct = () => {
   const { register, handleSubmit } = useForm<IProduct>();
   const categorys = useAppSelector((state) => state.product.category);
   const createProduct = useAppSelector((state) => state.product.createProduct);
-  const arrCategorys = Object.assign([], ...categorys);
+  const arrCategorys = Object.assign([], ...categorys);  
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IProduct> = (data) => {
     apiProduct.addProduct(data).then((res) => {

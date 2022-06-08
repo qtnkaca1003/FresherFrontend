@@ -23,10 +23,8 @@ const CFormLogin = () => {
   const dispatch = useAppDispatch();
   const [Error, setError] = useState<boolean>(false);
   const [textError, setTextError] = useState<string>();
-  const methods = useForm();
+ const methods = useForm(); 
   const onSubmit = (data: any) => {
-   
-    
     apiUser
       .login(data)
       .then((res) => {
@@ -46,6 +44,7 @@ const CFormLogin = () => {
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <Box>
               <CFromInput
+                nameInput="email"
                 textformlabel="Email"
                 name="email"
                 idInput="email"
@@ -65,6 +64,7 @@ const CFormLogin = () => {
             </FormControl> */}
             </Box>
             <CFromInput
+              nameInput="password"
               textformlabel="Password"
               name="password"
               idInput="password"

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAppSelector } from "../../hook";
 import Login from "../../pages/login";
-import { Footer } from "../organisms/footer";
+import { Footer } from "../atoms/footer";
 import { Header1 } from "../organisms/header/header1";
 export default function Template1({ children }: any) {
   
