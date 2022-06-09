@@ -6,7 +6,7 @@ export default {
   component: Footer,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: "color" },
+    color: { control: "color" },
   },
 } as ComponentMeta<typeof Footer>;
 
@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Footer> = (args) => (
 );
 export const Default = Template.bind({});
 Default.args = {
- 
+ color:"#000"
 };

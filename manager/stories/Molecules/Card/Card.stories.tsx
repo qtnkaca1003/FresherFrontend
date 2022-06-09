@@ -8,17 +8,21 @@ export default {
   component: CCard,
   argTypes: {
     sizeAvatar: {
+      control: {
+        type: "select",
+        options: ["2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"],
+      },
       description: `"2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"`,
     },
     srcAvatar: { description: "string" },
-    colorTitle: { description: "string" },
+    colorTitle: { control: "color" },
     fontSizeTitle: { description: "string" },
     fontWeightTitle: { description: "string" },
     titleTitle: { description: "string" },
     border: { description: "string" },
     w: { description: "string | number" },
     h: { description: "string | number" },
-    backgroundColor: { control: "color" },
+    
   },
 } as ComponentMeta<typeof CCard>;
 const Template: ComponentStory<typeof CCard> = (args) => <CCard {...args} />;

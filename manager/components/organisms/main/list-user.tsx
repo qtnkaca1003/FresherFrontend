@@ -14,10 +14,8 @@ interface IProps {
 const ListUser = (listUserProps: IProps) => {
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
-  
   const [search, setSearch] = useState<string>("");
   const listUser = useAppSelector((state) => state.users.propsUsers);
-
   const toAddUser = () => {
     router.push("/list-user/add-user");
   };
@@ -49,7 +47,6 @@ const ListUser = (listUserProps: IProps) => {
           justifyContent={"space-between"}
           padding={"24px 0"}
         >
-          {" "}
           <CHeadmain
             onClickBtn={toAddUser}
             onChangeSearch={handelChange}
@@ -63,7 +60,6 @@ const ListUser = (listUserProps: IProps) => {
         </Box>
         <Box shadow={"2xl"}  borderRadius={"10px"}  padding={"24px 0"}>
           <TUser
-           
             onClickBtn={handleDelete}
             data={listUserProps.pages}
             status={listUserProps.status}

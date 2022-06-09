@@ -12,7 +12,7 @@ interface IMenuButton {
   disabled?: boolean;
   rightIcon?: ReactNode;
   display?: string;
-  size?: string;
+  bgColor?:string
   children?: React.ReactNode;
   onClick?: () => (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -21,11 +21,12 @@ interface IMenuButton {
 }
 const CMenuButton = (menuButtonProps: IMenuButton) => {
   return (
-   
-      <MenuButton display={"flex"} as={Button}>
+    <Menu>
+      <MenuButton bgColor={menuButtonProps.bgColor} color={menuButtonProps.color} disabled={menuButtonProps.disabled}  display={"flex"} as={Button}>
+        Menu Button
         {menuButtonProps.children}
       </MenuButton>
-   
+    </Menu>
   );
 };
 export default CMenuButton;

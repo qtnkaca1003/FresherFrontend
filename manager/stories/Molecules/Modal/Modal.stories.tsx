@@ -7,9 +7,11 @@ export default {
 
   argTypes: {
     id: { description: "id user | id product" },
-    name:{ description: "name user | name product" },
-    onClickBtn:{ description: "function"},
-    title:{ description: "string" },
+    name: { description: "name user | name product" },
+    onClickBtn: { description: "function" },
+    title: { description: "string" },
+    color: { control: "color" },
+    bgColor: { control: "color" },
   },
 } as ComponentMeta<typeof ModalDel>;
 
@@ -19,4 +21,5 @@ const Template: ComponentStory<typeof ModalDel> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   title: "Delete",
+  bgColor:"red"
 };

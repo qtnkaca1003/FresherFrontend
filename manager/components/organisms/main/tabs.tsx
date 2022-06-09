@@ -1,8 +1,7 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
-import { FC } from "react";
+import React from "react";
 import CFormLogin from "../form/login";
 import CFormRegister from "../form/register";
-
 const CTabs = () => {
   return (
     <Box

@@ -8,7 +8,8 @@ interface IHeadmain {
   fontWeight?: string;
   fontSize?: string;
   color?: string;
-  colorScheme?: string;
+  colorBnt?: string;
+  bgColor?: string;
   placeholder: string;
   titleBtn: string;
   onChangeSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -32,7 +33,8 @@ const CHeadmain = (headmainProps: IHeadmain) => {
       </Box>
       <CButton type="button"
         title={headmainProps.titleBtn}
-        colorScheme={"blue"}
+        bgColor={headmainProps.bgColor}
+        color={headmainProps.colorBnt}
         onClick={headmainProps.onClickBtn}
       />
     </Box>

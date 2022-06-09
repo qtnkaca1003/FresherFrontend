@@ -10,8 +10,7 @@ export default {
     title: { description: "string" },
     fontWeight: { description: "string" },
     fontSize: { description: "string" },
-    color: { description: "string" },
-    backgroundColor: { control: "color" },
+    color: { control: "color" },
   },
 } as ComponentMeta<typeof Title>;
 

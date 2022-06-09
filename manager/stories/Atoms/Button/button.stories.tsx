@@ -17,12 +17,15 @@ export default {
   title: "Atoms/Button",
   component: CButton,
   argTypes: {
-    
     borderRadius: {
       description: "string",
     },
-    color: { description: "name color, hex, rgb" },
-    colorScheme: { description: "Backgound color: string" },
+
+    color: {
+      description: "name color, hex, rgb",
+      control: "color",
+    },
+    bgColor: { description: "Backgound color: string", control: "color" },
     disabled: { description: "boolean" },
     className: { description: "string" },
     fontSize: { description: "string" },
@@ -35,7 +38,7 @@ export default {
     mr: { description: "Margin right: string" },
     mt: { description: "Margin top: string" },
     onClick: { description: "function " },
-    type: { description: `"button"|"submit"|"reset"`},
+    type: { description: `"button"|"submit"|"reset"` },
     width: { description: "string" },
   },
 } as ComponentMeta<typeof CButton>;
@@ -47,7 +50,7 @@ Default.args = {
   title: "Button",
   borderRadius: "5px",
   color: "#000",
-  colorScheme: "gray",
+  bgColor: "gray",
   disabled: false,
   fontSize: "18px",
   fontWeight: "500",

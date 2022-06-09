@@ -11,6 +11,9 @@ export default {
     titleBtn: { description: "string" },
     onChangeSearch: { description: "Function" },
     onClickBtn: { description: "Function" },
+    color: { control: "color" },
+    colorBnt: { control: "color" },
+    bgColor: { control: "color" },
   },
 } as ComponentMeta<typeof CHeadmain>;
 

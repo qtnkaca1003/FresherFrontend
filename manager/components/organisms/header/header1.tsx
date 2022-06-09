@@ -4,32 +4,27 @@ import React from "react";
 import { useAppDispatch } from "../../../hook";
 import { addUserEdit, deleteToken } from "../../../redux/slices/userSlices";
 import { IToken, IUser } from "../../../types/interface";
-import CButton from "../../atoms/button";
 import { SwitchIcon } from "../../atoms/icons/SwitchIcon";
 import CDropDown from "../../molecules/dropdownmenu";
 import CLinknavi from "../../molecules/linknavi";
 const button = [
   {
     link: "/list-user/1",
-    /*  icon: <IconList />, */
     title: "LIST USER",
     id: "1",
   },
   {
     link: "/list-product/1",
-    /* icon: <IconList />, */
     title: "LIST PROUDCT",
     id: "2",
   },
   {
     link: "/list-user/add-user",
-    /*  icon: <IconPlusUser />, */
     title: "ADD USER",
     id: "3",
   },
   {
     link: "/list-product/add-product",
-    /*  icon: <CartIcon />, */
     title: "ADD PRODUCT",
     id: "4",
   },
@@ -56,8 +51,6 @@ export const Header1 = () => {
   };
   const handelChange = () => {
     const isChange: any = localStorage.getItem("change");
-   
-
     if (isChange === "template1" || isChange == null) {
       localStorage.setItem("change", "template2");
     }
@@ -101,7 +94,6 @@ export const Header1 = () => {
                     fill: "#007bff",
                   }}
                   key={index}
-                  //icon={item.icon}
                   title={item.title}
                   link={item.link}
                 />

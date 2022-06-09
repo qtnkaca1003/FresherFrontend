@@ -4,6 +4,7 @@ import React, { useState } from "react";
 interface ILink {
   link: string;
   title: string;
+  idActive?:number
   id?: string;
   fontWeight?: string;
   fontSize?: string;
@@ -11,11 +12,7 @@ interface ILink {
   _hover?:any
 }
 const CLink = (linkProps: ILink) => {
-  /* const [menuActive, setMenuState] = useState<number>(0);
-  const handleClick = (index: any) => {
-    const id = index.target.id;
-    setMenuState(id);
-  }; */
+  
   return (
     
       <Link  style={{ width: "100%" }} href={linkProps.link}>

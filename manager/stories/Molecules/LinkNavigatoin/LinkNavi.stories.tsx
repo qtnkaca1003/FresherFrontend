@@ -4,12 +4,10 @@ import CLinknavi from "./index";
 export default {
   title: "Molecules/LinkNavigation",
   component: CLinknavi,
-
   argTypes: {
     title: { description: "string" },
-    
+    color:{ control: "color" },
     link: { description: "href: string" },
-    backgroundColor: { control: "color" },
   },
 } as ComponentMeta<typeof CLinknavi>;
 
@@ -20,4 +18,5 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Link Navigation",
   link: "/link",
+  color:"blue"
 };

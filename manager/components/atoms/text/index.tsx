@@ -1,5 +1,5 @@
 import { Text } from "@chakra-ui/react";
-import React from "react";
+import React, { ReactNode } from "react";
 interface IText {
   title?: string;
   fontWeight?: string;
@@ -8,6 +8,7 @@ interface IText {
   textAlign?: string;
   mt?: string | number;
   fontStyle?: string;
+  children?:ReactNode;
 }
 const CText = (textProps: IText) => {
   return (
@@ -21,6 +22,7 @@ const CText = (textProps: IText) => {
         fontSize={textProps.fontSize}
       >
         {textProps.title}
+        {textProps.children}
       </Text>
     </>
   );
