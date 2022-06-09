@@ -9,11 +9,11 @@ export default {
     title: { description: "string" },
     fontWeight: { description: "string" },
     fontSize: { description: "string" },
-    color: { description: "string" },
+    color:{ control: "color" },
     textAlign: { description: "string" },
     mt: { description: "string" },
     fontStyle: { description: "string" },
-    backgroundColor: { control: "color" },
+   
   },
 } as ComponentMeta<typeof CText>;
 

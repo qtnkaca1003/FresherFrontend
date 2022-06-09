@@ -14,7 +14,6 @@ const CFormRegister = () => {
   const dispatch = useAppDispatch();
   const methods = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
     
     if (
       data.password.length >= 6 &&
@@ -76,7 +75,7 @@ const CFormRegister = () => {
             <Box textAlign={"center"}>
               <CButton
                 color={"#fff"}
-                colorScheme={"green"}
+                bgColor={"green"}
                 title={"Register"}
                 type="submit"
                 mt={5}

@@ -7,9 +7,9 @@ export default {
   component: CFormlabel,
   argTypes: {
     
-    backgroundColor: { control: "color" },
+   
     children:{description:"ReactNode"},
-    color:{description:"string"},
+    color:{ control: "color" },
     fontSize:{description:"string"},
     fontWeight:{description:"string"},
     htmlFor:{description:"string"}
@@ -17,7 +17,6 @@ export default {
   },
 } as ComponentMeta<typeof CFormlabel>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof CFormlabel> = (args) => (
   <CFormlabel {...args}/>
 );

@@ -14,6 +14,8 @@ import {
     title: string;
     id: string | number;
     name?: string;
+    bgColor?:string
+    color?:string
     onClickBtn?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   }
   const ModalDel = (modalDelprops: IModel) => {
@@ -21,7 +23,7 @@ import {
    
     return (
       <>
-        <Button colorScheme={"red"} ml={3} onClick={onOpen}>Delete</Button>
+        <Button bgColor={modalDelprops.bgColor} color={modalDelprops.color} ml={3} onClick={onOpen}>Delete</Button>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>

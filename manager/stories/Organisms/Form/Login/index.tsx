@@ -82,7 +82,7 @@ const CFormLogin = () => {
             <Box textAlign={"center"}>
               <CButton
                 color={"#fff"}
-                colorScheme={"green"}
+                bgColor={"green"}
                 title={"Login"}
                 type="submit"
                 mt={5}

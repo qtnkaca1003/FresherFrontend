@@ -22,16 +22,18 @@ interface IMenuButton {
 }
 const CMenuButton = (menuButtonProps: IMenuButton) => {
   return (
-    <MenuButton
-      disabled={menuButtonProps.disabled}
-      color={menuButtonProps.color}
-      bgColor={menuButtonProps.bgColor}
-      display={"flex"}
-      as={Button}
-    >
-      Menu Button
-      {menuButtonProps.children}
-    </MenuButton>
+    <Menu>
+      <MenuButton
+        disabled={menuButtonProps.disabled}
+        color={menuButtonProps.color}
+        bgColor={menuButtonProps.bgColor}
+        display={"flex"}
+        as={Button}
+      >
+        Menu Button
+        {menuButtonProps.children}
+      </MenuButton>
+    </Menu>
   );
 };
 export default CMenuButton;

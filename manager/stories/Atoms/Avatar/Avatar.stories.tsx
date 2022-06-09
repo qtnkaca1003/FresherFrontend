@@ -4,12 +4,16 @@ import CAvatar from "./avatar";
 export default {
   title: "Atoms/Avatar",
   component: CAvatar,
-
   argTypes: {
     backgroundColor: { control: "color" },
     m: { description: "string" },
     size: {
-      description: `"2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"`,
+      control: {
+        type: "select",
+        options: ["2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"],
+      },
+      defaultValue: "md",
+      description:`"2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"`
     },
     src: { description: "string" },
   },

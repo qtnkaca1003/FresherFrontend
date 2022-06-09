@@ -10,7 +10,7 @@ interface IProps {
   height?: string;
   className?: string;
   disabled?: boolean;
-  colorScheme?: string;
+  bgColor?: string;
   icon?: ReactNode;
   m?: string | number;
   type: "button" | "submit" | "reset";
@@ -30,7 +30,7 @@ const CButton = (ButtonProps: IProps) => {
         mt={ButtonProps.mt}
         disabled={ButtonProps.disabled}
         className={ButtonProps.className}
-        colorScheme={ButtonProps.colorScheme}
+        bgColor={ButtonProps.bgColor}
         w={ButtonProps.width}
         h={ButtonProps.height}
         fontWeight={ButtonProps.fontWeight}

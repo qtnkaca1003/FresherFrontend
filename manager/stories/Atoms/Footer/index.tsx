@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import CText from "../Text/Text";
 interface IFooter {
+  color?:string
   position?: any;
   right?: number;
   top?: number | string;
@@ -30,7 +31,7 @@ export const Footer = (footerProps: IFooter) => {
       width={"100%"}
       textAlign={"center"}
     >
-      <CText textAlign="center" title="Copyright © 2018 DesignRevision" />
+      <CText color={footerProps.color} textAlign="center" title="Copyright © 2018 DesignRevision" />
     </Box>
   );
 };
