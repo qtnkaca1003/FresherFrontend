@@ -5,16 +5,10 @@ import { useAppDispatch, useAppSelector } from "../../../hook";
 import { changeMenu } from "../../../redux/slices/changeMenuSlice";
 import { deleteToken } from "../../../redux/slices/userSlices";
 import { IToken } from "../../../types/interface";
-import CButton from "../../atoms/button";
 import { SwitchIcon } from "../../atoms/icons/SwitchIcon";
 import CDropDown from "../../molecules/dropdownmenu";
 import CLinknavi from "../../molecules/linknavi";
 import CSearch from "../../molecules/search";
-/* interface IHeader {
-  src: string;
-  placeholder?: string;
-  onClickMenuItem: (event: React.MouseEvent<HTMLButtonElement>) => void;
-} */
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const color = colorMode === "dark" ? "#fff" : "#000";

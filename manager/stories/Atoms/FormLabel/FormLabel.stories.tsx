@@ -6,8 +6,6 @@ export default {
   title: "Atoms/FormLabel",
   component: CFormlabel,
   argTypes: {
-    
-   
     children:{description:"ReactNode"},
     color:{ control: "color" },
     fontSize:{description:"string"},

@@ -19,12 +19,17 @@ interface ICLinknavi {
   fill?: string;
   w?: string;
   _hover?: {};
+  idActive?: number;
+  className?: any;
+  onClickCapture?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 const CLinknavi = (linknaviProps: ICLinknavi) => {
   return (
     <>
       <Box
+        onClickCapture={linknaviProps.onClickCapture}
+        className={linknaviProps.className}
         borderBottom={linknaviProps.borderBottom}
         textAlign={linknaviProps.textAlign}
         onClick={linknaviProps.onClick}
@@ -38,7 +43,6 @@ const CLinknavi = (linknaviProps: ICLinknavi) => {
       >
         <Box fill={linknaviProps.fill}>{linknaviProps.icon}</Box>
         <CLink
-         
           color={linknaviProps.color}
           fontSize={linknaviProps.fontSize}
           fontWeight={linknaviProps.fontWeight}

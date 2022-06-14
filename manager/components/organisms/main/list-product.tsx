@@ -16,8 +16,8 @@ const ListProduct = (listProductProps: IProps) => {
   const [search, setSearch] = useState<string>("");
   const product = useAppSelector((state) => state.product.propsProduct);
   const products = useAppSelector((state) => state.product.propsProducts);
-  const { colorMode, toggleColorMode } = useColorMode();
-  //const arrProduct = Object.assign([], ...products);
+  const { colorMode } = useColorMode();
+  const color = colorMode === "dark" ? "#fff" : "#4A5568";
   const dispatch = useAppDispatch();
   const toAddProduct = (props: React.MouseEvent<HTMLButtonElement>) => {
     router.push("/list-product/add-product");
@@ -40,7 +40,7 @@ const ListProduct = (listProductProps: IProps) => {
     const id = currentTarget.value;
     dispatch(deleteProduct(id));
   };
-  const color = colorMode === "dark" ? "#fff" : "#4A5568";
+
   return (
     <>
       <Box padding={"0 24px"}>

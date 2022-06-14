@@ -94,6 +94,7 @@ export default {
   component: PaginProduct,
   argTypes: {
     data: { description: "Array Obj" },
+    
     itemPage: { description: "Tính số trang hiện có" },
     maxPageNumerLitmit: { description: "Số button tối đa hiển thị" },
     pageNumerLitmit: { description: "Hiển thị số button" },

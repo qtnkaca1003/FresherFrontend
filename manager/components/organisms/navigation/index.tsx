@@ -1,5 +1,5 @@
 import { Box, useColorMode } from "@chakra-ui/react";
-import React, { FC, useEffect } from "react";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { addUserEdit } from "../../../redux/slices/userSlices";
 import { IUser } from "../../../types/interface";
@@ -35,7 +35,7 @@ const button = [
 ];
 
 export const Navigation = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   const dispatch = useAppDispatch();
   const handleBack = () => {
     const userEdit: IUser = {
@@ -51,20 +51,19 @@ export const Navigation = () => {
   const fill = colorMode === "dark" ? "#fff" : "#000";
   const color = colorMode === "dark" ? "#fff" : "#000";
   const active = useAppSelector((state) => state.activeMenu.change);
-
   return (
     <>
       <Box
         minH={"100vh"}
         boxShadow="2xl"
-        className={
-          active === true ? "activeMenu1" : "activeMenu"
-        } /* bg="white" */
+        className={active === true ? "activeMenu1" : "activeMenu"}
       >
         {colorMode === "dark"
           ? button.map((item, index) => {
               return (
                 <CLinknavi
+                  idActive={index}
+                  className={"activeMenuNa"}
                   color={color}
                   onClick={handleBack}
                   padding="20px 25px"
@@ -85,7 +84,7 @@ export const Navigation = () => {
           : button.map((item, index) => {
               return (
                 <CLinknavi
-                  //color={color}
+                  idActive={index}
                   onClick={handleBack}
                   padding="20px 25px"
                   borderLeft={"solid 4px #fff"}
@@ -98,7 +97,6 @@ export const Navigation = () => {
                     borderLeft: "solid 4px #007bff",
                     fill: "#007bff",
                   }}
-                  //fill={fill}
                   key={index}
                   icon={item.icon}
                   title={item.title}
@@ -106,7 +104,6 @@ export const Navigation = () => {
                 />
               );
             })}
-        {}
       </Box>
     </>
   );

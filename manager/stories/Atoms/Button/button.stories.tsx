@@ -25,7 +25,7 @@ export default {
       description: "name color, hex, rgb",
       control: "color",
     },
-    colorScheme: { description: "Backgound color: string", control: "color" },
+    bgColor: { description: "Backgound color: string", control: "color" },
     disabled: { description: "boolean" },
     className: { description: "string" },
     fontSize: { description: "string" },

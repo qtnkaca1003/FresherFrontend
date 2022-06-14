@@ -14,6 +14,7 @@ export default {
       },
       defaultValue: "md",
       description:`"2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"`
+
     },
     src: { description: "string" },
   },
