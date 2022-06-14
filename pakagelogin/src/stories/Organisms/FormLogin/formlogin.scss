@@ -1,0 +1,30 @@
+.form__login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__username {
+        margin-bottom: 23px;
+    }
+    &__password {
+        &__forgot {
+            padding: 8px 0 31px;
+            text-align: right;
+        }
+    }
+    &__button{
+       
+       display: flex;
+       justify-content: center;
+    }
+    &__control {
+        width: 390px;
+    }
+    &__signup{
+        padding-top: 54px;
+    }
+    &__sign_up{
+        padding-top: 155px;
+        text-align: center;
+    }
+}

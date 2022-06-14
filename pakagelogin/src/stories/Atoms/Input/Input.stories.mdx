@@ -1,0 +1,64 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import Input from "./Input";
+
+<Meta title="MDX/Atoms/Input/Input" component={Input} />
+
+export const Template = (args) => <Input {...args} />;
+
+Component "Input"
+
+<Canvas>
+  <Story
+    name="Input"
+    args={{
+      placeholder: "Type in text...",
+      width: "250px",
+      height: "40px",
+      fontSize: "16px",
+      color: "black",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Component `Input` nhận vào các giá trị:
+
+`type:`:`text`|`password`|`button`
+| `checkbox`
+| `color`
+| `date`
+| `datetime-local`
+| `email`
+| `file`
+| `hidden`
+| `image`
+| `month`
+| `number`
+| `password`
+| `radio`
+| `range`
+| `reset`
+| `search`
+| `submit`
+| `tel`
+| `text`
+| `time`
+| `url`
+| `week`
+
+`outline`: `string`
+
+`border`: `string`, đường viền của Input
+
+`fontFamily`: `string`, font chữ,
+
+`fontSize`: `string`, kích thước chữ
+
+`color`: `string`, màu chữ
+
+`width`: `string`, chiều dài Input(px)
+
+`height`: `string`, chiều rộng Input(px)
+
+`background`: `string`, màu nền Input

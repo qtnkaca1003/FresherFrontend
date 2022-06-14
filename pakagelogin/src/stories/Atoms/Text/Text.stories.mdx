@@ -1,0 +1,42 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import Text from "./Text";
+
+<Meta title="MDX/Atoms/Text/Text" component={Text} />
+
+export const Template = (args) => <Text {...args} />;
+
+Component `Text`
+
+<Canvas>
+  <Story
+    name="Text"
+    args={{
+      fontFamily: "Poppins-Regular",
+      fontWeight: "bold",
+      fontSize: "20px",
+      color: "#333",
+      lineHeight: "1.5",
+      text: "Đoạn văn",
+      textAlign: "center",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Component `Text` nhận vào các giá trị:
+
+`textAlign`: `left` | `center` | `right`
+
+`text`: `string`,
+
+`fontWeight`:`500`|`600`| `700`|`800`|`900`|`bold`|`bolder`|`lighter`|`normal`|`initial`
+
+`padding`: `string`
+
+`fontFamily`: `string`, font chữ
+
+`fontSize`: `string`, kích thước chữ
+
+`color`: `string`, màu chữ
+
