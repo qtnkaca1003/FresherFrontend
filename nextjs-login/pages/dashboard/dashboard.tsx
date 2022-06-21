@@ -1,4 +1,5 @@
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAppSelector } from "../../hook";
@@ -25,7 +26,7 @@ const Dasboard = () => {
               <h1 className="title">User Profile</h1>
               <div className="wapper__dashboard__card__image">
               
-                <img
+                <Image
                 // @ts-ignore
                   src={session?.user?.email}
                   alt="Picture of the author"
