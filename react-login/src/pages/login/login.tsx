@@ -21,7 +21,6 @@ const LoginPage = () => {
       userID: userName + "userID",
       note: "Đăng nhập bằng tài khoảng!",
     };
-    console.log(acc);
     dispatch(logInFb(acc));
   };
   const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
