@@ -19,14 +19,9 @@ function App() {
       pass: password,
     };
   };
-  };
   return (
     <>
-      <PageIndex
-        typeButton="button"
-        textButton="LOGIN"
-        sizeButton="large"
-      />
+      <PageIndex typeButton="button" textButton="LOGIN" sizeButton="large" />
     </>
   );
 }

@@ -157,11 +157,13 @@ const FormLogin = (PropsForm: IFormLogin) => {
             paddingLabel={PropsForm.paddingLabel}
             paddingInput={PropsForm.paddingInput}
             placeholderInput={"Type your username..."}
+            textLabel={"Username"}
             iconInput={<UserIcon />}
           />
         </div>
         <div className="form__login__control form__login__password">
           <FormItem
+            textLabel={"Password"}
             required={true}
             typeInput={"password"}
             fontFamilyLabel={PropsForm.fontFamilyLabel}
