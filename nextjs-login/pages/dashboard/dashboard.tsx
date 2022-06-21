@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useAppSelector } from "../../hook";
 const Dasboard = () => {
   const router = useRouter();
@@ -15,6 +15,7 @@ const Dasboard = () => {
       router.push("/");
     }
   }, [session]);
+  const img = session?.user?.email;
   return (
     <>
       {session !== null ? (
@@ -23,7 +24,12 @@ const Dasboard = () => {
             <div className="wapper__dashboard__card">
               <h1 className="title">User Profile</h1>
               <div className="wapper__dashboard__card__image">
-                <img src={session?.user?.image} alt="Avatar" />
+                <img
+                  src={img}
+                  alt="Picture of the author"
+                  width={100}
+                  height={100}
+                />
               </div>
               <div className="wapper__dashboard__card__name">
                 <h2>Name: {session?.user?.name}</h2>
@@ -46,7 +52,12 @@ const Dasboard = () => {
             <div className="wapper__dashboard__card">
               <h1 className="title">User Profile</h1>
               <div className="wapper__dashboard__card__image">
-                <img src="../images/avatar.png" alt="Avatar" />
+                <img
+                  width={100}
+                  height={100}
+                  src="../images/avatar.png"
+                  alt="Avatar"
+                />
               </div>
               <div className="wapper__dashboard__card__name">
                 <h2>Name: {userLg.name}</h2>

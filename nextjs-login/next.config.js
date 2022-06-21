@@ -6,6 +6,7 @@ const path = require("path");
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  
 };
 
 module.exports = nextConfig; */
@@ -14,6 +15,7 @@ module.exports = nextConfig; */
 
 module.exports = {
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, "styles")],
   },
-}
+  inlineImageLimit: false,
+};
