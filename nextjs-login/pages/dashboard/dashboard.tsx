@@ -15,7 +15,7 @@ const Dasboard = () => {
       router.push("/");
     }
   }, [session]);
-  const img = session?.user?.email;
+
   return (
     <>
       {session !== null ? (
@@ -27,7 +27,7 @@ const Dasboard = () => {
               
                 <img
                 // @ts-ignore
-                  src={img}
+                  src={session?.user?.email}
                   alt="Picture of the author"
                   width={100}
                   height={100}
