@@ -24,7 +24,9 @@ const Dasboard = () => {
             <div className="wapper__dashboard__card">
               <h1 className="title">User Profile</h1>
               <div className="wapper__dashboard__card__image">
+              
                 <img
+                // @ts-ignore
                   src={img}
                   alt="Picture of the author"
                   width={100}
