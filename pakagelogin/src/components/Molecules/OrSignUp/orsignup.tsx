@@ -1,27 +1,47 @@
-import React from "react";
-import { EmailIcon } from "../../Atoms/Icon/IconEmail";
-import { FbIcon } from "../../Atoms/Icon/IconFb";
-import { GgIcon } from "../../Atoms/Icon/IconGg";
+import React, { ReactNode } from "react";
 import Text from "../../Atoms/Text/text";
 import "./orsignup.scss";
-const OrSignUp = () => {
+interface IOrSignUp {
+  fontSizeText?: string;
+  colorText?: string;
+  IconFb?: ReactNode;
+  IconGg?: ReactNode;
+  IconEm?: ReactNode;
+  LoginFb?: any;
+  LoginGg?: any;
+  LoginEm?: any;
+}
+const OrSignUp = (PropsOrSign: IOrSignUp) => {
   return (
     <>
       <div className="wapper__orsignup">
         <div className="wapper__orsignup__text">
-      
-          <Text fontFamily="Poppins-Regular" fontSize="14px" color="#666" > Or Sign Up</Text>
+          <Text
+            fontFamily={"Poppins-Regular"}
+            fontSize={PropsOrSign.fontSizeText}
+            color={PropsOrSign.colorText}
+          >
+            Or Sign Up
+          </Text>
         </div>
-
         <div className="wapper__orsignup__icon">
-          <p className="wapper__orsignup__icon__fb">
-            <FbIcon />
+          <p
+            className="wapper__orsignup__icon__fb"
+            onClick={PropsOrSign.LoginFb}
+          >
+            {PropsOrSign.IconFb}
           </p>
-          <p className="wapper__orsignup__icon__gg">
-            <GgIcon />
+          <p
+            className="wapper__orsignup__icon__gg"
+            onClick={PropsOrSign.LoginGg}
+          >
+            {PropsOrSign.IconGg}
           </p>
-          <p className="wapper__orsignup__icon__email">
-            <EmailIcon />
+          <p
+            className="wapper__orsignup__icon__email"
+            onClick={PropsOrSign.LoginEm}
+          >
+            {PropsOrSign.IconEm}
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode  } from "react";
 import Button from "../../Atoms/Button/Button";
 import { LockIcon } from "../../Atoms/Icon/IconLock";
 import { UserIcon } from "../../Atoms/Icon/IconUser";
@@ -8,100 +8,226 @@ import Title from "../../Atoms/Title/Title";
 import FormItem from "../../Molecules/FormItem/FormItem";
 import OrSignUp from "../../Molecules/OrSignUp/OrSignUp";
 import "./formlogin.scss";
-import "../../assets/fontFace.css"
-const FormLogin = () => {
+
+interface IFormLogin {
+  //Title
+  fontWeightTitle?:
+    | 500
+    | 600
+    | 700
+    | 800
+    | 900
+    | "bold"
+    | "bolder"
+    | "lighter"
+    | "normal"
+    | "initial";
+  paddingTitle?: string;
+  textTitle?: string;
+  colorTitle?: string;
+  fontSizeTitle?: string;
+  fontFamilyTitle?: string;
+  textAlignTitle?: "left" | "center" | "right";
+  typeInput?:
+    | "button"
+    | "checkbox"
+    | "color"
+    | "date"
+    | "datetime-local"
+    | "email"
+    | "file"
+    | "hidden"
+    | "image"
+    | "month"
+    | "number"
+    | "password"
+    | "radio"
+    | "range"
+    | "reset"
+    | "search"
+    | "submit"
+    | "tel"
+    | "text"
+    | "time"
+    | "url"
+    | "week";
+  icon?: ReactNode;
+  placeholderInput?: string;
+  outlineInput?: string;
+  borderInput?: string;
+  fontFamilyInput?: string;
+  fontSizeInput?: string;
+  colorInput?: string;
+  lineHeightInput?: string;
+  widthInput?: string;
+  heightInput?: string;
+  paddingInput?: string;
+  classNameInput?: string;
+  iconInput?: ReactNode;
+  required?: boolean;
+  //Label
+  fontWeightLabel?:
+    | 500
+    | 600
+    | 700
+    | 800
+    | 900
+    | "bold"
+    | "bolder"
+    | "lighter"
+    | "normal"
+    | "initial";
+  textLabel?: string;
+  classNameLabel?: string;
+  paddingLabel?: string;
+  fontFamilyLabel?: string;
+  fontSizeLabel?: string;
+  colorLabel?: string;
+  lineHeightLabel?: string;
+  //Link
+  colorLink?: string;
+  fontFamilyLink?: string;
+  fontSizeLink?: string;
+  lineHeightLink?: string;
+  hrefLink?: string;
+  //button
+  typeButton: "button" | "reset" | "submit";
+  sizeButton?: "small" | "medium" | "large";
+  textButton?: string;
+  colorButton?: string;
+  fontSizeButton?: string;
+  cursorButton?: string;
+  backgroundButton?: string;
+  borderRadiusButton?: string;
+  borderButton?: string;
+  //OrSingUp
+  butonLoginFb?: any;
+  butonLoginGg?: any;
+  butonLoginEm?: any;
+  //text
+  fontWeight?:
+    | 500
+    | 600
+    | 700
+    | 800
+    | 900
+    | "bold"
+    | "bolder"
+    | "lighter"
+    | "normal"
+    | "initial";
+  fontFamilyText?: string;
+  fontSizeText?: string;
+  colorText?: string;
+  paddingText?: string;
+  //form
+  onSubmit?: React.FormEventHandler;
+  onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
+  onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
+}
+const FormLogin = (PropsForm: IFormLogin) => {
   return (
     <>
-      <form className="form__login">
+      <form onSubmit={PropsForm.onSubmit} className="form__login">
         <Title
-          padding="0 0 49px"
-          text="Login"
-          color="#333333"
-          fontSize="39px"
-          fontFamily="Poppins-Bold"
-          fontWeight="bold"
-          textAlign="center"
+          padding={PropsForm.paddingTitle}
+          text={"Login"}
+          color={PropsForm.colorTitle}
+          fontSize={PropsForm.fontSizeTitle}
+          fontFamily={PropsForm.fontFamilyTitle}
+          fontWeight={PropsForm.fontWeightTitle}
+          textAlign={PropsForm.textAlignTitle}
         />
         <div className="form__login__control form__login__username">
           <FormItem
-            border="none"
-            color="#333"
-            fontFamily="Poppins-Regular"
-            fontSize="16px"
-            height="55px"
-            width="349px"
-            outline="none"
-            paddingLabel="0 0 0 7px"
-            padding="0 7px 0 34px"
-            placeholder="Type in username"
-            textLabel="Username"
-            icon={<UserIcon />}
-            type="text"
+            required={true}
+            typeInput={"text"}
+            fontFamilyLabel={PropsForm.fontFamilyLabel}
+            onChange={PropsForm.onChangeUserName}
+            borderInput={PropsForm.borderInput}
+            colorInput={PropsForm.classNameInput}
+            fontFamilyInput={PropsForm.fontFamilyInput}
+            fontSizeInput={PropsForm.fontSizeInput}
+            heightInput={PropsForm.heightInput}
+            widthInput={PropsForm.widthInput}
+            outlineInput={PropsForm.outlineInput}
+            paddingLabel={PropsForm.paddingLabel}
+            paddingInput={PropsForm.paddingInput}
+            placeholderInput={"Type your username..."}
+            iconInput={<UserIcon />}
           />
         </div>
         <div className="form__login__control form__login__password">
           <FormItem
-            textLabel="Password"
-            border="none"
-            color="#333"
-            fontFamily="Poppins-Regular"
-            fontSize="16px"
-            height="55px"
-            width="349px"
-            outline="none"
-            padding="0 7px 0 34px"
-            placeholder="Type in password"
-            icon={<LockIcon />}
-            type="password"
+            required={true}
+            typeInput={"password"}
+            fontFamilyLabel={PropsForm.fontFamilyLabel}
+            onChange={PropsForm.onChangePassword}
+            borderInput={PropsForm.borderInput}
+            colorInput={PropsForm.classNameInput}
+            fontFamilyInput={PropsForm.fontFamilyInput}
+            fontSizeInput={PropsForm.fontSizeInput}
+            heightInput={PropsForm.heightInput}
+            widthInput={PropsForm.widthInput}
+            outlineInput={PropsForm.outlineInput}
+            paddingLabel={PropsForm.paddingLabel}
+            paddingInput={PropsForm.paddingInput}
+            placeholderInput={"Type your password..."}
+            iconInput={<LockIcon />}
           />
           <div className="form__login__password__forgot">
             <Link
-              color="#666"
-              fontFamily="Poppins-Regular"
-              fontSize="14px"
-              lineHeight="1.7"
+              color={PropsForm.colorLink}
+              fontFamily={PropsForm.fontFamilyLink}
+              fontSize={PropsForm.fontSizeLink}
+              lineHeight={PropsForm.lineHeightLink}
+              href={PropsForm.hrefLink}
             >
-              Forgot password?{" "}
+              Forgot password?
             </Link>
           </div>
         </div>
         <div className="form__login__button">
           <Button
-            size="large"
-            text="LOGIN"
-            color="#fff"
-            fontSize="16px"
-            cursor="pointer"
-            background={` linear-gradient(
-        to right,
-        rgba(0, 219, 222, 1) 0%,
-        rgba(252, 0, 255, 1) 100%,
-        rgba(252, 0, 255, 1) 100%
-    )`}
-            borderRadius="50px"
-            border="none"
+            type={"submit"}
+            //onClick={onSubmit}
+            size={PropsForm.sizeButton}
+            text={PropsForm.textButton}
+            color={PropsForm.colorButton}
+            fontSize={PropsForm.fontSizeButton}
+            cursor={PropsForm.cursorButton}
+            background={PropsForm.backgroundButton}
+            borderRadius={PropsForm.borderRadiusButton}
+            border={PropsForm.borderButton}
+            //background={PropsForm.backgroundButton}
           />
         </div>
         <div className="form__login__signup">
-          <OrSignUp />
+          <OrSignUp
+            butonLoginEm={PropsForm.butonLoginEm}
+            LoginFb={PropsForm.butonLoginFb}
+            butonLoginGg={PropsForm.butonLoginGg}
+          />
         </div>
         <div className="form__login__sign_up">
           <Text
-            fontFamily="Poppins-Regular"
-            fontSize="14px"
-            color="#666"
-            padding="0 0 17px"
+            fontFamily={PropsForm.fontFamilyText}
+            fontSize={PropsForm.fontSizeText}
+            color={PropsForm.colorText}
+            fontWeight={PropsForm.fontWeight}
+            padding={PropsForm.paddingText}
           >
-            {" "}
             Or Sign Up Using
           </Text>
           <Link
-            color="#666"
-            fontFamily="Poppins-Regular"
-            fontSize="14px"
-            lineHeight="1.7"
+            color={PropsForm.colorLink}
+            fontFamily={PropsForm.fontFamilyLink}
+            fontSize={PropsForm.fontSizeLink}
+            fontWeight={PropsForm.fontWeight}
+            lineHeight={PropsForm.lineHeightLink}
+            href={PropsForm.hrefLink}
           >
-            SIGN UP
+            SIGN IN
           </Link>
         </div>
       </form>

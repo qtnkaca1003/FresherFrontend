@@ -6,7 +6,7 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Login>;
 
-const Template: ComponentStory<typeof Login> = (args) => <Login />;
+const Template: ComponentStory<typeof Login> = (args) => <Login textButton="Login" typeButton="button" />;
 
 export const Default = Template.bind({});
 Default.args = {};

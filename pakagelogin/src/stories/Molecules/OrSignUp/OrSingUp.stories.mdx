@@ -1,7 +1,6 @@
 import { Canvas, Meta, Story } from "@storybook/addon-docs";
 import OrSignUp from "./OrSignUp";
 import { EmailIcon } from "../../Atoms/Icon/IconEmail";
-import { FbIcon } from "../../Atoms/Icon/IconFb";
 import { GgIcon } from "../../Atoms/Icon/IconGg";
 
 <Meta title="MDX/Molecules/OrSignUp/OrSignUp" component={OrSignUp} />
@@ -16,7 +15,6 @@ Component `OrSignUp`:
     args={{
       text: "Or Sign Up",
       iconGg: <GgIcon />,
-      iconFb: <FbIcon />,
       iconMail: <EmailIcon />,
     }}
   >
@@ -29,4 +27,6 @@ Component `OrSignUp` nhận vào các giá trị:
 `icon`: `ReactNode`
 
 `text`: `string`
+
+`LoginFb` :`ReactNode` dùng thư viện 
 

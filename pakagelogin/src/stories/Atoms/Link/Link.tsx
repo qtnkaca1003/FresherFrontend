@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "./link.scss";
 interface ILink {
   text?: string;
-  link?: string;
+  href?: string;
   textDecoration?: "none" | string;
   fontFamily?: string;
   fontWeight?:
@@ -21,9 +21,11 @@ interface ILink {
   lineHeight?: string;
   color?: string;
   children?: ReactNode;
-  textAlign?: "left" | "center" | "right";
+  textAlign?: "center" | "left" | "right";
 }
+
 const StyledLink = styled.a<ILink>((props) => ({
+  href:props.href,
   fontSize: props.fontSize,
   fontWeight: props.fontWeight,
   fontFamily: props.fontFamily,
@@ -35,16 +37,15 @@ const StyledLink = styled.a<ILink>((props) => ({
 const Link = (PropsLink: ILink) => {
   return (
     <StyledLink
-      textAlign={PropsLink.textAlign}
       fontSize={PropsLink.fontSize}
       fontWeight={PropsLink.fontWeight}
       fontFamily={PropsLink.fontFamily}
       color={PropsLink.color}
+      textAlign={PropsLink.textAlign}
       textDecoration={PropsLink.textDecoration}
       className="link"
-      href={PropsLink.link}
+      href={PropsLink.href}
     >
-      {PropsLink.text}
       {PropsLink.children}
     </StyledLink>
   );

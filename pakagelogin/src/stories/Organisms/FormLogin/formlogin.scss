@@ -1,7 +1,8 @@
 .form__login {
-    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     &__username {
         margin-bottom: 23px;
@@ -11,11 +12,6 @@
             padding: 8px 0 31px;
             text-align: right;
         }
-    }
-    &__button{
-       
-       display: flex;
-       justify-content: center;
     }
     &__control {
         width: 390px;

@@ -5,17 +5,83 @@ import Input from "./Input";
 
 export const Template = (args) => <Input {...args} />;
 
-Component "Input"
+Component "Input" type `text`
 
 <Canvas>
   <Story
-    name="Input"
+    name="Input text"
     args={{
       placeholder: "Type in text...",
       width: "250px",
       height: "40px",
       fontSize: "16px",
       color: "black",
+      type: "text",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Input password"
+    args={{
+      placeholder: "Type in password...",
+      width: "250px",
+      height: "40px",
+      fontSize: "16px",
+      color: "black",
+      type: "password",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Input email"
+    args={{
+      placeholder: "Type in email...",
+      width: "250px",
+      height: "40px",
+      fontSize: "16px",
+      color: "black",
+      type: "email",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Input date"
+    args={{
+      placeholder: "Type in date...",
+      width: "250px",
+      height: "40px",
+      fontSize: "16px",
+      color: "black",
+      type: "date",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Input range"
+    args={{
+      placeholder: "Type in range...",
+      width: "250px",
+      height: "40px",
+      fontSize: "16px",
+      color: "black",
+      type: "range",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Input week"
+    args={{
+      placeholder: "Type in week...",
+      width: "250px",
+      height: "40px",
+      fontSize: "16px",
+      color: "black",
+      type: "week",
     }}
   >
     {Template.bind({})}

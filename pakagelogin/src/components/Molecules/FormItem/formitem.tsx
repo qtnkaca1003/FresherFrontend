@@ -3,8 +3,8 @@ import Input from "../../Atoms/Input/input";
 import Label from "../../Atoms/Label/label";
 import "./formitem.scss";
 interface IFormItem {
-  textLabel?: string;
-  type:
+  //input
+  typeInput?:
     | "button"
     | "checkbox"
     | "color"
@@ -28,50 +28,73 @@ interface IFormItem {
     | "url"
     | "week";
   icon?: ReactNode;
-  placeholder?: string;
-  outline?: string;
-  border?: string;
-  fontFamily?: string;
-  fontSize?: string;
-  color?: string;
-  lineHeight?: string;
-  display?: string;
-  width?: string;
-  height?: string;
-  padding?: string;
-  className?: string;
-  paddingLabel?:string
+  placeholderInput?: string;
+  outlineInput?: string;
+  borderInput?: string;
+  fontFamilyInput?: string;
+  fontSizeInput?: string;
+  colorInput?: string;
+  lineHeightInput?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  widthInput?: string;
+  heightInput?: string;
+  paddingInput?: string;
+  classNameInput?: string;
+  iconInput?: ReactNode;
+  required?: boolean;
+  //Label
+  fontWeightLabel?:
+    | 500
+    | 600
+    | 700
+    | 800
+    | 900
+    | "bold"
+    | "bolder"
+    | "lighter"
+    | "normal"
+    | "initial";
+  textLabel?: string;
+  classNameLabel?: string;
+  paddingLabel?: string;
+  fontFamilyLabel?: string;
+  fontSizeLabel?: string;
+  colorLabel?: string;
+  lineHeightLabel?: string;
 }
-
 const FormItem = (PropsFormItem: IFormItem) => {
   return (
     <>
       <div className="wapper__formitem">
         <Label
-          fontFamily={PropsFormItem.fontFamily}
-          fontSize="14px"
-          color={PropsFormItem.color}
+          className={PropsFormItem.classNameLabel}
+          fontWeight={PropsFormItem.fontWeightLabel}
+          fontFamily={PropsFormItem.fontFamilyLabel}
+          fontSize={PropsFormItem.fontSizeLabel}
+          color={PropsFormItem.colorLabel}
           padding={PropsFormItem.paddingLabel}
-          lineHeight="1.5"
-        >
-          {PropsFormItem.textLabel}{" "}
-        </Label>
+          lineHeight={PropsFormItem.lineHeightLabel}
+          text={PropsFormItem.textLabel}
+        />
+
         <Input
-          outline={PropsFormItem.outline}
-          border={PropsFormItem.border}
-          fontFamily={PropsFormItem.fontFamily}
-          fontSize={PropsFormItem.fontSize}
-          color={PropsFormItem.color}
-          lineHeight={PropsFormItem.lineHeight}
-          width={PropsFormItem.width}
-          height={PropsFormItem.height}
-          padding={PropsFormItem.padding}
+          required={PropsFormItem.required}
+          type={PropsFormItem.typeInput}
+          onChange={PropsFormItem.onChange}
+          outline={PropsFormItem.outlineInput}
+          border={PropsFormItem.borderInput}
+          fontFamily={PropsFormItem.fontFamilyInput}
+          fontSize={PropsFormItem.fontSizeInput}
+          color={PropsFormItem.colorInput}
+          lineHeight={PropsFormItem.lineHeightInput}
+          width={PropsFormItem.widthInput}
+          height={PropsFormItem.heightInput}
+          padding={PropsFormItem.paddingInput}
           className="wapper__formitem__input"
-          placeholder={PropsFormItem.placeholder}
-          type={PropsFormItem.type}
-        ></Input>
+          placeholder={PropsFormItem.placeholderInput}
+        />
         <span className="wapper__formitem__focus">
-          <span className={"icon"}>{PropsFormItem.icon}</span>
+          <span className={"icon"}>{PropsFormItem.iconInput}</span>
         </span>
       </div>
     </>

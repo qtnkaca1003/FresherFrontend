@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+import "./title.scss"
 interface ITitle {
   text?: string;
   children?: ReactNode;
@@ -20,17 +21,17 @@ interface ITitle {
     | "initial";
   fontFamily?: string;
 }
-const StyledTitle = styled.p<ITitle>((props) => ({
+const StyledTitle = styled.h1<ITitle>((props) => ({
   fontSize: props.fontSize,
   fontFamily: props.fontFamily,
   padding: props.padding,
   color: props.color,
   textAlign: props.textAlign,
 }));
-
 const Title = (PropsTitle: ITitle) => {
   return (
     <StyledTitle
+      className="title"
       textAlign={PropsTitle.textAlign}
       padding={PropsTitle.padding}
       color={PropsTitle.color}

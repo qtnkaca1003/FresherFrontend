@@ -5,29 +5,32 @@ interface IButton {
   text?: string;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
+  type: "button" | "reset" | "submit";
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
   cursor?: string;
   fontSize?: string;
   color?: string;
-  fontWeight?: string;
-  width?: string;
+  fontWeight?:
+    | 500
+    | 600
+    | 700
+    | 800
+    | 900
+    | "bold"
+    | "bolder"
+    | "lighter"
+    | "normal"
+    | "initial";
   border?: string;
-  height?: string;
   borderRadius?: string;
   background?: string;
-}
-interface IDiv {
-  width?: string;
-  height?: string;
-  borderRadius?: string;
-  background?: any;
-  size?: "small" | "medium" | "large";
-  className?: string;
+  backgroundHover?: string;
 }
 const StyleButtton = styled.button<IButton>((props) => ({
   cursor: props.cursor,
-  fontSize: props.fontSize,
+  fontSize:
+    props.size === "large" ? "16px" : props.size === "medium" ? "15px" : "14px",
   color: props.color,
   fontWeight: props.fontWeight,
   width:
@@ -35,37 +38,39 @@ const StyleButtton = styled.button<IButton>((props) => ({
       ? "390px"
       : props.size === "medium"
       ? "300px"
-      : "200px",
-
+      : "190px",
   height:
-    props.size === "large" ? "50px" : props.size === "medium" ? "50px" : "50px",
+    props.size === "large" ? "50px" : props.size === "medium" ? "45px" : "40px",
   border: props.border,
   borderRadius: props.borderRadius,
   background: props.background,
 }));
-const StyleDiv = styled.div<IDiv>((props) => ({
+
+const StyleDivBgHiden = styled.div<IButton>((props) => ({
   width:
     props.size === "large"
       ? "390px"
       : props.size === "medium"
       ? "300px"
-      : "200px",
+      : "190px",
 
   height:
-    props.size === "large" ? "50px" : props.size === "medium" ? "50px" : "50px",
+    props.size === "large" ? "50px" : props.size === "medium" ? "45px" : "40px",
   borderRadius: props.borderRadius,
   background: props.background,
-  ":before{background:`props.background`}": props.background,
+  backgroundHover: props.backgroundHover,
 }));
 const Button = (PropsButton: IButton) => {
   return (
-    <StyleDiv
+    <StyleDivBgHiden
+      type={PropsButton.type}
       size={PropsButton.size}
       background={PropsButton.background}
       borderRadius={PropsButton.borderRadius}
       className="bgbtn"
     >
       <StyleButtton
+        type={PropsButton.type}
         size={PropsButton.size}
         className="bgbtn__btn"
         cursor={PropsButton.cursor}
@@ -73,14 +78,21 @@ const Button = (PropsButton: IButton) => {
         fontSize={PropsButton.fontSize}
         fontWeight={PropsButton.fontWeight}
         disabled={PropsButton.disabled}
-        width={PropsButton.width}
-        height={PropsButton.height}
+        border={PropsButton.border}
+        borderRadius={PropsButton.borderRadius}
         onClick={PropsButton.onClick}
       >
         {PropsButton.text}
         {PropsButton.children}
       </StyleButtton>
-    </StyleDiv>
+      <StyleDivBgHiden
+        type={PropsButton.type}
+        className="bgbtn__hiden"
+        size={PropsButton.size}
+        background={PropsButton.backgroundHover}
+        borderRadius={PropsButton.borderRadius}
+      />
+    </StyleDivBgHiden>
   );
 };
 export default Button;

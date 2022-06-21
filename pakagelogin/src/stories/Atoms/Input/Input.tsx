@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import "./input.scss";
 interface IInput {
-  type:
+  type?:
     | "button"
     | "checkbox"
     | "color"
@@ -26,8 +26,9 @@ interface IInput {
     | "url"
     | "week";
   placeholder?: string;
+  textlebel?: string;
   icon?: ReactNode;
-  children?: ReactNode;
+
   className?: string;
   outline?: string;
   border?: string;
@@ -40,6 +41,8 @@ interface IInput {
   height?: string;
   background?: string;
   padding?: string;
+  required?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const StyleInput = styled.input<IInput>((props) => ({
@@ -58,6 +61,9 @@ const StyleInput = styled.input<IInput>((props) => ({
 const Input = (PropsInput: IInput) => {
   return (
     <StyleInput
+      required={PropsInput.required}
+      type={PropsInput.type}
+      onChange={PropsInput.onChange}
       outline={PropsInput.outline}
       border={PropsInput.border}
       fontFamily={PropsInput.fontFamily}
@@ -71,7 +77,6 @@ const Input = (PropsInput: IInput) => {
       padding={PropsInput.padding}
       className={`${PropsInput.className} input`}
       placeholder={PropsInput.placeholder}
-      type={PropsInput.type}
     />
   );
 };

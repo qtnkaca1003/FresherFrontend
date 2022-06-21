@@ -2,9 +2,7 @@
     position: relative;
     width: 390px;
     border-bottom: 1px solid #d9d9d9;
-    &__input {
-        display: block;
-    }
+    &__input{display: block;}
     .input:focus + .wapper__formitem__focus::before {
         width: 100%;
     }
@@ -16,6 +14,7 @@
         }
     }
     &__focus {
+       
         position: absolute;
         display: block;
         width: 100%;

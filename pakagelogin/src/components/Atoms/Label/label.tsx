@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+import "./label.scss"
 interface ILabel {
   text?: string;
   children?: ReactNode;
@@ -21,7 +22,6 @@ interface ILabel {
     | "normal"
     | "initial";
 }
-
 const StyleLabel = styled.span<ILabel>((props) => ({
   fontFamily: props.fontFamily,
   fontSize: props.fontSize,
