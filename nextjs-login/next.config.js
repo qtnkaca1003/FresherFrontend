@@ -17,5 +17,8 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
-  inlineImageLimit: false,
+  images: {
+    domains:["platform-lookaside.fbsbx.com"]
+  },
+  //inlineImageLimit: false,
 };

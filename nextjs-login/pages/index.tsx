@@ -41,6 +41,7 @@ const Home: NextPage = () => {
       router.push("/dashboard/dashboard");
     }
   }, [session, userLg]);
+  console.log(session?.user?.image);
   return (
     <>
       <PageIndex
