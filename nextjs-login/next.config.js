@@ -18,7 +18,6 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains:["platform-lookaside.fbsbx.com"]
+    domains: ["platform-lookaside.fbsbx.com", "lh3.googleusercontent.com"],
   },
-  //inlineImageLimit: false,
 };
