@@ -1,0 +1,39 @@
+.wapper__orsignup {
+    width: 390px;
+    text-align: center;
+    &__text{
+        padding: 0 0 20px;
+    }
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__fb {
+            margin: 5px;
+            width: 48px;
+            cursor: pointer;
+            &:hover {
+                fill: "#red";
+            }
+            &:hover {
+                fill: "#red";
+            }
+        }
+        &__gg {
+            width: 48px;
+            margin: 5px;
+            cursor: pointer;
+            &:hover {
+                fill: "#000";
+            }
+        }
+        &__email {
+            width: 48px;
+            margin: 5px;
+            cursor: pointer;
+            &:hover {
+                fill: "#000";
+            }
+        }
+    }
+}

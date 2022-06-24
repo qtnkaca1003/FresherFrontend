@@ -1,0 +1,49 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import Link from "./Link";
+
+<Meta title="MDX/Atoms/Link/Link" component={Link} />
+
+export const Template = (args) => <Link {...args} />;
+
+Component `Link`
+
+<Canvas>
+  <Story
+    name="Link"
+    args={{
+      fontFamily: "Poppins-Regular",
+      fontWeight: "bold",
+      fontSize: "14px",
+      color: "#333",
+      lineHeight: "1.5",
+      text: "Link ",
+      textDecoration: "none",
+      link: "/fb.com",
+      textAlign: "left",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Component `Link` nhận vào các giá trị:
+
+`textAlign`: `left` | `center` | `right`
+
+`textDecoration`: `string`
+
+`link`: `string`, url truyền vào href
+
+`text`: `string`,
+
+`className`: `string`
+
+`fontWeight`:`500`|`600`| `700`|`800`|`900`|`bold`|`bolder`|`lighter`|`normal`|`initial`
+
+`padding`: `string`
+
+`fontFamily`: `string`, font chữ
+
+`fontSize`: `string`, kích thước chữ
+
+`color`: `string`, màu chữ

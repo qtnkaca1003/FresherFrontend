@@ -1,0 +1,32 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import OrSignUp from "./OrSignUp";
+import { EmailIcon } from "../../Atoms/Icon/IconEmail";
+import { GgIcon } from "../../Atoms/Icon/IconGg";
+
+<Meta title="MDX/Molecules/OrSignUp/OrSignUp" component={OrSignUp} />
+
+export const Template = (args) => <OrSignUp {...args} />;
+
+Component `OrSignUp`:
+
+<Canvas>
+  <Story
+    name="OrSignUp"
+    args={{
+      text: "Or Sign Up",
+      iconGg: <GgIcon />,
+      iconMail: <EmailIcon />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Component `OrSignUp` nhận vào các giá trị:
+
+`icon`: `ReactNode`
+
+`text`: `string`
+
+`LoginFb` :`ReactNode` dùng thư viện 
+

@@ -1,0 +1,98 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import FormItem from "./FormItem";
+import { UserIcon } from "../../Atoms/Icon/IconUser";
+import { LockIcon } from "../../Atoms/Icon/IconLock";
+
+<Meta title="MDX/Molecules/FormItem/FormItem" component={FormItem} />
+
+export const Template = (args) => <FormItem {...args} />;
+
+Component `FormItem`:
+
+<Canvas>
+  <Story
+    name="FormItem Username"
+    args={{
+      textLabel: "Username",
+      fontFamily: "Poppins-Regular",
+      outline: "none",
+      border: "none",
+      paddingLabel: "0 0 0 7px",
+      padding: "0 7px 0 34px",
+      lineHeight: "1.3",
+      placeholder: "Type username...",
+      width: "360px",
+      height: "40px",
+      type: "text",
+      color: "#000",
+      fontSize: "20px",
+      icon: <UserIcon />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="FormItem Password"
+    args={{
+      textLabel: "Password",
+      fontFamily: "Poppins-Regular",
+      outline: "none",
+      border: "none",
+      paddingLabel: "0 0 0 7px",
+      padding: "0 7px 0 34px",
+      lineHeight: "1.3",
+      placeholder: "Type password...",
+      width: "360px",
+      height: "40px",
+      type: "password",
+      color: "#000",
+      fontSize: "20px",
+      icon: <LockIcon />,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Component `FormItem` nhận vào các giá trị:
+
+`outline`: `string`
+
+`border`: `string`, đường viền của Input
+
+`fontFamily`: `string`, font chữ,
+
+`fontSize`: `string`, kích thước chữ
+
+`color`: `string`, màu chữ
+
+`width`: `string`, chiều dài Input(px)
+
+`height`: `string`, chiều rộng Input(px)
+
+`background`: `string`, màu nền Input
+
+`textLabel`: `string`, text Label
+
+`type:`:`text`|`password`|`button`
+| `checkbox`
+| `color`
+| `date`
+| `datetime-local`
+| `email`
+| `file`
+| `hidden`
+| `image`
+| `month`
+| `number`
+| `password`
+| `radio`
+| `range`
+| `reset`
+| `search`
+| `submit`
+| `tel`
+| `text`
+| `time`
+| `url`
+| `week`

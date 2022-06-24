@@ -1,0 +1,21 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import FormLogin from "./Login";
+
+
+<Meta title="MDX/Organisms/FormLogin/FormLogin" component={FormLogin} />
+
+export const Template = (args) => <FormLogin {...args} />;
+
+Component `FormLogin`:
+
+<Canvas>
+  <Story
+    name="FormLogin"
+    args={{
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Component `FormLogin` kết hợp từ FormItem và OrSignUp
