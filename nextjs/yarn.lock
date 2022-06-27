@@ -12781,10 +12781,10 @@
     "typescript" "^4.7.3"
     "web-vitals" "^2.1.4"
 
-"pakagelogin-nhanqt@^0.2.19":
-  "integrity" "sha512-qWKfYU2z2g4Ken7TCHH4S4loO3DYZyN+3z21nYePYy6Rpop/W3UEPNHMdRVxE4EmSbtrcTnaI8jcQ6zyrxzf/w=="
-  "resolved" "https://registry.npmjs.org/pakagelogin-nhanqt/-/pakagelogin-nhanqt-0.2.19.tgz"
-  "version" "0.2.19"
+"pakagelogin-nhanqt@^0.2.21":
+  "integrity" "sha512-UInh19fBLlbK86yCEbq+Rcgckv2SQ/qNQ+PLgFs/N96s95FwjvGuKhQDLcXuFPIIbd46Q0NncaEW4etO2UJCLQ=="
+  "resolved" "https://registry.npmjs.org/pakagelogin-nhanqt/-/pakagelogin-nhanqt-0.2.21.tgz"
+  "version" "0.2.21"
   dependencies:
     "@fortawesome/react-fontawesome" "^0.1.18"
     "@testing-library/jest-dom" "^5.16.4"
