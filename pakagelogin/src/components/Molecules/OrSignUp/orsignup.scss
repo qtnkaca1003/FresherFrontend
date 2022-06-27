@@ -1,7 +1,7 @@
 .wapper__orsignup {
     width: 390px;
     text-align: center;
-    &__text{
+    &__text {
         padding: 0 0 20px;
     }
     &__icon {
@@ -18,13 +18,42 @@
             &:hover {
                 fill: "#red";
             }
+            .iconFb {
+                font-size: 1px;
+                border: 0;
+                background: #fff;
+                cursor: pointer;
+            }
         }
         &__gg {
             width: 48px;
             margin: 5px;
             cursor: pointer;
+            position: relative;
+            bottom: 24px;
             &:hover {
                 fill: "#000";
+            }
+            button {
+                position: absolute;
+                top: 0;
+                left: 0;
+                border: 0;
+                background: #fff;
+                display: none;
+                border-radius: 60px !important;
+                span {
+                    display: none;
+                }
+                div {
+                    opacity: 0;
+                }
+            }
+            .icon {
+                position: absolute;
+                pointer-events: none;
+                left: 1px;
+                top: -1px;
             }
         }
         &__email {

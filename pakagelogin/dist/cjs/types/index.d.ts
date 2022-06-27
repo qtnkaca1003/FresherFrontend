@@ -13,4 +13,5 @@ import { UserIcon } from "./components/Atoms/Icon/IconUser";
 import FormItem from "./components/Molecules/FormItem/formitem";
 import OrSignUp from "./components/Molecules/OrSignUp/orsignup";
 import FormLogin from "./components/Organisms/FormLogin/login";
-export { PageIndex, Input, Button, Label, Link, Text, Title, GgIcon, FbIcon, LockIcon, UserIcon, EmailIcon, FormItem, FormLogin, OrSignUp, };
+import LogoutGG from "./components/Atoms/Button/Logout";
+export { PageIndex, Input, Button, Label, Link, Text, Title, GgIcon, FbIcon, LockIcon, UserIcon, EmailIcon, FormItem, FormLogin, OrSignUp, LogoutGG, };

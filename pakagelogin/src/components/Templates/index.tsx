@@ -51,7 +51,7 @@ interface ILogin {
   fontSizeInput?: string;
   colorInput?: string;
   lineHeightInput?: string;
-  
+
   widthInput?: string;
   heightInput?: string;
   paddingInput?: string;
@@ -90,7 +90,7 @@ interface ILogin {
   fontSizeButton?: string;
   cursorButton?: string;
   backgroundButton?: string;
-  backgroundHover?:string
+  backgroundHover?: string;
   borderRadiusButton?: string;
   borderButton?: string;
   //OrSingUp
@@ -118,7 +118,15 @@ interface ILogin {
   paddingText?: string;
   onSubmit?: React.FormEventHandler;
   onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
-  onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>
+  onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
+
+  appId: string;
+  onClickFb?: any;
+  callback: any;
+
+  clientId: string;
+  onSuccess: any;
+  onFailure: any;
 }
 const Login = (PropsLogin: ILogin) => {
   return (
@@ -126,7 +134,7 @@ const Login = (PropsLogin: ILogin) => {
       <div className="wapper__login__form">
         <FormLogin
           backgroundButton={PropsLogin.backgroundButton}
-          onSubmit= {PropsLogin.onSubmit}
+          onSubmit={PropsLogin.onSubmit}
           backgroundHover={PropsLogin.backgroundHover}
           borderButton={PropsLogin.borderButton}
           borderInput={PropsLogin.borderInput}
@@ -177,6 +185,12 @@ const Login = (PropsLogin: ILogin) => {
           IconEm={PropsLogin.IconEm}
           IconFb={PropsLogin.IconFb}
           IconGg={PropsLogin.IconGg}
+          appId={PropsLogin.appId}
+          callback={PropsLogin.callback}
+          onClickFb={PropsLogin.onClickFb}
+          clientId={PropsLogin.clientId}
+          onFailure={PropsLogin.onFailure}
+          onSuccess={PropsLogin.onSuccess}
         />
       </div>
     </div>

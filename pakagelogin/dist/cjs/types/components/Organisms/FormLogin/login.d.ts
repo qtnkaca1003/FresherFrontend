@@ -60,6 +60,12 @@ interface IFormLogin {
     onSubmit?: React.FormEventHandler;
     onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
     onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
+    appId: string;
+    onClickFb?: any;
+    callback: any;
+    clientId: string;
+    onSuccess: any;
+    onFailure: any;
 }
 declare const FormLogin: (PropsForm: IFormLogin) => JSX.Element;
 export default FormLogin;

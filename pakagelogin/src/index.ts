@@ -13,6 +13,7 @@ import { UserIcon } from "./components/Atoms/Icon/IconUser";
 import FormItem from "./components/Molecules/FormItem/formitem";
 import OrSignUp from "./components/Molecules/OrSignUp/orsignup";
 import FormLogin from "./components/Organisms/FormLogin/login";
+import LogoutGG from "./components/Atoms/Button/Logout";
 export {
   PageIndex,
   Input,
@@ -29,4 +30,5 @@ export {
   FormItem,
   FormLogin,
   OrSignUp,
+  LogoutGG,
 };

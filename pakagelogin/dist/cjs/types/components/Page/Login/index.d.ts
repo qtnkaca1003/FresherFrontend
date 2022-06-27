@@ -60,6 +60,12 @@ interface IPageLogin {
     onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
     onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
     onSubmit?: React.FormEventHandler;
+    appId: string;
+    onClickFb?: any;
+    callback: any;
+    clientId: string;
+    onSuccess: any;
+    onFailure: any;
 }
 declare const PageIndex: (PropsPage: IPageLogin) => JSX.Element;
 export default PageIndex;

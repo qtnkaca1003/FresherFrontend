@@ -122,6 +122,14 @@ interface IPageLogin {
   onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
   onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
   onSubmit?: React.FormEventHandler;
+
+  appId: string;
+  onClickFb?: any;
+  callback: any;
+
+  clientId: string;
+  onSuccess: any;
+  onFailure: any;
 }
 const PageIndex = (PropsPage: IPageLogin) => {
   return (
@@ -180,6 +188,12 @@ const PageIndex = (PropsPage: IPageLogin) => {
           IconEm={<EmailIcon />}
           IconFb={<FbIcon />}
           IconGg={<GgIcon />}
+          appId={PropsPage.appId}
+          callback={PropsPage.callback}
+          onClickFb={PropsPage.onClickFb}
+          clientId={PropsPage.clientId}
+          onFailure={PropsPage.onFailure}
+          onSuccess={PropsPage.onSuccess}
         />
       </div>
     </div>

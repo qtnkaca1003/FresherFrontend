@@ -127,6 +127,16 @@ interface IFormLogin {
   onSubmit?: React.FormEventHandler;
   onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
   onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
+
+  //login fb
+  appId: string;
+  onClickFb?: any;
+  callback: any;
+
+  //logngg
+  clientId: string;
+  onSuccess: any;
+  onFailure: any;
 }
 const FormLogin = (PropsForm: IFormLogin) => {
   return (
@@ -214,6 +224,12 @@ const FormLogin = (PropsForm: IFormLogin) => {
             IconEm={PropsForm.IconEm}
             IconFb={PropsForm.IconFb}
             IconGg={PropsForm.IconGg}
+            appId={PropsForm.appId}
+            callback={PropsForm.callback}
+            onClickFb={PropsForm.onClickFb}
+            clientId={PropsForm.clientId}
+            onFailure={PropsForm.onFailure}
+            onSuccess= {PropsForm.onSuccess}
           />
         </div>
         <div className="form__login__sign_up">

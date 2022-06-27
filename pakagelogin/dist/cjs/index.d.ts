@@ -67,6 +67,12 @@ interface IPageLogin {
     onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
     onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
     onSubmit?: React.FormEventHandler;
+    appId: string;
+    onClickFb?: any;
+    callback: any;
+    clientId: string;
+    onSuccess: any;
+    onFailure: any;
 }
 declare const PageIndex: (PropsPage: IPageLogin) => JSX.Element;
 
@@ -233,6 +239,12 @@ interface IOrSignUp {
     LoginFb?: any;
     LoginGg?: any;
     LoginEm?: any;
+    appId?: string;
+    onClickFb?: any;
+    callback?: any;
+    clientId: string;
+    onSuccess?: any;
+    onFailure?: any;
 }
 declare const OrSignUp: (PropsOrSign: IOrSignUp) => JSX.Element;
 
@@ -299,7 +311,20 @@ interface IFormLogin {
     onSubmit?: React.FormEventHandler;
     onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
     onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
+    appId: string;
+    onClickFb?: any;
+    callback: any;
+    clientId: string;
+    onSuccess: any;
+    onFailure: any;
 }
 declare const FormLogin: (PropsForm: IFormLogin) => JSX.Element;
 
-export { Button, EmailIcon, FbIcon, FormItem, FormLogin, GgIcon, Input, Label, Link, LockIcon, OrSignUp, PageIndex, Text, Title, UserIcon };
+interface ILogoutGG {
+    clientId: string;
+    buttonText: string;
+    onLogoutSuccess: any;
+}
+declare const LogoutGG: (PropLogout: ILogoutGG) => JSX.Element;
+
+export { Button, EmailIcon, FbIcon, FormItem, FormLogin, GgIcon, Input, Label, Link, LockIcon, LogoutGG, OrSignUp, PageIndex, Text, Title, UserIcon };

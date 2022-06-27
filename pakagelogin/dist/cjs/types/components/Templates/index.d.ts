@@ -59,6 +59,12 @@ interface ILogin {
     onSubmit?: React.FormEventHandler;
     onChangePassword?: React.ChangeEventHandler<HTMLInputElement>;
     onChangeUserName?: React.ChangeEventHandler<HTMLInputElement>;
+    appId: string;
+    onClickFb?: any;
+    callback: any;
+    clientId: string;
+    onSuccess: any;
+    onFailure: any;
 }
 declare const Login: (PropsLogin: ILogin) => JSX.Element;
 export default Login;

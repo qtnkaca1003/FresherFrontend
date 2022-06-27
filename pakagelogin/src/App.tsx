@@ -1,27 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
+import LogoutGG from "./components/Atoms/Button/Logout";
 import PageIndex from "./components/Page/Login";
 
 function App() {
-  const [userName, setUserName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
+  const responseFacebook = (response: any) => {
+    console.log(response);
   };
-  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const onSuccess = (res: any) => {
+    console.log(res);
+  };
+  const onFailure = (res: any) => {
+    console.log("error", res);
   };
   const onClick = (e: React.FormEvent) => {
-    e.preventDefault();
-    const acc = {
-      user: userName,
-      pass: password,
-    };
+    console.log(e);
+  };
+  const logout = () => {
+    console.log("Log out");
   };
   return (
     <>
-      <PageIndex typeButton="button" textButton="LOGIN" sizeButton="large" />
+      <PageIndex
+        typeButton="button"
+        textButton="LOGIN"
+        sizeButton="large"
+        appId="575100697553277"
+        callback={responseFacebook}
+        clientId={
+          "887683151777-3lg3hnfsjgurkje2am2pn41ofpukro3o.apps.googleusercontent.com"
+        }
+        onSubmit={onClick}
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+      />
+      <LogoutGG
+        buttonText="Log Out"
+        clientId="887683151777-3lg3hnfsjgurkje2am2pn41ofpukro3o.apps.googleusercontent.com"
+        onLogoutSuccess={logout}
+      />
     </>
   );
 }
