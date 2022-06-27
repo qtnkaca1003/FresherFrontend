@@ -6,6 +6,7 @@ export interface UserState {
   accessToken?: string
   email?: string
   picture?: string
+  note?: string
 }
 
 const initialState: UserState = {
@@ -13,6 +14,7 @@ const initialState: UserState = {
   accessToken: "",
   email: "",
   picture: "",
+  note: "",
 }
 
 export const userSlice = createSlice({
@@ -23,7 +25,8 @@ export const userSlice = createSlice({
       ;(state.accessToken = action.payload.accessToken),
         (state.email = action.payload.email),
         (state.name = action.payload.name),
-        (state.picture = action.payload.picture)
+        (state.picture = action.payload.picture),
+        (state.note = action.payload.note)
     },
     deleteUser: (state, action: PayloadAction<UserState>) => {
       ;(state.accessToken = " "),
